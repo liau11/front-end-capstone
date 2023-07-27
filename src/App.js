@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from 'axios';
+import Map from "./MapContainer";
+import UserForm from "./UserForm";
+
+// const sampleData = []
+
+
+const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record/"
 
 function App() {
+
+
+  const createUser = () => {
+    // Test Data, eventually user data will be passed down
+    const newUserData = {
+      "name": "Jerrica",
+      "username": "Jerricausername",
+      "password": "Jerricapw"
+    }
+
+    axios
+      .post(`${API_URL}/new-user`, newUserData)
+      .then((response) => {
+        console.log("You created a new user!", response);
+      })
+      .catch((error) => {
+        console.log("New user was not created. Error: ", error);
+      });
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Restaurant Recommendation >: D</h1>
+      <button onClick={createUser}>Create User</button>
+      <UserForm createUser={createUser} />
+      <Map />
     </div>
   );
 }
