@@ -6,7 +6,7 @@ import UserForm from "./UserForm";
 // const sampleData = []
 
 
-const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record/"
+const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
 
