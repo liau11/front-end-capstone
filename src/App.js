@@ -6,7 +6,7 @@ import UserForm from "./UserForm";
 // const sampleData = []
 
 
-const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record/"
+const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
 
@@ -41,15 +41,36 @@ function App() {
       })
   }
 
+  const updateUser = () => {
+    const data = {
+      friends: "555",
+    };
+
+    axios
+      .patch(`${API_URL}/get-users/mattuser/friends`, data)
+      .then((response) => {
+        console.log("Friend added successfully!", response);
+      })
+      .catch((error) => {
+        console.log("Error adding friend:", error);
+        console.log(data)
+      });
+  };
+
+
+
 
   return (
     <div>
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUser}>Get User</button>
-      <UserForm createUser={createUser} />
+      <button onClick={updateUser}>Follow</button>
+      <button onClick={updateUser}>Add Rec</button>
+      <button onClick={updateUser}>Save Rec</button>
+      {/* <UserForm createUser={createUser} /> */}
       <Map />
-    </div>
+    </div >
   );
 }
 
