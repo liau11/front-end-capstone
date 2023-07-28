@@ -41,12 +41,23 @@ function App() {
       })
   }
 
+  const getRestaurant = () => {
+    const restaurantId = "64c18a8dc47da522804cdd70"
+    axios.get(`${API_URL}/get-restaurants/${restaurantId}`)
+      .then((response) => {
+        console.log("This is the restaurant info", response)
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      })
+  };
 
   return (
     <div>
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUser}>Get User</button>
+      <button onClick={getRestaurant}>Get Restaurant</button>
       <UserForm createUser={createUser} />
       <Map />
     </div>
