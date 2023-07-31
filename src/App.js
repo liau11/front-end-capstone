@@ -101,8 +101,21 @@ const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
 
+  const currentUserData = {
+    _id: "64c2e9cc8d528bb29bc102b8",
+    name: "Jerrica",
+    username: "jerricausername",
+    password: "jerricapw",
+    friends: ["64c8029074318fce505131ab", "64c331a5da7cc1f7dbaba44d", "64c802871a53ffc4917d8ede"],
+    //friends: cocoa, lily, sophia
+    recommendations: ["64c18a8dc47da522804cdd70", "64c185cf4fed1955e28555ab"],
+    savedList: []
+  }
+
   const [users, setUsers] = useState([])
-  const [friendsData, setFriendsData] = useState([])
+  // store all the recommendations that your friends recommended
+  const [recommendationsData, setRecommendationsData] = useState([])
+  const [currentUser, setCurrentUser] = useState(currentUserData)
 
   const getAllUsers = () => {
     axios
@@ -148,34 +161,27 @@ function App() {
     // Test Data, eventually user data will be passed down
     axios.get(`${API_URL}/get-users/${userId}`)
       .then((response) => {
-        console.log("This is the response", response.data.friends)
-        // setFriendsData(response.data.friends);
-        return response.data.friends
-
-        // const newFriendData = response.data.friends.map((friend) => {
-        //   return {
-        //     'message': card.message,
-        //   };
-        // });
-        // return response.data.friends;
+        console.log("This is the response", response.data)
+        return response.data
       })
       .catch((error) => {
         console.log("error: ", error);
       })
   }
 
-  const getRestaurant = () => {
-    const restaurantId = "64c18a8dc47da522804cdd70"
+  const getRestaurant = (restaurantId) => {
+    // const restaurantId = "64c18a8dc47da522804cdd70"
     axios.get(`${API_URL}/get-restaurants/${restaurantId}`)
       .then((response) => {
         console.log("This is the restaurant info", response)
+        return response.data
       })
       .catch((error) => {
         console.log("error: ", error);
       })
   };
 
-  console.log("THIS IS FRIENDS DATA", friendsData)
+  // console.log("THIS IS FRIENDS DATA", recommendationsData)
 
 
   const addNewRestaurant = (newRestaurantData) => {
@@ -226,9 +232,9 @@ function App() {
       });
   };
 
-  const getFriendsRecommendations = async () => {
-    const currentUserData = await getUserData("64c331a5da7cc1f7dbaba44d");
-    console.log("THIS IS CURRENT USER DATA", currentUserData);
+  const getFriendsRecommendations = async (location) => {
+
+    console.log("THIS IS CURRENT USER DATA", currentUser);
     // currentUserData ...might need to specify. Want to end up having access to friends array
     // loop through each friend:
     //   get restaurant rec from each friend(put in useState to display info):
@@ -236,14 +242,20 @@ function App() {
     //       add to savedList
     //       add to your(client) own recommendation if you also would recommend restaurant
 
+    for (const friendId of currentUser.friends) {
+      const friend = await getUserData(friendId);
+      // console.log("EACH FRIEND", friend);
+      // const restaurantData = [];
+      // friend.recommendations.forEach((restaurantId) => {
+      //   const restaurant = getRestaurant(restaurantId)
+      //   if (restaurant.location.city === location)
+      //     restaurantData.push(restaurant);
+      // });
+      // setRecommendationsData(restaurantData);
+      // console.log(restaurantData)
+    };
+  }
 
-
-    // for (const friendId of friendsData) {
-    //   const friend = await getUserData(friendId);
-    //   console.log(friend);
-    // }
-
-  };
 
 
   return (
@@ -267,5 +279,4 @@ function App() {
     </div >
   );
 }
-
 export default App;
