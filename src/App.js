@@ -1,7 +1,8 @@
 import React from "react";
 import axios from 'axios';
 import Map from "./MapContainer";
-import UserForm from "./UserForm";
+import UserForm from "./components/UserForm";
+import RestaurantForm from "./components/RestaurantForm";
 
 const sampleData = [
   {
@@ -93,7 +94,6 @@ const sampleData = [
 ]
 
 
-
 const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
@@ -166,6 +166,10 @@ function App() {
       });
   };
 
+  const getRestaurantYelp = () => {
+
+  }
+
 
   return (
     <div>
@@ -178,7 +182,8 @@ function App() {
       <button onClick={updateUserDelete}>Unfollow</button>
       <button onClick={updateUserDelete}>Remove Rec</button>
       <button onClick={updateUserDelete}>Remove Saved Rec</button>
-      <UserForm createUser={createUser} />
+      {/* <UserForm createUser={createUser} /> */}
+      <RestaurantForm getRestaurantYelp={getRestaurantYelp} />
       <Map />
     </div >
   );
