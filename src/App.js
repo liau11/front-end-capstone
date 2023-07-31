@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from 'axios';
 import Map from "./MapContainer";
 import UserForm from "./components/UserForm";
 import RestaurantForm from "./components/RestaurantForm";
+import GetRecommendationsForm from "./components/GetRecommendationsForm";
 
 const sampleData = [
   {
@@ -204,6 +205,7 @@ function App() {
       <button onClick={updateUserDelete}>Remove Rec</button>
       <button onClick={updateUserDelete}>Remove Saved Rec</button>
       <RestaurantForm addNewRestaurant={addNewRestaurant} />
+      <GetRecommendationsForm></GetRecommendationsForm>
       <Map />
     </div >
   );
