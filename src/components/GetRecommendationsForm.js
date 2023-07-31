@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
 
-const GetRecommendationsForm = () => {
+const GetRecommendationsForm = ({ getFriendsRecommendations }) => {
 
     const INITIAL_FORM_DATA = {
         location: "",
@@ -21,6 +21,7 @@ const GetRecommendationsForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        getFriendsRecommendations();
         setFormData(INITIAL_FORM_DATA);
     };
 
@@ -43,7 +44,7 @@ const GetRecommendationsForm = () => {
 };
 
 GetRecommendationsForm.propTypes = {
-    // addNewRestaurant: PropTypes.func
+    getFriendsRecommendations: PropTypes.func
 };
 
 export default GetRecommendationsForm;
