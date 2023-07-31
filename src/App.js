@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Map from "./MapContainer";
 import UserForm from "./components/UserForm";
 import RestaurantForm from "./components/RestaurantForm";
 import GetRecommendationsForm from "./components/GetRecommendationsForm";
+import FindFriendForm from "./components/FindFriendForm";
+import { useRoutes } from "react-router-dom";
 
 const sampleData = [
   {
@@ -99,6 +101,30 @@ const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
 
+  const [users, setUsers] = useState([])
+  const [friendsData, setFriendsData] = useState([])
+
+  const getAllUsers = () => {
+    axios
+      .get(`${API_URL}/get-users`)
+      .then((response) => {
+        console.log(response.data)
+        const allUserData = [];
+        response.data.forEach((user) => {
+          allUserData.push(user);
+        });
+        setUsers(allUserData);
+      })
+      .catch((error) => {
+        console.log(error.response.status);
+        console.log(error.response.data);
+      });
+  };
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
 
   const createUser = () => {
     // Test Data, eventually user data will be passed down
@@ -118,12 +144,20 @@ function App() {
       });
   }
 
-  const getUser = () => {
+  const getUserData = (userId) => {
     // Test Data, eventually user data will be passed down
-    const userId = "64c2e9cc8d528bb29bc102b8"
     axios.get(`${API_URL}/get-users/${userId}`)
       .then((response) => {
-        console.log("This is the response", response)
+        console.log("This is the response", response.data.friends)
+        // setFriendsData(response.data.friends);
+        return response.data.friends
+
+        // const newFriendData = response.data.friends.map((friend) => {
+        //   return {
+        //     'message': card.message,
+        //   };
+        // });
+        // return response.data.friends;
       })
       .catch((error) => {
         console.log("error: ", error);
@@ -141,6 +175,9 @@ function App() {
       })
   };
 
+  console.log("THIS IS FRIENDS DATA", friendsData)
+
+
   const addNewRestaurant = (newRestaurantData) => {
     axios
       .post(`${API_URL}/new-restaurant`, newRestaurantData)
@@ -152,13 +189,13 @@ function App() {
       });
   };
 
-  const updateUserAdd = () => {
+  const updateUserAdd = (username, field, data) => {
     // Test Data, eventually data will be passed down
-    const username = "lilyuser";
-    const field = "savedList";
-    const data = {
-      savedList: "pa6yR1ezl4r-wqqPSd-iZw"
-    }
+    // const username = "lilyuser";
+    // const field = "savedList";
+    // const data = {
+    //   savedList: "pa6yR1ezl4r-wqqPSd-iZw"
+    // };
 
     axios
       .patch(`${API_URL}/get-users/${username}/${field}/add`, data)
@@ -189,15 +226,35 @@ function App() {
       });
   };
 
+  const getFriendsRecommendations = async () => {
+    const currentUserData = await getUserData("64c331a5da7cc1f7dbaba44d");
+    console.log("THIS IS CURRENT USER DATA", currentUserData);
+    // currentUserData ...might need to specify. Want to end up having access to friends array
+    // loop through each friend:
+    //   get restaurant rec from each friend(put in useState to display info):
+    //     each restaurant that gets displayed should have the following: functions / buttons
+    //       add to savedList
+    //       add to your(client) own recommendation if you also would recommend restaurant
+
+
+
+    // for (const friendId of friendsData) {
+    //   const friend = await getUserData(friendId);
+    //   console.log(friend);
+    // }
+
+  };
+
 
   return (
     <div>
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
-      <button onClick={getUser}>Get User</button>
+      <button onClick={getUserData}>Get User</button>
       <button onClick={getRestaurant}>Get Restaurant</button>
       <button onClick={addNewRestaurant}>Add New Restaurant</button>
       <UserForm createUser={createUser} />
+      <FindFriendForm updateUserAdd={updateUserAdd} />
       <button onClick={updateUserAdd}>Follow</button>
       <button onClick={updateUserAdd}>Add Rec</button>
       <button onClick={updateUserAdd}>Save Rec</button>
@@ -205,7 +262,7 @@ function App() {
       <button onClick={updateUserDelete}>Remove Rec</button>
       <button onClick={updateUserDelete}>Remove Saved Rec</button>
       <RestaurantForm addNewRestaurant={addNewRestaurant} />
-      <GetRecommendationsForm></GetRecommendationsForm>
+      <GetRecommendationsForm getFriendsRecommendations={getFriendsRecommendations}></GetRecommendationsForm>
       <Map />
     </div >
   );
