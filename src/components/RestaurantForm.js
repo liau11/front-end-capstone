@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
+
 
 const RestaurantForm = ({ addNewRestaurant }) => {
 
@@ -46,6 +48,10 @@ const RestaurantForm = ({ addNewRestaurant }) => {
             </div>
         </form>
     );
+};
+
+RestaurantForm.propTypes = {
+    addNewRestaurant: PropTypes.func
 };
 
 export default RestaurantForm;

@@ -140,12 +140,7 @@ function App() {
       })
   };
 
-  const addNewRestaurant = () => {
-    const newRestaurantData = {
-      "location": "Seattle",
-      "term": "Mike's Noodle House"
-    };
-
+  const addNewRestaurant = (newRestaurantData) => {
     axios
       .post(`${API_URL}/new-restaurant`, newRestaurantData)
       .then((response) => {
@@ -155,6 +150,7 @@ function App() {
         console.log("Error: ", error);
       });
   };
+
   const updateUserAdd = () => {
     // Test Data, eventually data will be passed down
     const username = "lilyuser";
@@ -192,10 +188,6 @@ function App() {
       });
   };
 
-  const getRestaurantYelp = () => {
-
-  }
-
 
   return (
     <div>
@@ -211,7 +203,7 @@ function App() {
       <button onClick={updateUserDelete}>Unfollow</button>
       <button onClick={updateUserDelete}>Remove Rec</button>
       <button onClick={updateUserDelete}>Remove Saved Rec</button>
-      <RestaurantForm getRestaurantYelp={getRestaurantYelp} />
+      <RestaurantForm addNewRestaurant={addNewRestaurant} />
       <Map />
     </div >
   );
