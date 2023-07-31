@@ -52,12 +52,29 @@ function App() {
       })
   };
 
+  const addNewRestaurant = () => {
+    const newRestaurantData = {
+      "location": "Seattle",
+      "term": "Mike's Noodle House"
+    };
+
+    axios
+      .post(`${API_URL}/new-restaurant`, newRestaurantData)
+      .then((response) => {
+        console.log("You created a new restaurant!", response);
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  };
+
   return (
     <div>
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUser}>Get User</button>
       <button onClick={getRestaurant}>Get Restaurant</button>
+      <button onClick={addNewRestaurant}>Add New Restaurant</button>
       <UserForm createUser={createUser} />
       <Map />
     </div>
