@@ -122,7 +122,6 @@ function App() {
     axios
       .get(`${API_URL}/get-users`)
       .then((response) => {
-        // console.log(response.data)
         const allUserData = [];
         response.data.forEach((user) => {
           allUserData.push(user);
@@ -139,18 +138,13 @@ function App() {
     getAllUsers();
   }, []);
 
-  const createUser = () => {
-    // Test Data, eventually user data will be passed down
-    const newUserData = {
-      "name": "HELLO",
-      "username": "jfiejfie",
-      "password": "fejifje"
-    }
-
+  const createUser = (newUserData) => {
     axios
       .post(`${API_URL}/new-user`, newUserData)
       .then((response) => {
         console.log("You created a new user!", response);
+        setCurrentUser(newUserData);
+        getAllUsers();
       })
       .catch((error) => {
         console.log("New user was not created. Error: ", error);
@@ -249,7 +243,7 @@ function App() {
       <button onClick={getUserData}>Get User</button>
       <button onClick={getRestaurant}>Get Restaurant</button>
       <button onClick={addNewRestaurant}>Add New Restaurant</button>
-      <UserForm createUser={createUser} />
+      <UserForm createUser={createUser} users={users}/>
       <FindFriendForm updateUserAdd={updateUserAdd} />
       <button onClick={updateUserAdd}>Follow</button>
       <button onClick={updateUserAdd}>Add Rec</button>
