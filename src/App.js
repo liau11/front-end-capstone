@@ -5,6 +5,7 @@ import UserForm from "./components/UserForm";
 import RestaurantForm from "./components/RestaurantForm";
 import GetRecommendationsForm from "./components/GetRecommendationsForm";
 import FindFriendForm from "./components/FindFriendForm";
+import RecommendationsResultsList from "./components/RecommendationsResultsList";
 import { useRoutes } from "react-router-dom";
 
 const sampleData = [
@@ -226,30 +227,20 @@ function App() {
   };
 
   const getFriendsRecommendations = async (location) => {
-    console.log("THIS IS CURRENT USER DATA", currentUser);
-    // currentUserData ...might need to specify. Want to end up having access to friends array
-    // loop through each friend:
-    //   get restaurant rec from each friend(put in useState to display info):
-    //     each restaurant that gets displayed should have the following: functions / buttons
-    //       add to savedList
-    //       add to your(client) own recommendation if you also would recommend restaurant
-    console.log("THIS IS CURRENT USER FRIENDS", currentUser.friends);
     const restaurantData = [];
+  
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
-      console.log("EACH FRIEND", friend);
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
-        console.log("THIS IS EACH RESTAURANT", restaurant);
-        console.log("THIS IS THE CITY", restaurant.location.city);
         if (restaurant.location.city.toLowerCase() === location.toLowerCase()) {
-          restaurantData.push(restaurant)
-        };
-      };
-      setRecommendationsData(restaurantData);
-      console.log("THIS IS RESTAURANT DATA", restaurantData);
-    };
+          restaurantData.push(restaurant);
+        }
+      }
+    }
+    setRecommendationsData(restaurantData);
   };
+  
 
   return (
     <div>
@@ -266,10 +257,11 @@ function App() {
       <button onClick={updateUserDelete}>Unfollow</button>
       <button onClick={updateUserDelete}>Remove Rec</button>
       <button onClick={updateUserDelete}>Remove Saved Rec</button>
+      <RecommendationsResultsList recommendationsData={recommendationsData}/>
       <RestaurantForm addNewRestaurant={addNewRestaurant} />
       <GetRecommendationsForm getFriendsRecommendations={getFriendsRecommendations}></GetRecommendationsForm>
       <Map />
     </div >
   );
-}
+};
 export default App;
