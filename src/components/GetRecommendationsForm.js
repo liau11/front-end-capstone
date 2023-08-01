@@ -27,7 +27,7 @@ const GetRecommendationsForm = ({ getFriendsRecommendations }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="location">Please enter the city and state: </label>
+                <label htmlFor="location">Please enter the city: </label>
                 <input
                     type="text"
                     id="location"
@@ -35,8 +35,7 @@ const GetRecommendationsForm = ({ getFriendsRecommendations }) => {
                     value={formData.location}
                     onChange={handleChange}
                 />
-
-                <input type="submit" value="submit" />
+                <input type="submit" value="Search" />
             </div>
         </form>
     );
