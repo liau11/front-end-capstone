@@ -184,7 +184,7 @@ function App() {
       });
   };
 
-  const updateUserAdd = (username, field, data) => {
+  const updateUserAdd = (field, data) => {
     // Test Data, eventually data will be passed down
     // const username = "lilyuser";
     // const field = "savedList";
@@ -193,7 +193,7 @@ function App() {
     // };
 
     axios
-      .patch(`${API_URL}/get-users/${username}/${field}/add`, data)
+      .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
       .then((response) => {
         console.log(`${data} has been added to ${field} successfully!`, response);
       })
@@ -202,16 +202,16 @@ function App() {
       });
   };
 
-  const updateUserDelete = () => {
+  const updateUserDelete = (field, data) => {
     // Test Data, eventually data will be passed down
-    const username = "lilyuser";
-    const field = "savedList";
-    const data = {
-      savedList: "pa6yR1ezl4r-wqqPSd-iZw"
-    }
+    // const username = "lilyuser";
+    // const field = "savedList";
+    // const data = {
+    //   savedList: "pa6yR1ezl4r-wqqPSd-iZw"
+    // }
 
     axios
-      .patch(`${API_URL}/get-users/${username}/${field}/delete`, data)
+      .patch(`${API_URL}/get-users/${currentUser.username}/${field}/delete`, data)
       .then((response) => {
         console.log(`${data} has been deleted from ${field} successfully!`, response);
       })
@@ -222,7 +222,7 @@ function App() {
 
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
-  
+
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
       for (const restaurantId of friend.recommendations) {
@@ -234,7 +234,6 @@ function App() {
     }
     setRecommendationsData(restaurantData);
   };
-  
 
   return (
     <div>
@@ -243,18 +242,18 @@ function App() {
       <button onClick={getUserData}>Get User</button>
       <button onClick={getRestaurant}>Get Restaurant</button>
       <button onClick={addNewRestaurant}>Add New Restaurant</button>
-      <UserForm createUser={createUser} users={users}/>
+      <UserForm createUser={createUser} users={users} />
       <FindFriendForm updateUserAdd={updateUserAdd} />
       <button onClick={updateUserAdd}>Follow</button>
       <button onClick={updateUserAdd}>Add Rec</button>
-      <button onClick={updateUserAdd}>Save Rec</button>
+      {/* <button onClick={updateUserAdd}>Save Rec</button> */}
       <button onClick={updateUserDelete}>Unfollow</button>
       <button onClick={updateUserDelete}>Remove Rec</button>
       <button onClick={updateUserDelete}>Remove Saved Rec</button>
-      <RecommendationsResultsList recommendationsData={recommendationsData}/>
+      <RecommendationsResultsList recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} />
       <RestaurantForm addNewRestaurant={addNewRestaurant} />
       <GetRecommendationsForm getFriendsRecommendations={getFriendsRecommendations}></GetRecommendationsForm>
-      <Map recommendationsData={recommendationsData}/>
+      <Map recommendationsData={recommendationsData} />
     </div >
   );
 };
