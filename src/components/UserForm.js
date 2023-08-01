@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
+import IconButton from "@mui/material/IconButton";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import InputAdornment from "@mui/material/InputAdornment";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import Input from "@mui/material/Input";
 
 const UserForm = ({ createUser, users }) => {
-
-    const [showPassword, setShowPassword] = useState(false);
-
-
-    const handleTogglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
 
     const INITIAL_FORM_DATA = {
         name: "",
@@ -16,6 +14,19 @@ const UserForm = ({ createUser, users }) => {
     };
 
     const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+
+    const [values, setValues] = useState({
+        password: "",
+        showPassword: false,
+    });
+
+    const handleClickShowPassword = () => {
+        setValues({ ...values, showPassword: !values.showPassword });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const handleChange = (event) => {
         const newFormData = {
@@ -27,7 +38,6 @@ const UserForm = ({ createUser, users }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        handleTogglePasswordVisibility()
         
         for (const user of users) {
             if (user.username === formData.username) {
@@ -63,14 +73,24 @@ const UserForm = ({ createUser, users }) => {
                     onChange={handleChange}
                 ></input>
                 <label htmlFor="password">Password: </label>
-                <input
+                <Input
                     required
                     id="password"
                     name="password"
-                    type="text"
+                    type={values.showPassword ? "text" : "password"}
                     value={formData.password}
                     onChange={handleChange}
-                ></input>
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                            >
+                                {values.showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                            </IconButton>
+                        </InputAdornment>
+                    }
+                />
                 <input type="submit" value="Create User"></input>
             </form>
         </section>
