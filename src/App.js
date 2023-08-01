@@ -121,7 +121,7 @@ function App() {
     axios
       .get(`${API_URL}/get-users`)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         const allUserData = [];
         response.data.forEach((user) => {
           allUserData.push(user);
@@ -137,7 +137,6 @@ function App() {
   useEffect(() => {
     getAllUsers();
   }, []);
-
 
   const createUser = () => {
     // Test Data, eventually user data will be passed down
@@ -155,34 +154,29 @@ function App() {
       .catch((error) => {
         console.log("New user was not created. Error: ", error);
       });
-  }
+  };
 
-  const getUserData = (userId) => {
-    // Test Data, eventually user data will be passed down
-    axios.get(`${API_URL}/get-users/${userId}`)
-      .then((response) => {
-        console.log("This is the response", response.data)
-        return response.data
-      })
-      .catch((error) => {
-        console.log("error: ", error);
-      })
-  }
+  const getUserData = async (userId) => {
+    try {
+      const response = await axios.get(`${API_URL}/get-users/${userId}`);
+      console.log("This is the response", response.data);
+      return response.data;
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  };
 
-  const getRestaurant = (restaurantId) => {
-    // const restaurantId = "64c18a8dc47da522804cdd70"
-    axios.get(`${API_URL}/get-restaurants/${restaurantId}`)
-      .then((response) => {
-        console.log("This is the restaurant info", response)
-        return response.data
-      })
-      .catch((error) => {
-        console.log("error: ", error);
-      })
+  const getRestaurant = async (restaurantId) => {
+    try {
+      const response = await axios.get(`${API_URL}/get-restaurants/${restaurantId}`);
+      console.log("This is the response for restaurant", response.data);
+      return response.data;
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
   // console.log("THIS IS FRIENDS DATA", recommendationsData)
-
 
   const addNewRestaurant = (newRestaurantData) => {
     axios
@@ -213,7 +207,6 @@ function App() {
       });
   };
 
-
   const updateUserDelete = () => {
     // Test Data, eventually data will be passed down
     const username = "lilyuser";
@@ -233,7 +226,6 @@ function App() {
   };
 
   const getFriendsRecommendations = async (location) => {
-
     console.log("THIS IS CURRENT USER DATA", currentUser);
     // currentUserData ...might need to specify. Want to end up having access to friends array
     // loop through each friend:
@@ -241,22 +233,23 @@ function App() {
     //     each restaurant that gets displayed should have the following: functions / buttons
     //       add to savedList
     //       add to your(client) own recommendation if you also would recommend restaurant
-
+    console.log("THIS IS CURRENT USER FRIENDS", currentUser.friends);
+    const restaurantData = [];
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
-      // console.log("EACH FRIEND", friend);
-      // const restaurantData = [];
-      // friend.recommendations.forEach((restaurantId) => {
-      //   const restaurant = getRestaurant(restaurantId)
-      //   if (restaurant.location.city === location)
-      //     restaurantData.push(restaurant);
-      // });
-      // setRecommendationsData(restaurantData);
-      // console.log(restaurantData)
+      console.log("EACH FRIEND", friend);
+      for (const restaurantId of friend.recommendations) {
+        const restaurant = await getRestaurant(restaurantId);
+        console.log("THIS IS EACH RESTAURANT", restaurant);
+        console.log("THIS IS THE CITY", restaurant.location.city);
+        if (restaurant.location.city.toLowerCase() === location.toLowerCase()) {
+          restaurantData.push(restaurant)
+        };
+      };
+      setRecommendationsData(restaurantData);
+      console.log("THIS IS RESTAURANT DATA", restaurantData);
     };
-  }
-
-
+  };
 
   return (
     <div>
