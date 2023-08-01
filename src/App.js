@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Map from "./MapContainer";
+import Map from "./components/MapContainer";
 import UserForm from "./components/UserForm";
 import RestaurantForm from "./components/RestaurantForm";
 import GetRecommendationsForm from "./components/GetRecommendationsForm";
@@ -260,7 +260,7 @@ function App() {
       <RecommendationsResultsList recommendationsData={recommendationsData}/>
       <RestaurantForm addNewRestaurant={addNewRestaurant} />
       <GetRecommendationsForm getFriendsRecommendations={getFriendsRecommendations}></GetRecommendationsForm>
-      <Map />
+      <Map recommendationsData={recommendationsData}/>
     </div >
   );
 };
