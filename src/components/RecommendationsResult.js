@@ -14,6 +14,11 @@ const RecommendationsResult = (props) => {
         console.log("THIS RESTAURANT ID GOT ADDED TO SAVED LIST", props.restaurantId)
     };
 
+    const addToRecommendationsList = () => {
+        props.updateUserAdd("recommendations", { "recommendations": props.restaurantId })
+        console.log("THIS RESTAURANT ID GOT ADDED TO RECOMMENDATIONS LIST", props.restaurantId)
+    };
+
     return (
         <section>
             <li>
@@ -23,7 +28,7 @@ const RecommendationsResult = (props) => {
                 <div>{props.price}</div>
             </li>
             <button onClick={addToSavedList}>Save for Later</button>
-            {/* <button></button> */}
+            <button onClick={addToRecommendationsList}>Upvote, also recommend!</button>
         </section>
     );
 };
