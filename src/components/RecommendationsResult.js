@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 
 const RecommendationsResult = (props) => {
 
-    // const value = props.restaurantId.valueOf()
-
     let addressString = "";
     for (const address of props.display_address) {
         addressString += (" " + address)
     }
 
     const addToSavedList = () => {
-        props.updateUserAdd("savedList", { "savedList": value })
-        console.log(value)
+        props.updateUserAdd("savedList", { "savedList": props.restaurantId })
+        console.log("THIS RESTAURANT ID GOT ADDED TO SAVED LIST", props.restaurantId)
     };
 
     return (
