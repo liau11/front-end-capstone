@@ -6,10 +6,12 @@ import RestaurantForm from "./components/RestaurantForm";
 import GetRecommendationsForm from "./components/GetRecommendationsForm";
 import FindFriendForm from "./components/FindFriendForm";
 import RecommendationsResultsList from "./components/RecommendationsResultsList";
-import RoutesPath from "./Routes";
+// import RoutesPath from "./Routes";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import { useRoutes } from "react-router-dom";
+import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
+import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 
 const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
@@ -149,6 +151,34 @@ function App() {
     setRecommendationsData(restaurantData);
   };
 
+  function Testing() {
+    console.log("I AM IN TESTING COMPONENT")
+    // const { slug } = useParams();
+    return (
+        <h2>I AM TESTING</h2>
+    );
+  }
+
+  function TestingLink() {
+      return (
+          <Link to='/forms/testing-link'>
+              <h2>Link to Testing</h2>
+          </Link>
+      );
+  }
+
+  function Routes() {
+      const element = useRoutes([
+      { path: "/", element: <HomePage/> },
+      // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
+      { path: "/forms", element: <TestingLink/>},
+      { path: "/forms/testing-link", element: <Testing />},
+      { path: "/testing", element: <Testing />},
+      { path: "*", element: <NotFoundPage/>}
+      ]);
+      return element;
+  }
+
   return (
     <div>
       <Popup trigger=
@@ -170,7 +200,24 @@ function App() {
             )
         }
       </Popup>
-      <RoutesPath />
+      <Router>
+        <nav style={{ margin: 10 }}>
+            <Link to="/" style={{ padding: 5 }}>
+            Home
+            </Link>
+            <Link to="/forms" style={{ padding: 5 }}>
+            Forms
+            </Link>
+            <Link to="/testing" style={{ padding: 5 }}>
+            Testing
+            </Link>
+            <Link to="/not-found" style={{ padding: 5 }}>
+            Not Found
+            </Link>
+        </nav>
+        <Routes />
+      </Router>
+      {/* <RoutesPath /> */}
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUserData}>Get User</button>
@@ -191,4 +238,5 @@ function App() {
     </div >
   );
 };
+
 export default App;
