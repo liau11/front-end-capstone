@@ -6,6 +6,7 @@ import RestaurantForm from "./components/RestaurantForm";
 import GetRecommendationsForm from "./components/GetRecommendationsForm";
 import FindFriendForm from "./components/FindFriendForm";
 import RecommendationsResultsList from "./components/RecommendationsResultsList";
+import RoutesPath from "./Routes";
 import { useRoutes } from "react-router-dom";
 
 
@@ -148,6 +149,7 @@ function App() {
 
   return (
     <div>
+      <RoutesPath />
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUserData}>Get User</button>
