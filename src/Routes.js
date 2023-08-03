@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, useRoutes, Link, Outlet, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 // import RecommendationsResultsList from './components/RecommendationsResultsList';
 
-const slug = "something";
+// const slug = "something";
 
 function Testing() {
     console.log("I AM IN TESTING COMPONENT")
@@ -13,10 +13,10 @@ function Testing() {
     );
 }
 
-function List() {
+function TestingLink() {
     return (
-        <Link to='/forms/something'>
-            <h2>Get Lists</h2>
+        <Link to='/forms/testing-link'>
+            <h2>Link to Testing</h2>
         </Link>
     );
 }
@@ -27,13 +27,11 @@ function Routes() {
     { path: "/testing", element: <Testing />},
     { 
         path: "/forms",
-        element: <List/>,
+        element: <TestingLink/>,
         children: [
-        // { index: true, element: <List/> },
-        { path: "something", element: <Testing/> }
+        { path: "testing-link", element: <Testing/> }
         ],
     },
-    // { path: "/not-found", element: <NotFoundPage/> },
     { path: "*", element: <NotFoundPage/>}
     ]);
     return element;
@@ -49,7 +47,7 @@ const RoutesPath = () => {
                 <Link to="/forms" style={{ padding: 5 }}>
                 Forms
                 </Link>
-                <Link to="/testing" style={{ padding: 5 }}>
+                <Link to="/testing-link" style={{ padding: 5 }}>
                 Testing
                 </Link>
                 <Link to="/not-found" style={{ padding: 5 }}>
