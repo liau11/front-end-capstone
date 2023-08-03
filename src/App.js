@@ -3,10 +3,14 @@ import axios from 'axios';
 import Map from "./components/MapContainer";
 import UserForm from "./components/UserForm";
 import RestaurantForm from "./components/RestaurantForm";
-import GetRecommendationsForm from "./components/GetRecommendationsForm";
-import FindFriendForm from "./components/FindFriendForm";
+import GetRecommendationsForm from './components/GetRecommendationsForm';
+import FindFriendForm from './components/FindFriendForm';
 import RecommendationsResultsList from "./components/RecommendationsResultsList";
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
+import Profile from './components/Profile';
 import { useRoutes } from "react-router-dom";
+
 
 
 const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
@@ -148,6 +152,9 @@ function App() {
 
   return (
     <div>
+      <LoginButton />
+      <LogoutButton />
+      <Profile />
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUserData}>Get User</button>
