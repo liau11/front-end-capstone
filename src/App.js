@@ -7,6 +7,8 @@ import GetRecommendationsForm from "./components/GetRecommendationsForm";
 import FindFriendForm from "./components/FindFriendForm";
 import RecommendationsResultsList from "./components/RecommendationsResultsList";
 import RoutesPath from "./Routes";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import { useRoutes } from "react-router-dom";
 
 
@@ -149,6 +151,25 @@ function App() {
 
   return (
     <div>
+      <Popup trigger=
+        {<button> CLICK ME FOR COOL POP UP </button>}
+        modal nested>
+        {
+            close => (
+                <div className='modal'>
+                    <div className='content'>
+                        BOO!!!
+                    </div>
+                    <div>
+                        <button onClick=
+                            {() => close()}>
+                                close 
+                        </button>
+                    </div>
+                </div>
+            )
+        }
+      </Popup>
       <RoutesPath />
       <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
