@@ -8,13 +8,10 @@ const Profile = () => {
         return <div>Loading ...</div>;
     }
 
-    console.log(user);
-
     return (
         isAuthenticated && (
             <div>
-                {user}
-                {/* <img src={user.picture} alt={user.name} /> */}
+                <img src={user.picture} alt={user.name} />
                 <h2>{user.name}</h2>
                 <p>{user.email}</p>
             </div>
