@@ -151,32 +151,42 @@ function App() {
     setRecommendationsData(restaurantData);
   };
 
+
   function Testing() {
     console.log("I AM IN TESTING COMPONENT")
     // const { slug } = useParams();
     return (
-        <h2>I AM TESTING</h2>
+      <h2>I AM TESTING</h2>
     );
   }
 
   function TestingLink() {
-      return (
-          <Link to='/forms/testing-link'>
-              <h2>Link to Testing</h2>
-          </Link>
-      );
+    return (
+      <Link to='/forms/testing-link'>
+        <h2>Link to Testing</h2>
+      </Link>
+    );
   }
 
   function Routes() {
-      const element = useRoutes([
-      { path: "/", element: <HomePage/> },
+    const element = useRoutes([
+      { path: "/", element: <HomePage recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
-      { path: "/forms", element: <TestingLink/>},
-      { path: "/forms/testing-link", element: <Testing />},
-      { path: "/testing", element: <Testing />},
-      { path: "*", element: <NotFoundPage/>}
-      ]);
-      return element;
+      { path: "/forms", element: <TestingLink /> },
+      { path: "/forms/testing-link", element: <Testing /> },
+      {
+        path: "/friends",
+        element: (
+          <>
+            <FindFriendForm updateUserAdd={updateUserAdd} />
+
+          </>
+        )
+      },
+      { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
+      { path: "*", element: <NotFoundPage /> }
+    ]);
+    return element;
   }
 
   return (
@@ -185,56 +195,52 @@ function App() {
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
         {
-            close => (
-                <div className='modal'>
-                    <div className='content'>
-                        BOO!!!
-                    </div>
-                    <div>
-                        <button onClick=
-                            {() => close()}>
-                                close 
-                        </button>
-                    </div>
-                </div>
-            )
+          close => (
+            <div className='modal'>
+              <div className='content'>
+                BOO!!!
+              </div>
+              <div>
+                <button onClick=
+                  {() => close()}>
+                  close
+                </button>
+              </div>
+            </div>
+          )
         }
       </Popup>
       <Router>
         <nav style={{ margin: 10 }}>
-            <Link to="/" style={{ padding: 5 }}>
+          <Link to="/" style={{ padding: 5 }}>
             Home
-            </Link>
-            <Link to="/forms" style={{ padding: 5 }}>
+          </Link>
+          <Link to="/forms" style={{ padding: 5 }}>
             Forms
-            </Link>
-            <Link to="/testing" style={{ padding: 5 }}>
-            Testing
-            </Link>
-            <Link to="/not-found" style={{ padding: 5 }}>
+          </Link>
+          <Link to="/friends" style={{ padding: 5 }}>
+            Friends
+          </Link>
+          <Link to="/not-found" style={{ padding: 5 }}>
             Not Found
-            </Link>
+          </Link>
         </nav>
         <Routes />
       </Router>
-      {/* <RoutesPath /> */}
-      <h1>Restaurant Recommendation >: D</h1>
+      {/* <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUserData}>Get User</button>
       <button onClick={getRestaurant}>Get Restaurant</button>
-      <button onClick={addNewRestaurant}>Add New Restaurant</button>
-      <UserForm createUser={createUser} users={users} />
-      <FindFriendForm updateUserAdd={updateUserAdd} />
-      <button onClick={updateUserAdd}>Follow</button>
-      <button onClick={updateUserAdd}>Add Rec</button>
+      <button onClick={addNewRestaurant}>Add New Restaurant</button> */}
+      {/* <UserForm createUser={createUser} users={users} />
+      <FindFriendForm updateUserAdd={updateUserAdd} /> */}
+      {/* <button onClick={updateUserAdd}>Follow</button>
+      <button onClick={updateUserAdd}>Add Rec</button> */}
       {/* <button onClick={updateUserAdd}>Save Rec</button> */}
-      <button onClick={updateUserDelete}>Unfollow</button>
+      {/* <button onClick={updateUserDelete}>Unfollow</button>
       <button onClick={updateUserDelete}>Remove Rec</button>
-      <button onClick={updateUserDelete}>Remove Saved Rec</button>
-      <RecommendationsResultsList recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} />
-      <RestaurantForm addNewRestaurant={addNewRestaurant} />
-      <GetRecommendationsForm getFriendsRecommendations={getFriendsRecommendations}></GetRecommendationsForm>
-      <Map recommendationsData={recommendationsData} />
+      <button onClick={updateUserDelete}>Remove Saved Rec</button> */}
+      {/* <RestaurantForm addNewRestaurant={addNewRestaurant} /> */}
     </div >
   );
 };
