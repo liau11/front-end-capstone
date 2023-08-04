@@ -11,6 +11,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
+import FriendsPage from "./pages/FriendsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
@@ -37,6 +38,7 @@ function App() {
   // store all the recommendations that your friends recommended
   const [recommendationsData, setRecommendationsData] = useState([])
   const [currentUser, setCurrentUser] = useState(currentUserData)
+  const [currentFriends, setCurrentFriends] = useState([])
 
   const getAllUsers = () => {
     axios
@@ -56,6 +58,10 @@ function App() {
 
   useEffect(() => {
     getAllUsers();
+  }, []);
+
+  useEffect(() => {
+    getFriends();
   }, []);
 
   const createUser = (newUserData) => {
@@ -156,6 +162,20 @@ function App() {
   };
 
 
+  // Get list of friends of current user
+  const getFriends = async () => {
+    const friendData = [];
+
+    for (const friendId of currentUser.friends) {
+      const friend = await getUserData(friendId);
+      friendData.push(friend);
+    }
+
+    setCurrentFriends(friendData);
+    console.log("THIS IS FRIEND DATA", friendData)
+  };
+
+
   function Testing() {
     console.log("I AM IN TESTING COMPONENT")
     // const { slug } = useParams();
@@ -178,15 +198,7 @@ function App() {
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/forms", element: <TestingLink /> },
       { path: "/forms/testing-link", element: <Testing /> },
-      {
-        path: "/friends",
-        element: (
-          <>
-            <FindFriendForm updateUserAdd={updateUserAdd} />
-
-          </>
-        )
-      },
+      { path: "/friends", element: <FriendsPage updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
@@ -197,7 +209,7 @@ function App() {
     <div>
       <LoginButton />
       <LogoutButton />
-      <Profile />
+      {/* <Profile /> */}
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
