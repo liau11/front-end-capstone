@@ -111,17 +111,10 @@ function App() {
   };
 
   const updateUserAdd = (field, data) => {
-    // Test Data, eventually data will be passed down
-    // const username = "lilyuser";
-    // const field = "savedList";
-    // const data = {
-    //   savedList: "pa6yR1ezl4r-wqqPSd-iZw"
-    // };
-
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
       .then((response) => {
-        console.log(`${data} has been added to ${field} successfully!`, response);
+        console.log(`${data.friend} has been added to ${field} successfully!`, response);
       })
       .catch((error) => {
         console.log(`Error adding ${data}:`, error);
@@ -209,7 +202,7 @@ function App() {
     <div>
       <LoginButton />
       <LogoutButton />
-      {/* <Profile /> */}
+      <Profile />
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
