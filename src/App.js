@@ -3,8 +3,8 @@ import axios from 'axios';
 import Map from "./components/MapContainer";
 import UserForm from "./components/UserForm";
 import RestaurantForm from "./components/RestaurantForm";
-import GetRecommendationsForm from "./components/GetRecommendationsForm";
-import FindFriendForm from "./components/FindFriendForm";
+import GetRecommendationsForm from './components/GetRecommendationsForm';
+import FindFriendForm from './components/FindFriendForm';
 import RecommendationsResultsList from "./components/RecommendationsResultsList";
 // import RoutesPath from "./Routes";
 import Popup from 'reactjs-popup';
@@ -12,6 +12,10 @@ import 'reactjs-popup/dist/index.css';
 import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
+import Profile from './components/Profile';
+
 
 
 const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
@@ -191,6 +195,9 @@ function App() {
 
   return (
     <div>
+      <LoginButton />
+      <LogoutButton />
+      <Profile />
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
@@ -228,6 +235,8 @@ function App() {
         <Routes />
       </Router>
       {/* <h1>Restaurant Recommendation >: D</h1>
+
+      <h1>Restaurant Recommendation >: D</h1>
       <button onClick={createUser}>Create User</button>
       <button onClick={getUserData}>Get User</button>
       <button onClick={getRestaurant}>Get Restaurant</button>
