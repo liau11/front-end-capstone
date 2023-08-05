@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Map from "./components/MapContainer";
-import UserForm from "./components/UserForm";
 import RestaurantForm from "./components/RestaurantForm";
-import GetRecommendationsForm from './components/GetRecommendationsForm';
-import FindFriendForm from './components/FindFriendForm';
-import RecommendationsResultsList from "./components/RecommendationsResultsList";
-// import RoutesPath from "./Routes";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
@@ -16,6 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 
@@ -23,22 +19,25 @@ const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
 
-  const currentUserData = {
-    _id: "64c2e9cc8d528bb29bc102b8",
-    name: "Jerrica",
-    username: "jerricausername",
-    password: "jerricapw",
-    friends: ["64c8029074318fce505131ab", "64c331a5da7cc1f7dbaba44d", "64c802871a53ffc4917d8ede"],
-    //friends: cocoa, lily, sophia
-    recommendations: ["64c18a8dc47da522804cdd70", "64c185cf4fed1955e28555ab"],
-    savedList: []
-  }
+  // const currentUserData = {
+  //   _id: "64c2e9cc8d528bb29bc102b8",
+  //   name: "Jerrica",
+  //   username: "jerricausername",
+  //   password: "jerricapw",
+  //   friends: ["64c8029074318fce505131ab", "64c331a5da7cc1f7dbaba44d", "64c802871a53ffc4917d8ede"],
+  //   //friends: cocoa, lily, sophia
+  //   recommendations: ["64c18a8dc47da522804cdd70", "64c185cf4fed1955e28555ab"],
+  //   savedList: []
+  // }
 
   const [users, setUsers] = useState([])
   // store all the recommendations that your friends recommended
   const [recommendationsData, setRecommendationsData] = useState([])
-  const [currentUser, setCurrentUser] = useState(currentUserData)
+  const [currentUser, setCurrentUser] = useState([])
   const [currentFriends, setCurrentFriends] = useState([])
+
+
+  const { user } = useAuth0();
 
   const getAllUsers = () => {
     axios
@@ -56,13 +55,46 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    getAllUsers();
-  }, []);
+  const getCurrentUser = () => {
 
-  useEffect(() => {
-    getFriends();
-  }, []);
+    let newUser = false;
+
+    for (const userObject of users) {
+      if (userObject.username === user.email) {
+        continue;
+      }
+      else {
+        newUser = true;
+      }
+    }
+
+    if (newUser) {
+      createUser({
+        "name": user.nickname,
+        "username": user.email,
+        "password": "randompassword"
+      });
+    }
+
+    setCurrentUser({
+      "name": user.nickname,
+      "username": user.email,
+      "password": "randompassword"
+    });
+
+  };
+
+  // useEffect(() => {
+  //   getAllUsers();
+  // }, []);
+
+  // useEffect(() => {
+  //   getFriends();
+  // }, []);
+
+  // useEffect(() => {
+  //   getCurrentUser();
+  // }, [])
 
   const createUser = (newUserData) => {
     axios
@@ -97,7 +129,6 @@ function App() {
     }
   };
 
-  // console.log("THIS IS FRIENDS DATA", recommendationsData)
 
   const addNewRestaurant = (newRestaurantData) => {
     axios
@@ -122,13 +153,6 @@ function App() {
   };
 
   const updateUserDelete = (field, data) => {
-    // Test Data, eventually data will be passed down
-    // const username = "lilyuser";
-    // const field = "savedList";
-    // const data = {
-    //   savedList: "pa6yR1ezl4r-wqqPSd-iZw"
-    // }
-
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/delete`, data)
       .then((response) => {
@@ -168,29 +192,11 @@ function App() {
     console.log("THIS IS FRIEND DATA", friendData)
   };
 
-
-  function Testing() {
-    console.log("I AM IN TESTING COMPONENT")
-    // const { slug } = useParams();
-    return (
-      <h2>I AM TESTING</h2>
-    );
-  }
-
-  function TestingLink() {
-    return (
-      <Link to='/forms/testing-link'>
-        <h2>Link to Testing</h2>
-      </Link>
-    );
-  }
-
   function Routes() {
     const element = useRoutes([
       { path: "/", element: <HomePage recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
-      { path: "/forms", element: <TestingLink /> },
-      { path: "/forms/testing-link", element: <Testing /> },
+      { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} /> },
       { path: "/friends", element: <FriendsPage updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
@@ -202,7 +208,7 @@ function App() {
     <div>
       <LoginButton />
       <LogoutButton />
-      <Profile />
+      <Profile getCurrentUser={getCurrentUser} />
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
@@ -227,14 +233,14 @@ function App() {
           <Link to="/" style={{ padding: 5 }}>
             Home
           </Link>
-          <Link to="/forms" style={{ padding: 5 }}>
-            Forms
+          <Link to="/restaurant-form" style={{ padding: 5 }}>
+            Recommend A Restaurant
           </Link>
           <Link to="/friends" style={{ padding: 5 }}>
             Friends
           </Link>
           <Link to="/not-found" style={{ padding: 5 }}>
-            Not Found
+            About
           </Link>
         </nav>
         <Routes />
