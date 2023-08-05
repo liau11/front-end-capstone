@@ -39,6 +39,11 @@ function App() {
 
   const { user } = useAuth0();
 
+  useEffect(() => {
+    // Fetch all users when the component mounts
+    getAllUsers();
+  }, []); // Empty dependency array means the effect runs only on mount
+
   const getAllUsers = () => {
     axios
       .get(`${API_URL}/get-users`)
@@ -55,59 +60,44 @@ function App() {
       });
   };
 
-  const getCurrentUser = () => {
-
-    let newUser = false;
-
-    for (const userObject of users) {
-      if (userObject.username === user.email) {
-        continue;
-      }
-      else {
-        newUser = true;
-      }
-    }
-
-    if (newUser) {
-      createUser({
-        "name": user.nickname,
-        "username": user.email,
-        "password": "randompassword"
-      });
-    }
-
-    setCurrentUser({
-      "name": user.nickname,
-      "username": user.email,
-      "password": "randompassword"
-    });
-
-  };
-
-  // useEffect(() => {
-  //   getAllUsers();
-  // }, []);
-
-  // useEffect(() => {
-  //   getFriends();
-  // }, []);
-
-  // useEffect(() => {
-  //   getCurrentUser();
-  // }, [])
-
   const createUser = (newUserData) => {
     axios
       .post(`${API_URL}/new-user`, newUserData)
       .then((response) => {
         console.log("You created a new user!", response);
-        setCurrentUser(newUserData);
-        getAllUsers();
       })
       .catch((error) => {
         console.log("New user was not created. Error: ", error);
       });
   };
+
+  const getCurrentUser = (formData) => {
+
+    let newUser = true;
+    console.log(formData);
+
+    for (const userObject of users) {
+      console.log("EACH USER", userObject)
+      console.log("THIS IS CURRENT USER", formData.username)
+      console.log("THIS IS THEIR USERNAME", userObject.username)
+      if (userObject.username === formData.username) {
+        newUser = false;
+      }
+    }
+
+    console.log(newUser)
+  
+    const newUserData = {
+      name: formData.name,
+      username: formData.username,
+      password: "randompassword"
+    }
+
+    if (newUser) {
+      createUser(newUserData);
+    };
+  };
+
 
   const getUserData = async (userId) => {
     try {
