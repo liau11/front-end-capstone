@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
 
-const FindFriendForm = ({ updateUserAdd }) => {
+const FindFriendForm = ({ users, updateUserAdd }) => {
 
     const INITIAL_FORM_DATA = {
         friends: "",
@@ -20,7 +20,14 @@ const FindFriendForm = ({ updateUserAdd }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("THIS IS FORM DATA", formData)
+
+        for (const user_object of users) {
+            if (user_object.username === formData.friends) {
+              console.log("This should be id", user_object._id)
+              formData.friends = user_object._id
+            }
+          }
+        
         updateUserAdd("friends", formData);
         setFormData(INITIAL_FORM_DATA);
     };

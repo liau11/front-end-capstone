@@ -19,24 +19,13 @@ const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
 
-  // const currentUserData = {
-  //   _id: "64c2e9cc8d528bb29bc102b8",
-  //   name: "Jerrica",
-  //   username: "jerricausername",
-  //   password: "jerricapw",
-  //   friends: ["64c8029074318fce505131ab", "64c331a5da7cc1f7dbaba44d", "64c802871a53ffc4917d8ede"],
-  //   //friends: cocoa, lily, sophia
-  //   recommendations: ["64c18a8dc47da522804cdd70", "64c185cf4fed1955e28555ab"],
-  //   savedList: []
-  // }
-
   const [users, setUsers] = useState([])
   // store all the recommendations that your friends recommended
   const [recommendationsData, setRecommendationsData] = useState([])
   const [currentUser, setCurrentUser] = useState([])
   const [currentFriends, setCurrentFriends] = useState([])
 
-  // const { user } = useAuth0();
+  console.log("This is the current user", currentUser);
 
   useEffect(() => {
     getAllUsers();
@@ -70,7 +59,6 @@ function App() {
   };
 
   const findCurrentUserData = (currentUsername) => {
-    console.log("Find user data", users)
     for (const user_object of users) {
       if (user_object.username === currentUsername) {
         setCurrentUser(user_object);
@@ -81,13 +69,8 @@ function App() {
 
   const getCurrentUser = (formData) => {
     let newUser = true;
-    // console.log(formData);
-    // console.log("CURRENT USER", currentUser)
 
     for (const userObject of users) {
-      // console.log("EACH USER", userObject)
-      // console.log("THIS IS CURRENT USER", formData.username)
-      // console.log("THIS IS THEIR USERNAME", userObject.username)
       if (userObject.username === formData.username) {
         newUser = false;
       }
@@ -105,7 +88,6 @@ function App() {
     findCurrentUserData(formData.username)
   };
 
-  console.log("YOOO this is current user", currentUser)
 
   const getUserData = async (userId) => {
     try {
@@ -139,26 +121,16 @@ function App() {
       });
   };
 
+
   const updateUserAdd = (field, data) => {
-    let newFriendData = {
-      "friends": null
-    }
-
-    for (const user_object of users) {
-      if (user_object.username === data.friends) {
-        console.log(user_object._id)
-        newFriendData.friends = user_object._id
-        axios
-        .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, newFriendData)
-        .then((response) => {
-          console.log(`${newFriendData} has been added to ${field} successfully!`, response);
-        })
-        .catch((error) => {
-          console.log(`Error adding ${newFriendData}:`, error);
-        });
-      }
-    }
-
+    axios
+    .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
+    .then((response) => {
+      console.log(`${data} has been added to ${field} successfully!`, response);
+    })
+    .catch((error) => {
+      console.log(`Error adding ${data}:`, error);
+    });
   };
 
   const updateUserDelete = (field, data) => {
@@ -174,10 +146,8 @@ function App() {
 
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
-    console.log("troubleshoot", currentUser)
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
-      console.log("EACH FRIEND", friend)
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
         if (restaurant.location.city.toLowerCase() === location.toLowerCase()) {
@@ -187,6 +157,7 @@ function App() {
     }
     setRecommendationsData(restaurantData);
   };
+
 
 
   // Get list of friends of current user
@@ -199,7 +170,6 @@ function App() {
     }
 
     setCurrentFriends(friendData);
-    console.log("THIS IS FRIEND DATA", friendData)
   };
 
   function Routes() {
@@ -207,7 +177,7 @@ function App() {
       { path: "/", element: <HomePage recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} /> },
-      { path: "/friends", element: <FriendsPage updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
+      { path: "/friends", element: <FriendsPage users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
