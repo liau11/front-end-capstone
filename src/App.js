@@ -36,13 +36,11 @@ function App() {
   const [currentUser, setCurrentUser] = useState([])
   const [currentFriends, setCurrentFriends] = useState([])
 
-
-  const { user } = useAuth0();
+  // const { user } = useAuth0();
 
   useEffect(() => {
-    // Fetch all users when the component mounts
     getAllUsers();
-  }, []); // Empty dependency array means the effect runs only on mount
+  }, []); 
 
   const getAllUsers = () => {
     axios
@@ -71,22 +69,30 @@ function App() {
       });
   };
 
-  const getCurrentUser = (formData) => {
+  const findCurrentUserData = (currentUsername) => {
+    console.log("Find user data", users)
+    for (const user_object of users) {
+      if (user_object.username === currentUsername) {
+        setCurrentUser(user_object);
+      }
+    }
+  };
 
+
+  const getCurrentUser = (formData) => {
     let newUser = true;
-    console.log(formData);
+    // console.log(formData);
+    // console.log("CURRENT USER", currentUser)
 
     for (const userObject of users) {
-      console.log("EACH USER", userObject)
-      console.log("THIS IS CURRENT USER", formData.username)
-      console.log("THIS IS THEIR USERNAME", userObject.username)
+      // console.log("EACH USER", userObject)
+      // console.log("THIS IS CURRENT USER", formData.username)
+      // console.log("THIS IS THEIR USERNAME", userObject.username)
       if (userObject.username === formData.username) {
         newUser = false;
       }
     }
 
-    console.log(newUser)
-  
     const newUserData = {
       name: formData.name,
       username: formData.username,
@@ -96,8 +102,10 @@ function App() {
     if (newUser) {
       createUser(newUserData);
     };
+    findCurrentUserData(formData.username)
   };
 
+  console.log("YOOO this is current user", currentUser)
 
   const getUserData = async (userId) => {
     try {
@@ -135,7 +143,7 @@ function App() {
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
       .then((response) => {
-        console.log(`${data.friend} has been added to ${field} successfully!`, response);
+        console.log(`${data.friends} has been added to ${field} successfully!`, response);
       })
       .catch((error) => {
         console.log(`Error adding ${data}:`, error);
@@ -155,9 +163,10 @@ function App() {
 
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
-
+    // console.log("troubleshoot", currentUser)
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
+      console.log("EACH FRIEND", friend)
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
         if (restaurant.location.city.toLowerCase() === location.toLowerCase()) {
@@ -198,7 +207,7 @@ function App() {
     <div>
       <LoginButton />
       <LogoutButton />
-      <Profile getCurrentUser={getCurrentUser} />
+      <Profile getCurrentUser={getCurrentUser} currentUser={currentUser}/>
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
