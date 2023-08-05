@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const FindFriendForm = ({ updateUserAdd }) => {
 
     const INITIAL_FORM_DATA = {
-        friend: "",
+        friends: "",
     };
 
     const [formData, setFormData] = useState(INITIAL_FORM_DATA);
@@ -28,12 +28,12 @@ const FindFriendForm = ({ updateUserAdd }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="friend">Please enter friend's username: </label>
+                <label htmlFor="friends">Please enter friend's username: </label>
                 <input
                     type="text"
-                    id="friend"
-                    name="friend"
-                    value={formData.friend}
+                    id="friends"
+                    name="friends"
+                    value={formData.friends}
                     onChange={handleChange}
                 />
                 <input type="submit" value="Add friend" />
