@@ -35,7 +35,7 @@ const RecommendationsResult = (props) => {
 
 RecommendationsResult.propTypes = {
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    display_phone: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     display_address: PropTypes.array
 };
