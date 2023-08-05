@@ -140,14 +140,25 @@ function App() {
   };
 
   const updateUserAdd = (field, data) => {
-    axios
-      .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
-      .then((response) => {
-        console.log(`${data.friends} has been added to ${field} successfully!`, response);
-      })
-      .catch((error) => {
-        console.log(`Error adding ${data}:`, error);
-      });
+    let newFriendData = {
+      "friends": null
+    }
+
+    for (const user_object of users) {
+      if (user_object.username === data.friends) {
+        console.log(user_object._id)
+        newFriendData.friends = user_object._id
+        axios
+        .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, newFriendData)
+        .then((response) => {
+          console.log(`${newFriendData} has been added to ${field} successfully!`, response);
+        })
+        .catch((error) => {
+          console.log(`Error adding ${newFriendData}:`, error);
+        });
+      }
+    }
+
   };
 
   const updateUserDelete = (field, data) => {
@@ -163,7 +174,7 @@ function App() {
 
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
-    // console.log("troubleshoot", currentUser)
+    console.log("troubleshoot", currentUser)
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
       console.log("EACH FRIEND", friend)
