@@ -23,10 +23,10 @@ const FindFriendForm = ({ users, updateUserAdd }) => {
 
         for (const user_object of users) {
             if (user_object.username === formData.friends) {
-              console.log("This should be id", user_object._id)
-              formData.friends = user_object._id
+                console.log("This should be id", user_object._id)
+                formData.friends = user_object._id
             }
-          }
+        }
         
         updateUserAdd("friends", formData);
         setFormData(INITIAL_FORM_DATA);

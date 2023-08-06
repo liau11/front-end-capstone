@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Profile = ({ getCurrentUser, currentUser }) => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated && !currentUser.length) {
