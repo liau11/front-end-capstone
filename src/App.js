@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     getAllUsers();
-  }, []); 
+  }, [currentUser.friends]);
 
   const getAllUsers = () => {
     axios
@@ -79,7 +79,6 @@ function App() {
     const newUserData = {
       name: formData.name,
       username: formData.username,
-      password: "randompassword"
     }
 
     if (newUser) {
@@ -124,14 +123,16 @@ function App() {
 
   const updateUserAdd = (field, data) => {
     axios
-    .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
-    .then((response) => {
-      console.log(`${data} has been added to ${field} successfully!`, response);
-    })
-    .catch((error) => {
-      console.log(`Error adding ${data}:`, error);
-    });
+      .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
+      .then((response) => {
+        addFriendToCurrentUser(data.friends);
+        console.log(`${data} has been added to ${field} successfully!`, response);
+      })
+      .catch((error) => {
+        console.log(`Error adding ${data}:`, error);
+      });
   };
+
 
   const updateUserDelete = (field, data) => {
     axios
@@ -156,6 +157,13 @@ function App() {
       }
     }
     setRecommendationsData(restaurantData);
+  };
+
+  const addFriendToCurrentUser = (friendId) => {
+    setCurrentUser(prevData => ({
+      ...prevData,
+      friends: [...prevData.friends, friendId]
+    }));
   };
 
 
@@ -188,7 +196,7 @@ function App() {
     <div>
       <LoginButton />
       <LogoutButton />
-      <Profile getCurrentUser={getCurrentUser} currentUser={currentUser}/>
+      <Profile getCurrentUser={getCurrentUser} />
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>

@@ -2,22 +2,29 @@ import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-const Profile = ({ getCurrentUser, currentUser }) => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
+const Profile = ({ getCurrentUser }) => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
-    if (isAuthenticated && !currentUser.length) {
-      const formData = {
-        name: user.given_name,
-        username: user.email,
-      };
-      getCurrentUser(formData);
-    }
-  }, [isAuthenticated, currentUser]);
+    const handleAuth = () => {
+      if (isAuthenticated) {
+        const formData = {
+          name: user.given_name,
+          username: user.email,
+        };
+        getCurrentUser(formData);
+      }
+    };
+
+    handleAuth();
+  }, [isAuthenticated]);
+
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
+
+
 
   return (
     isAuthenticated && (
