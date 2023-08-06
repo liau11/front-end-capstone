@@ -18,41 +18,36 @@ const FindFriendForm = ({ currentUser, users, updateUserAdd }) => {
         setFormData(newFormData);
     };
 
-    const validateId = (newFriendId) => {
-        if (currentUser.friends.includes(newFriendId)) {
-            return false;
-        }
-        return true;
-    }
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const valueToCheck = formData.friends;
-        const exists = currentUser["friends"].some(friend => friend === valueToCheck);
+        // Check if friend exists as a user.
+        let userExists = false;
 
-        if (exists) {
-            alert(`${valueToCheck} is already your friend! :D`)
-        } else {
+        for (const user_object of users) {
+            if (user_object.username === formData.friends) {
+                formData.friends = user_object._id
+                userExists = true;
+            }
+        }
+
+        // Check if user is in friends array already
+        if (userExists) {
             const valueToCheck = formData.friends;
-            const exists = users.some(user => user.username === valueToCheck);
-
-            if (exists) {
-                for (const user_object of users) {
-                    if (user_object.username === formData.friends) {
-                      formData.friends = user_object._id
-                    }
-                }
+            const friendExists = currentUser["friends"].some(friend => friend === valueToCheck);
+            if (friendExists) {
+                alert(`You have already added this person! :D`)
+            } else {
                 updateUserAdd("friends", formData);
                 setFormData(INITIAL_FORM_DATA);
                 alert("Yay, friend has been added!")
-            } else {
-                alert("Sorry, this user does not exist in our database. Tell them to join!")
             }
+        } else {
+            alert("Sorry, this user does not exist in our database. Tell them to join!")
         }
     };
-    
+
 
     return (
         <form onSubmit={handleSubmit}>
