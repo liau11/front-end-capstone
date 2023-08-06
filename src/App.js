@@ -26,10 +26,19 @@ function App() {
   const [currentFriends, setCurrentFriends] = useState([])
 
   console.log("This is the current user", currentUser);
-
+  console.log("This is ALL USERS", users);
+  console.log("This is currentFriends", currentFriends);
+  
   useEffect(() => {
     getAllUsers();
   }, []); 
+    
+  useEffect(() => {
+    console.log("currentUser.length is ", Object.keys(currentUser).length);
+    if (Object.keys(currentUser).length) {
+      getFriends();
+    }
+  }, [currentUser]); 
 
   const getAllUsers = () => {
     axios
@@ -45,6 +54,17 @@ function App() {
         console.log(error.response.status);
         console.log(error.response.data);
       });
+  };  
+
+  // Get list of friends of current user
+  const getFriends = async () => {
+    const friendData = [];
+
+    for (const friendId of currentUser.friends) {
+      const friend = await getUserData(friendId);
+      friendData.push(friend);
+    }
+    setCurrentFriends(friendData);
   };
 
   const createUser = (newUserData) => {
@@ -78,8 +98,7 @@ function App() {
 
     const newUserData = {
       name: formData.name,
-      username: formData.username,
-      password: "randompassword"
+      username: formData.username
     }
 
     if (newUser) {
@@ -92,7 +111,7 @@ function App() {
   const getUserData = async (userId) => {
     try {
       const response = await axios.get(`${API_URL}/get-users/${userId}`);
-      console.log("This is the response", response.data);
+      // console.log("This is the response", response.data);
       return response.data;
     } catch (error) {
       console.log("error: ", error);
@@ -156,20 +175,6 @@ function App() {
       }
     }
     setRecommendationsData(restaurantData);
-  };
-
-
-
-  // Get list of friends of current user
-  const getFriends = async () => {
-    const friendData = [];
-
-    for (const friendId of currentUser.friends) {
-      const friend = await getUserData(friendId);
-      friendData.push(friend);
-    }
-
-    setCurrentFriends(friendData);
   };
 
   function Routes() {
