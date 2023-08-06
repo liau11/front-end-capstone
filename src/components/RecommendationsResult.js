@@ -9,14 +9,33 @@ const RecommendationsResult = (props) => {
         addressString += (" " + address)
     }
 
+    const validateId = (arrToAdd) => {
+        // console.log(props.currentUser[arrToAdd])
+        if (props.currentUser[arrToAdd].includes(props.restaurantId)) {
+            console.log("TADA", props.currentUser[arrToAdd])
+            return false;
+        }
+        return true;
+    }
+
     const addToSavedList = () => {
-        props.updateUserAdd("savedList", { "savedList": props.restaurantId })
-        console.log("THIS RESTAURANT ID GOT ADDED TO SAVED LIST", props.restaurantId)
+        const newRestaurant = validateId("savedList");
+        if (newRestaurant) {
+            props.updateUserAdd("savedList", { "savedList": props.restaurantId })
+            console.log("THIS RESTAURANT ID GOT ADDED TO SAVED LIST", props.restaurantId)
+        } else {
+            console.log("It's already in your list");
+        }
     };
 
     const addToRecommendationsList = () => {
-        props.updateUserAdd("recommendations", { "recommendations": props.restaurantId })
-        console.log("THIS RESTAURANT ID GOT ADDED TO RECOMMENDATIONS LIST", props.restaurantId)
+        const newRestaurant = validateId("savedList");
+        if (newRestaurant) {
+            props.updateUserAdd("recommendations", { "recommendations": props.restaurantId })
+            console.log("THIS RESTAURANT ID GOT ADDED TO RECOMMENDATIONS LIST", props.restaurantId)
+        } else {
+            console.log("It's already in your list");
+        }
     };
 
     return (
