@@ -177,7 +177,7 @@ function App() {
       { path: "/", element: <HomePage currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} /> },
-      { path: "/friends", element: <FriendsPage users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
+      { path: "/friends", element: <FriendsPage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
