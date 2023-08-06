@@ -174,7 +174,7 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
+      { path: "/", element: <HomePage currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} /> },
       { path: "/friends", element: <FriendsPage users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },

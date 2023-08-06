@@ -2,13 +2,13 @@ import Map from "../components/MapContainer";
 import RecommendationsResultsList from "../components/RecommendationsResultsList";
 import GetRecommendationsForm from "../components/GetRecommendationsForm";
 
-const HomePage = ({ recommendationsData, updateUserAdd, getFriendsRecommendations }) => {
+const HomePage = ({ currentUser, recommendationsData, updateUserAdd, getFriendsRecommendations }) => {
     return (
         <section>
             <h1>Welcome to the Home Page!</h1>
             < Map recommendationsData={recommendationsData} ></Map >
-            <RecommendationsResultsList recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} />
-            <GetRecommendationsForm getFriendsRecommendations={getFriendsRecommendations}></GetRecommendationsForm>
+            <RecommendationsResultsList currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} />
+            <GetRecommendationsForm  currentUser={currentUser} getFriendsRecommendations={getFriendsRecommendations}></GetRecommendationsForm>
         </section>
     );
 

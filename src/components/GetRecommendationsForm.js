@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
 
-const GetRecommendationsForm = ({ getFriendsRecommendations }) => {
+const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
 
     const INITIAL_FORM_DATA = {
         location: ""
@@ -20,8 +20,13 @@ const GetRecommendationsForm = ({ getFriendsRecommendations }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        getFriendsRecommendations(formData.location);
-        setFormData(INITIAL_FORM_DATA);
+        if (!currentUser.friends.length) {
+            alert("You need to add friends first!")
+        } else {
+            console.log("You entered here")
+            getFriendsRecommendations(formData.location);
+            setFormData(INITIAL_FORM_DATA);
+        }
     };
 
     return (
