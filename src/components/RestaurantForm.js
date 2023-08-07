@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
 
-const RestaurantForm = ({ addNewRestaurant, updateUserAdd }) => {
+const RestaurantForm = ({ allRestaurants, addNewRestaurant, updateUserAdd }) => {
 
     const INITIAL_FORM_DATA = {
         location: "",
@@ -19,14 +19,30 @@ const RestaurantForm = ({ addNewRestaurant, updateUserAdd }) => {
         setFormData(newFormData);
     };
 
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const newRestaurantId = await addNewRestaurant(formData);
 
-        updateUserAdd("recommendations", {"recommendations": newRestaurantId})
+        let restaurantExists = false;
 
-        setFormData(INITIAL_FORM_DATA);
-    };
+        for (const restaurantObject of allRestaurants) {  
+            if (restaurantObject.name.toLowerCase() === formData.term.toLowerCase()) {
+                formData.term = restaurantObject._id
+                restaurantExists = true;
+            }
+        }
+
+        console.log("New restaurant?", restaurantExists)
+
+        if (restaurantExists) {
+                updateUserAdd("recommendations", {"recommendations": formData.term})
+        } else {
+            const newRestaurantId = await addNewRestaurant(formData);
+            updateUserAdd("recommendations", {"recommendations": newRestaurantId})
+            setFormData(INITIAL_FORM_DATA);
+        }
+    }
 
     return (
         <form onSubmit={handleSubmit}>
