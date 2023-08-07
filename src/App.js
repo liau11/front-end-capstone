@@ -21,10 +21,12 @@ const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 function App() {
 
   const [users, setUsers] = useState([])
+  const [allRestaurants, setAllRestaurants] = useState([])
   // store all the recommendations that your friends recommended
   const [recommendationsData, setRecommendationsData] = useState([])
   const [currentUser, setCurrentUser] = useState([])
   const [currentFriends, setCurrentFriends] = useState([])
+  const [userRecommendations, setUserRecommendations] = useState([])
   const [cityCenter, setCityCenter] = useState([47.6206, -122.3505])
 
   // console.log("This is the current user", currentUser);
@@ -33,15 +35,15 @@ function App() {
   
   useEffect(() => {
     getAllUsers();
-  }, [currentUser.friends]);
-  
-  
-  useEffect(() => {
-    // console.log("currentUser.length is ", Object.keys(currentUser).length);
     if (Object.keys(currentUser).length) {
       getFriends();
+      getAllRestaurants();
+      getUserRecommendations();
     }
-  }, [currentUser]); 
+  }, [currentUser.friends, currentUser.recommendations]);
+
+
+  console.log("These are all the restaurants in the db", allRestaurants)
 
   const getAllUsers = () => {
     axios
@@ -58,6 +60,24 @@ function App() {
         console.log(error.response.data);
       });
   };  
+
+
+  const getAllRestaurants = () => {
+    axios
+      .get(`${API_URL}/get-restaurants`)
+      .then((response) => {
+        const allRestaurantData = [];
+        response.data.forEach((restaurant) => {
+          allRestaurantData.push(restaurant);
+        });
+        setAllRestaurants(allRestaurantData);
+      })
+      .catch((error) => {
+        console.log(error.response.status);
+        console.log(error.response.data);
+      });
+  };  
+
 
   // Get list of friends of current user
   const getFriends = async () => {
@@ -189,6 +209,20 @@ function App() {
   };
 
 
+  const getUserRecommendations = async () => {
+    const restaurantData = [];
+
+    for (const restaurantId of currentUser.recommendations) {
+      const restaurant = await getRestaurant(restaurantId);
+      restaurantData.push(restaurant);
+    }
+
+    setUserRecommendations(restaurantData);
+  };
+
+  console.log(userRecommendations)
+
+
   const addDataToCurrentUser = (field, id) => {
     if (!currentUser[field].includes(id)) {
       setCurrentUser(prevData => ({
@@ -205,10 +239,8 @@ function App() {
     const element = useRoutes([
       { path: "/", element: <HomePage cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
-      { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
-      { path: "/profile", element: [
-        <ProfilePage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>] 
-      },
+      { path: "/restaurant-form", element: <RestaurantForm allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
+      { path: "/profile", element: <ProfilePage getUserRecommendations={getUserRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
@@ -217,6 +249,7 @@ function App() {
 
   return (
     <div>
+      <h1> Title goes here</h1>
       <LoginButton />
       <LogoutButton />
       <Profile getCurrentUser={getCurrentUser} />
