@@ -11,6 +11,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
+import ProfilePage from "./pages/ProfilePage";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
@@ -205,7 +206,9 @@ function App() {
       { path: "/", element: <HomePage cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
-      { path: "/friends", element: <FriendsPage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
+      { path: "/profile", element: [
+        <ProfilePage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>] 
+      },
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
@@ -244,8 +247,8 @@ function App() {
           <Link to="/restaurant-form" style={{ padding: 5 }}>
             Recommend A Restaurant
           </Link>
-          <Link to="/friends" style={{ padding: 5 }}>
-            Friends
+          <Link to="/profile" style={{ padding: 5 }}>
+            Profile
           </Link>
           <Link to="/not-found" style={{ padding: 5 }}>
             About
