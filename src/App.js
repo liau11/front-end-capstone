@@ -134,15 +134,14 @@ function App() {
   };
 
 
-  const addNewRestaurant = (newRestaurantData) => {
-    axios
-      .post(`${API_URL}/new-restaurant`, newRestaurantData)
-      .then((response) => {
-        console.log("You created a new restaurant!", response);
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
+  const addNewRestaurant = async (newRestaurantData) => {
+    try {
+      const response = await axios.post(`${API_URL}/new-restaurant`, newRestaurantData);
+      console.log("You created a new restaurant!", response);
+      return response.data._id;
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
 
@@ -205,7 +204,7 @@ function App() {
     const element = useRoutes([
       { path: "/", element: <HomePage cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
-      { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} /> },
+      { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
       { path: "/friends", element: <FriendsPage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }

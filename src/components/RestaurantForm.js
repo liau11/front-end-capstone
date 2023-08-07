@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
 
-const RestaurantForm = ({ addNewRestaurant }) => {
+const RestaurantForm = ({ addNewRestaurant, updateUserAdd }) => {
 
     const INITIAL_FORM_DATA = {
         location: "",
@@ -19,9 +19,12 @@ const RestaurantForm = ({ addNewRestaurant }) => {
         setFormData(newFormData);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        addNewRestaurant(formData);
+        const newRestaurantId = await addNewRestaurant(formData);
+
+        updateUserAdd("recommendations", {"recommendations": newRestaurantId})
+
         setFormData(INITIAL_FORM_DATA);
     };
 
