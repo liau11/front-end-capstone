@@ -28,9 +28,9 @@ const Profile = ({ getCurrentUser }) => {
   return (
     isAuthenticated && (
       <div>
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.given_name}</h2>
-        <p>{user.email}</p>
+        <h2>
+          Welcome, {user.given_name}!
+        </h2>
       </div>
     )
   );
