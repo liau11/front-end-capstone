@@ -6,7 +6,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 // const slug = "something";
 
 function Testing() {
-    console.log("I AM IN TESTING COMPONENT")
+    // console.log("I AM IN TESTING COMPONENT")
     // const { slug } = useParams();
     return (
         <h2>I AM TESTING</h2>

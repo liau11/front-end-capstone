@@ -6,7 +6,7 @@ import RecommendationsResult from './RecommendationsResult';
 const RecommendationsResultsList = ({ currentUser, recommendationsData, updateUserAdd }) => {
 
     const allResults = recommendationsData.map((recommendation) => {
-        console.log("Recommendation Data:", recommendation);
+        // console.log("Recommendation Data:", recommendation);
         return (<RecommendationsResult
             key={recommendation._id}
             restaurantId={recommendation._id}

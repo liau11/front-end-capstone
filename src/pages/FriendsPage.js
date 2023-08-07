@@ -3,7 +3,7 @@ import FriendData from "../components/FriendData";
 
 const FriendsPage = ({ setUpdated, currentUser, users, updateUserAdd, currentFriends }) => {
 
-    console.log("I'm in Friends Page. Users:", users)
+    // console.log("I'm in Friends Page. Users:", users)
 
     const allResults = currentFriends.map((friend) => {
         return (<FriendData
