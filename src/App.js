@@ -33,7 +33,7 @@ function App() {
     getAllUsers();
   }, [currentUser.friends]);
   
-  // Sophia's added
+  
   useEffect(() => {
     console.log("currentUser.length is ", Object.keys(currentUser).length);
     if (Object.keys(currentUser).length) {
@@ -114,7 +114,6 @@ function App() {
   const getUserData = async (userId) => {
     try {
       const response = await axios.get(`${API_URL}/get-users/${userId}`);
-      // console.log("This is the response", response.data);
       return response.data;
     } catch (error) {
       console.log("error: ", error);
