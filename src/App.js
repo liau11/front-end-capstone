@@ -28,6 +28,7 @@ function App() {
   console.log("This is the current user", currentUser);
   console.log("This is ALL USERS", users);
   console.log("This is currentFriends", currentFriends);
+  console.log("This is recommendationsData useState", recommendationsData);
   
   useEffect(() => {
     getAllUsers();
@@ -174,7 +175,8 @@ function App() {
       const friend = await getUserData(friendId);
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
-        if (restaurant.location.city.toLowerCase() === location.toLowerCase()) {
+        const isRestaurantInRestaurantData = restaurantData.some(obj => obj._id === restaurantId);
+        if (!isRestaurantInRestaurantData && restaurant.location.city.toLowerCase() === location.toLowerCase()) {
           restaurantData.push(restaurant);
         }
       }
