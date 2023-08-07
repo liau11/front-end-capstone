@@ -11,29 +11,22 @@ const RecommendationsResult = (props) => {
 
     const validateId = (arrToAdd) => {
         if (props.currentUser[arrToAdd].includes(props.restaurantId)) {
-            console.log("TADA", props.currentUser[arrToAdd])
             return false;
         }
         return true;
     }
 
-    const addToSavedList = () => {
-        const newRestaurant = validateId("savedList");
-        if (newRestaurant) {
-            props.updateUserAdd("savedList", { "savedList": props.restaurantId })
-            console.log("THIS RESTAURANT ID GOT ADDED TO SAVED LIST", props.restaurantId)
+    const handleAddToList = (arrToAdd) => {
+        const isNewRestaurant = validateId(arrToAdd);
+        if (isNewRestaurant) {
+            props.updateUserAdd(arrToAdd, { [arrToAdd]: props.restaurantId });
+            if (arrToAdd === "savedList") {
+                alert("Bookmarked sucessfully.");
+            } else if (arrToAdd === "recommendations") {
+                alert("Thank you for also recommending this restaurant!");
+            }
         } else {
-            console.log("It's already in your list");
-        }
-    };
-
-    const addToRecommendationsList = () => {
-        const newRestaurant = validateId("savedList");
-        if (newRestaurant) {
-            props.updateUserAdd("recommendations", { "recommendations": props.restaurantId })
-            console.log("THIS RESTAURANT ID GOT ADDED TO RECOMMENDATIONS LIST", props.restaurantId)
-        } else {
-            console.log("It's already in your list");
+            alert("This restaurant is already in your list.");
         }
     };
 
@@ -45,8 +38,8 @@ const RecommendationsResult = (props) => {
                 <div>{props.display_phone}</div>
                 <div>{props.price}</div>
             </li>
-            <button onClick={addToSavedList}>Save for Later</button>
-            <button onClick={addToRecommendationsList}>Upvote, also recommend!</button>
+            <button onClick={() => handleAddToList("savedList")}>Save for Later</button>
+            <button onClick={() => handleAddToList("recommendations")}>Upvote, also recommend!</button>
         </section>
     );
 };

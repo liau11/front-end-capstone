@@ -25,9 +25,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState([])
   const [currentFriends, setCurrentFriends] = useState([])
 
-  console.log("This is the current user", currentUser);
-  console.log("This is ALL USERS", users);
-  console.log("This is currentFriends", currentFriends);
+  // console.log("This is the current user", currentUser);
+  // console.log("This is ALL USERS", users);
+  // console.log("This is currentFriends", currentFriends);
   
   useEffect(() => {
     getAllUsers();
@@ -35,7 +35,7 @@ function App() {
   
   
   useEffect(() => {
-    console.log("currentUser.length is ", Object.keys(currentUser).length);
+    // console.log("currentUser.length is ", Object.keys(currentUser).length);
     if (Object.keys(currentUser).length) {
       getFriends();
     }
@@ -77,7 +77,7 @@ function App() {
         console.log("You created a new user!", response);
       })
       .catch((error) => {
-        console.log("New user was not created. Error: ", error);
+        // console.log("New user was not created. Error: ", error);
       });
   };
 
@@ -114,9 +114,11 @@ function App() {
   const getUserData = async (userId) => {
     try {
       const response = await axios.get(`${API_URL}/get-users/${userId}`);
+      console.log("Got data from", userId)
       return response.data;
     } catch (error) {
       console.log("error: ", error);
+      console.log("Had trouble getting data from:", userId)
     }
   };
 
@@ -147,7 +149,7 @@ function App() {
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
       .then((response) => {
-        addFriendToCurrentUser(data.friends);
+        addDataToCurrentUser(field, data[field]);
         console.log(`${data} has been added to ${field} successfully!`, response);
       })
       .catch((error) => {
@@ -183,12 +185,16 @@ function App() {
   };
 
 
-  const addFriendToCurrentUser = (friendId) => {
-    setCurrentUser(prevData => ({
-      ...prevData,
-      friends: [...prevData.friends, friendId]
-    }));
+  const addDataToCurrentUser = (field, id) => {
+    if (!currentUser[field].includes(id)) {
+      setCurrentUser(prevData => ({
+        ...prevData,
+        [field]: [...prevData[field], id]
+      }));
+    }
   };
+
+  console.log(currentUser)
 
 
   function Routes() {
