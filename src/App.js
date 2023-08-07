@@ -24,6 +24,7 @@ function App() {
   const [recommendationsData, setRecommendationsData] = useState([])
   const [currentUser, setCurrentUser] = useState([])
   const [currentFriends, setCurrentFriends] = useState([])
+  const [cityCenter, setCityCenter] = useState([47.6206, -122.3505])
 
   console.log("This is the current user", currentUser);
   console.log("This is ALL USERS", users);
@@ -175,6 +176,7 @@ function App() {
       const friend = await getUserData(friendId);
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
+
         const isRestaurantInRestaurantData = restaurantData.some(obj => obj._id === restaurantId);
         if (!isRestaurantInRestaurantData && restaurant.location.city.toLowerCase() === location.toLowerCase()) {
           restaurantData.push(restaurant);
@@ -182,6 +184,7 @@ function App() {
       }
     }
     setRecommendationsData(restaurantData);
+    setCityCenter([restaurantData[0].coordinates.latitude, restaurantData[0].coordinates.longitude])
   };
 
 
@@ -195,7 +198,7 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
+      { path: "/", element: <HomePage cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} /> },
       { path: "/friends", element: <FriendsPage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },

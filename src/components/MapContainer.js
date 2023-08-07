@@ -5,10 +5,9 @@ import L from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 
-const Map = ({ recommendationsData }) => {
+const Map = ({ cityCenter, recommendationsData }) => {
     const mapStyle = { width: "100%", height: "500px" };
 
-    const center = [47.6206, -122.3505];
     const zoom = 13;
 
     var customMarker = L.icon({
@@ -32,7 +31,7 @@ const Map = ({ recommendationsData }) => {
     );
 
     return (
-        <MapContainer center={center} zoom={zoom} style={mapStyle}>
+        <MapContainer center={cityCenter} zoom={zoom} style={mapStyle}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
