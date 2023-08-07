@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import RecommendationsResult from './RecommendationsResult';
 
 
-const RecommendationsResultsList = ({ recommendationsData, updateUserAdd }) => {
+const RecommendationsResultsList = ({ currentUser, recommendationsData, updateUserAdd }) => {
 
     const allResults = recommendationsData.map((recommendation) => {
         console.log("Recommendation Data:", recommendation);
@@ -15,11 +15,10 @@ const RecommendationsResultsList = ({ recommendationsData, updateUserAdd }) => {
             price={recommendation.price}
             display_address={recommendation.location.display_address}
             updateUserAdd={updateUserAdd}
+            currentUser={currentUser}
         />
         )
     });
-
-    console.log("THIS IS RECOMMENDATIONS DATA", recommendationsData);
 
     return (
         <section>

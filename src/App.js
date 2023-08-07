@@ -31,8 +31,9 @@ function App() {
   
   useEffect(() => {
     getAllUsers();
-  }, []); 
-    
+  }, [currentUser.friends]);
+  
+  // Sophia's added
   useEffect(() => {
     console.log("currentUser.length is ", Object.keys(currentUser).length);
     if (Object.keys(currentUser).length) {
@@ -64,8 +65,10 @@ function App() {
       const friend = await getUserData(friendId);
       friendData.push(friend);
     }
+
     setCurrentFriends(friendData);
   };
+
 
   const createUser = (newUserData) => {
     axios
@@ -143,14 +146,16 @@ function App() {
 
   const updateUserAdd = (field, data) => {
     axios
-    .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
-    .then((response) => {
-      console.log(`${data} has been added to ${field} successfully!`, response);
-    })
-    .catch((error) => {
-      console.log(`Error adding ${data}:`, error);
-    });
+      .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
+      .then((response) => {
+        addFriendToCurrentUser(data.friends);
+        console.log(`${data} has been added to ${field} successfully!`, response);
+      })
+      .catch((error) => {
+        console.log(`Error adding ${data}:`, error);
+      });
   };
+
 
   const updateUserDelete = (field, data) => {
     axios
@@ -162,6 +167,7 @@ function App() {
         console.log(`Error deleting ${data}:`, error);
       });
   };
+
 
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
@@ -177,12 +183,21 @@ function App() {
     setRecommendationsData(restaurantData);
   };
 
+
+  const addFriendToCurrentUser = (friendId) => {
+    setCurrentUser(prevData => ({
+      ...prevData,
+      friends: [...prevData.friends, friendId]
+    }));
+  };
+
+
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
+      { path: "/", element: <HomePage currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm addNewRestaurant={addNewRestaurant} /> },
-      { path: "/friends", element: <FriendsPage users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
+      { path: "/friends", element: <FriendsPage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}></FriendsPage> },
       { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
@@ -193,7 +208,7 @@ function App() {
     <div>
       <LoginButton />
       <LogoutButton />
-      <Profile getCurrentUser={getCurrentUser} currentUser={currentUser}/>
+      <Profile getCurrentUser={getCurrentUser} />
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>

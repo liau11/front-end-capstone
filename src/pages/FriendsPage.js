@@ -1,7 +1,7 @@
 import FindFriendForm from "../components/FindFriendForm";
 import FriendData from "../components/FriendData";
 
-const FriendsPage = ({ users, updateUserAdd, currentFriends }) => {
+const FriendsPage = ({ setUpdated, currentUser, users, updateUserAdd, currentFriends }) => {
 
     console.log("I'm in Friends Page. Users:", users)
 
@@ -16,7 +16,7 @@ const FriendsPage = ({ users, updateUserAdd, currentFriends }) => {
 
     return (
         <section>
-            <FindFriendForm users={users} updateUserAdd={updateUserAdd} />
+            <FindFriendForm setUpdated={setUpdated} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} />
             {allResults}
         </section>
     )
