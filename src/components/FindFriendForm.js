@@ -52,7 +52,7 @@ const FindFriendForm = ({ currentUser, users, updateUserAdd }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label htmlFor="friends">Please enter friend's username: </label>
+                <label htmlFor="friends">Please enter friend's email: </label>
                 <input
                     type="text"
                     id="friends"
