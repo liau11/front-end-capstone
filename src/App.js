@@ -24,6 +24,7 @@ function App() {
   const [allRestaurants, setAllRestaurants] = useState([])
   // store all the recommendations that your friends recommended
   const [recommendationsData, setRecommendationsData] = useState([])
+  const [savedRestaurants, setSavedRestaurants] = useState([])
   const [currentUser, setCurrentUser] = useState([])
   const [currentFriends, setCurrentFriends] = useState([])
   const [userRecommendations, setUserRecommendations] = useState([])
@@ -39,12 +40,14 @@ function App() {
       getFriends();
       getAllRestaurants();
       getUserRecommendations();
+      getSavedRestaurants();
     }
-  }, [currentUser.friends, currentUser.recommendations]);
+  }, [currentUser.friends, currentUser.recommendations, currentUser.savedList]);
 
 
   console.log("These are all the restaurants in the db", allRestaurants)
   console.log("These are my recommendations", userRecommendations)
+  console.log("These are my bookmarked restaurants", savedRestaurants)
 
   const getAllUsers = () => {
     axios
@@ -92,6 +95,17 @@ function App() {
     setCurrentFriends(friendData);
   };
 
+  const getSavedRestaurants = async () => {
+    const restaurantData = [];
+
+    for (const restaurantId of currentUser.savedList) {
+      const restaurant = await getRestaurant(restaurantId);
+      restaurantData.push(restaurant);
+    }
+
+    setSavedRestaurants(restaurantData);
+  };
+
 
   const createUser = (newUserData) => {
     axios
@@ -100,7 +114,7 @@ function App() {
         console.log("You created a new user!", response);
       })
       .catch((error) => {
-        // console.log("New user was not created. Error: ", error);
+        console.log("New user was not created. Error: ", error);
       });
   };
 
@@ -272,7 +286,7 @@ const handleAddToList = (arrToAdd, formData) => {
       { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
-      { path: "/profile", element: <ProfilePage getUserRecommendations={getUserRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
+      { path: "/profile", element: <ProfilePage savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
