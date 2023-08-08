@@ -44,6 +44,7 @@ function App() {
 
 
   console.log("These are all the restaurants in the db", allRestaurants)
+  console.log("These are my recommendations", userRecommendations)
 
   const getAllUsers = () => {
     axios
@@ -215,22 +216,30 @@ const handleAddToList = (arrToAdd, restaurantId) => {
 
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
-    console.log("getFriendsRec function", currentUser.friends)
+    let matchFound = false; 
+    
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
-      console.log("friend", friend)
+      
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
-
+  
         const isRestaurantInRestaurantData = restaurantData.some(obj => obj._id === restaurantId);
         if (!isRestaurantInRestaurantData && restaurant.location.city.toLowerCase() === location.toLowerCase()) {
           restaurantData.push(restaurant);
+          matchFound = true; 
         }
       }
     }
-    setRecommendationsData(restaurantData);
-    setCityCenter([restaurantData[0].coordinates.latitude, restaurantData[0].coordinates.longitude])
+  
+    if (!matchFound) {
+      alert("No recommendations found in the specified location.");
+    } else {
+      setRecommendationsData(restaurantData);
+      setCityCenter([restaurantData[0].coordinates.latitude, restaurantData[0].coordinates.longitude]);
+    }
   };
+  
 
 
   const getUserRecommendations = async () => {
@@ -243,8 +252,6 @@ const handleAddToList = (arrToAdd, restaurantId) => {
 
     setUserRecommendations(restaurantData);
   };
-
-  console.log(userRecommendations)
 
 
   const addDataToCurrentUser = (field, id) => {
@@ -263,7 +270,7 @@ const handleAddToList = (arrToAdd, restaurantId) => {
     const element = useRoutes([
       { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
-      { path: "/restaurant-form", element: <RestaurantForm allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
+      { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
       { path: "/profile", element: <ProfilePage getUserRecommendations={getUserRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
