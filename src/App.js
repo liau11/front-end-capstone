@@ -196,7 +196,7 @@ function App() {
 
   
 const validateId = (arrToAdd, formData) => {
-  if (currentUser[arrToAdd].includes(formData.recommendations)) {
+  if (currentUser[arrToAdd].includes(formData[arrToAdd])) {
       return false;
   }
   return true;
@@ -204,9 +204,10 @@ const validateId = (arrToAdd, formData) => {
 
 
 const handleAddToList = (arrToAdd, formData) => {
+
     const isNewRestaurant = validateId(arrToAdd, formData);
     if (isNewRestaurant) {
-        updateUserAdd(arrToAdd, { [arrToAdd]: formData.recommendations });
+        updateUserAdd(arrToAdd, { [arrToAdd]: formData[arrToAdd] });
         if (arrToAdd === "savedList") {
             alert("Bookmarked sucessfully.");
         } else if (arrToAdd === "recommendations") {

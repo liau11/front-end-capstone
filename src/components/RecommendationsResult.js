@@ -18,8 +18,8 @@ const RecommendationsResult = (props) => {
                 <div>{props.display_phone}</div>
                 <div>{props.price}</div>
             </li>
-            <button onClick={() => props.handleAddToList("savedList", props.restaurantId)}>Save for Later</button>
-            <button onClick={() => props.handleAddToList("recommendations", props.restaurantId)}>Upvote, also recommend!</button>
+            <button onClick={() => props.handleAddToList("savedList", {"savedList":props.restaurantId } )}>Save for Later</button>
+                <button onClick={() => props.handleAddToList("recommendations", {"recommendations": props.restaurantId})}>Upvote, also recommend!</button>
         </section>
     );
 };
