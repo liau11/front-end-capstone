@@ -9,26 +9,6 @@ const RecommendationsResult = (props) => {
         addressString += (" " + address)
     }
 
-    // const validateId = (arrToAdd) => {
-    //     if (props.currentUser[arrToAdd].includes(props.restaurantId)) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
-    // const handleAddToList = (arrToAdd) => {
-    //     const isNewRestaurant = validateId(arrToAdd);
-    //     if (isNewRestaurant) {
-    //         props.updateUserAdd(arrToAdd, { [arrToAdd]: props.restaurantId });
-    //         if (arrToAdd === "savedList") {
-    //             alert("Bookmarked sucessfully.");
-    //         } else if (arrToAdd === "recommendations") {
-    //             alert("Thank you for also recommending this restaurant!");
-    //         }
-    //     } else {
-    //         alert("This restaurant is already in your list.");
-    //     }
-    // };
 
     return (
         <section>

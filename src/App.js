@@ -179,7 +179,6 @@ function App() {
   };
 
   
-// Moved from RecommedndationsResult
 const validateId = (arrToAdd, restaurantId) => {
   if (currentUser[arrToAdd].includes(restaurantId)) {
       return false;
@@ -187,9 +186,9 @@ const validateId = (arrToAdd, restaurantId) => {
   return true;
 }
 
-// Moved from RecommedndationsResult
+
 const handleAddToList = (arrToAdd, restaurantId) => {
-    const isNewRestaurant = validateId(arrToAdd);
+    const isNewRestaurant = validateId(arrToAdd, restaurantId);
     if (isNewRestaurant) {
         updateUserAdd(arrToAdd, { [arrToAdd]: restaurantId });
         if (arrToAdd === "savedList") {
@@ -201,9 +200,6 @@ const handleAddToList = (arrToAdd, restaurantId) => {
         alert("This restaurant is already in your list.");
     }
 };
-
-
-
 
   const updateUserDelete = (field, data) => {
     axios
@@ -222,7 +218,7 @@ const handleAddToList = (arrToAdd, restaurantId) => {
     console.log("getFriendsRec function", currentUser.friends)
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
-      console.log("friend rec", friend.recommendations)
+      console.log("friend", friend)
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
 
