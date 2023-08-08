@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 
 const RecommendationsResult = (props) => {
 
+    const openYelpInNewTab = () => {
+        window.open(props.url, '_blank');
+    };
+
     let addressString = "";
     for (const address of props.display_address) {
         addressString += (" " + address)
@@ -18,6 +22,7 @@ const RecommendationsResult = (props) => {
                 <div>{props.display_phone}</div>
                 <div>{props.price}</div>
             </li>
+            <button onClick={openYelpInNewTab}>Yelp</button>
             <button onClick={() => props.handleAddToList("savedList", {"savedList":props.restaurantId } )}>Save for Later</button>
                 <button onClick={() => props.handleAddToList("recommendations", {"recommendations": props.restaurantId})}>Upvote, also recommend!</button>
         </section>

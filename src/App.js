@@ -13,6 +13,7 @@ import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
 import { useAuth0 } from "@auth0/auth0-react";
+import AuthenticationGuard from "./components/AuthenticationGuard";
 
 
 
@@ -218,6 +219,7 @@ function App() {
       }
   };
 
+  
   const updateUserDelete = (field, data) => {
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/delete`, data)
@@ -259,7 +261,6 @@ function App() {
   };
   
 
-
   const getUserRecommendations = async () => {
     const restaurantData = [];
 
@@ -294,8 +295,20 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
-      // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
+      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
+      // { 
+      //   path: "/restaurant-form", 
+      //   element: (
+      //     <AuthenticationGuard>
+      //       <RestaurantForm
+      //         handleAddToList={handleAddToList}
+      //         allRestaurants={allRestaurants}
+      //         addNewRestaurant={addNewRestaurant}
+      //         updateUserAdd={updateUserAdd}
+      //       />
+      //     </AuthenticationGuard>
+      //   )
+      // },
       { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
       { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },

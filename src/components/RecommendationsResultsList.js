@@ -14,6 +14,7 @@ const RecommendationsResultsList = ({ handleAddToList, currentUser, recommendati
             display_phone={recommendation.display_phone}
             price={recommendation.price}
             display_address={recommendation.location.display_address}
+            url={recommendation.url}
             updateUserAdd={updateUserAdd}
             currentUser={currentUser}
             handleAddToList={handleAddToList}
