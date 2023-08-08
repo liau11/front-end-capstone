@@ -195,28 +195,28 @@ function App() {
   };
 
   
-const validateId = (arrToAdd, formData) => {
-  if (currentUser[arrToAdd].includes(formData[arrToAdd])) {
-      return false;
-  }
-  return true;
-}
-
-
-const handleAddToList = (arrToAdd, formData) => {
-
-    const isNewRestaurant = validateId(arrToAdd, formData);
-    if (isNewRestaurant) {
-        updateUserAdd(arrToAdd, { [arrToAdd]: formData[arrToAdd] });
-        if (arrToAdd === "savedList") {
-            alert("Bookmarked sucessfully.");
-        } else if (arrToAdd === "recommendations") {
-            alert("Thank you for also recommending this restaurant!");
-        }
-    } else {
-        alert("This restaurant is already in your list.");
+  const validateId = (arrToAdd, formData) => {
+    if (currentUser[arrToAdd].includes(formData[arrToAdd])) {
+        return false;
     }
-};
+    return true;
+  }
+
+
+  const handleAddToList = (arrToAdd, formData) => {
+
+      const isNewRestaurant = validateId(arrToAdd, formData);
+      if (isNewRestaurant) {
+          updateUserAdd(arrToAdd, { [arrToAdd]: formData[arrToAdd] });
+          if (arrToAdd === "savedList") {
+              alert("Bookmarked sucessfully.");
+          } else if (arrToAdd === "recommendations") {
+              alert("Thank you for also recommending this restaurant!");
+          }
+      } else {
+          alert("This restaurant is already in your list.");
+      }
+  };
 
   const updateUserDelete = (field, data) => {
     axios
@@ -287,7 +287,7 @@ const handleAddToList = (arrToAdd, formData) => {
       { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
-      { path: "/profile", element: <ProfilePage savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
+      { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);

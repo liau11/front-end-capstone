@@ -2,7 +2,7 @@ import FriendsPage from "./FriendsPage";
 import UserRecommendationData from "../components/UserRecommendationData";
 import UserSavedData from "../components/UserSavedData";
 
-const ProfilePage = ({ savedRestaurants, currentUser, userRecommendations, users, updateUserAdd, currentFriends }) => {
+const ProfilePage = ({ updateUserDelete, savedRestaurants, currentUser, userRecommendations, users, updateUserAdd, currentFriends }) => {
     console.log("ALL MY RECS", userRecommendations)
 
     const allRecommendationResults = userRecommendations.map((restaurant) => {
@@ -22,6 +22,7 @@ const ProfilePage = ({ savedRestaurants, currentUser, userRecommendations, users
             restaurantId={restaurant.id}
             name={restaurant.name}
             address={restaurant.location.display_address}
+            updateUserDelete={updateUserDelete}
         />
         )
     });
@@ -31,7 +32,7 @@ const ProfilePage = ({ savedRestaurants, currentUser, userRecommendations, users
     return (
         <section>
             <h2>My Friends</h2>
-            <FriendsPage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
+            <FriendsPage updateUserDelete={updateUserDelete} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
             <h2>My Recommendations</h2>
             {allRecommendationResults}
             <h2>My Bookmarks</h2>
