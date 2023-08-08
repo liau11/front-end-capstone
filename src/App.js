@@ -178,6 +178,32 @@ function App() {
       });
   };
 
+  
+// Moved from RecommedndationsResult
+const validateId = (arrToAdd, restaurantId) => {
+  if (currentUser[arrToAdd].includes(restaurantId)) {
+      return false;
+  }
+  return true;
+}
+
+// Moved from RecommedndationsResult
+const handleAddToList = (arrToAdd, restaurantId) => {
+    const isNewRestaurant = validateId(arrToAdd);
+    if (isNewRestaurant) {
+        updateUserAdd(arrToAdd, { [arrToAdd]: restaurantId });
+        if (arrToAdd === "savedList") {
+            alert("Bookmarked sucessfully.");
+        } else if (arrToAdd === "recommendations") {
+            alert("Thank you for also recommending this restaurant!");
+        }
+    } else {
+        alert("This restaurant is already in your list.");
+    }
+};
+
+
+
 
   const updateUserDelete = (field, data) => {
     axios
@@ -193,8 +219,10 @@ function App() {
 
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
+    console.log("getFriendsRec function", currentUser.friends)
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
+      console.log("friend rec", friend.recommendations)
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
 
@@ -237,11 +265,11 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
+      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { path: "/", element: {<AuthenticationGuard component={<HomePage/>} }
       { path: "/restaurant-form", element: <RestaurantForm allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
       { path: "/profile", element: <ProfilePage getUserRecommendations={getUserRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
-      { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
+      { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
     return element;

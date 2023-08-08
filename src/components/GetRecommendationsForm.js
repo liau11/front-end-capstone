@@ -20,6 +20,7 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log("You just hit submit. this is current user", currentUser)
         if (!currentUser.friends.length) {
             alert("You need to add friends first!")
         } else {

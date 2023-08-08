@@ -1,5 +1,5 @@
 import FriendsPage from "./FriendsPage";
-import UserRecommendationData from "../components/UserRecommendationData";
+// import UserRecommendationData from "../components/UserRecommendationData";
 
 const ProfilePage = ({ getUserRecommendations, users, updateUserAdd, currentFriends }) => {
 
@@ -16,6 +16,7 @@ const ProfilePage = ({ getUserRecommendations, users, updateUserAdd, currentFrie
         <section>
             {/* <FriendsPage currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
             {allResults} */}
+            Hi
         </section>
     )
 };
