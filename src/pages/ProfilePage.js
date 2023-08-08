@@ -7,10 +7,11 @@ const ProfilePage = ({ updateUserDelete, savedRestaurants, currentUser, userReco
 
     const allRecommendationResults = userRecommendations.map((restaurant) => {
         return (<UserRecommendationData
-            key={restaurant.id}
-            restaurantId={restaurant.id}
+            key={restaurant._id}
+            restaurantId={restaurant._id}
             name={restaurant.name}
             address={restaurant.location.display_address}
+            updateUserDelete={updateUserDelete}
         />
         )
     });
@@ -18,8 +19,8 @@ const ProfilePage = ({ updateUserDelete, savedRestaurants, currentUser, userReco
 
     const allSavedResults = savedRestaurants.map((restaurant) => {
         return (<UserSavedData
-            key={restaurant.id}
-            restaurantId={restaurant.id}
+            key={restaurant._id}
+            restaurantId={restaurant._id}
             name={restaurant.name}
             address={restaurant.location.display_address}
             updateUserDelete={updateUserDelete}

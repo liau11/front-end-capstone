@@ -4,6 +4,7 @@ const FriendData = (props) => {
         <section>
             <li>
                 <h2>{props.name}</h2>
+                <button onClick={() => props.updateUserDelete("friends", {"friends": props.friendId} )}>Delete Friend :(</button>
             </li>
         </section>
     );

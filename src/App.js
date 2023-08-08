@@ -222,6 +222,8 @@ function App() {
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/delete`, data)
       .then((response) => {
+        console.log("This is the id I want to delete", data[field])
+        removeDataFromCurrentUser(field, data[field]);
         console.log(`${data} has been deleted from ${field} successfully!`, response);
       })
       .catch((error) => {
@@ -280,6 +282,14 @@ function App() {
   };
 
   console.log(currentUser)
+
+  const removeDataFromCurrentUser = (field, idToRemove) => {
+    setCurrentUser(prevData => ({
+      ...prevData,
+      [field]: prevData[field].filter(_id =>_id !== idToRemove)
+    }));
+
+  };
 
 
   function Routes() {

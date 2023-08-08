@@ -1,7 +1,7 @@
 import FindFriendForm from "../components/FindFriendForm";
 import FriendData from "../components/FriendData";
 
-const FriendsPage = ({ setUpdated, currentUser, users, updateUserAdd, currentFriends }) => {
+const FriendsPage = ({ updateUserDelete, setUpdated, currentUser, users, updateUserAdd, currentFriends }) => {
 
     // console.log("I'm in Friends Page. Users:", users)
 
@@ -10,6 +10,7 @@ const FriendsPage = ({ setUpdated, currentUser, users, updateUserAdd, currentFri
             key={friend._id}
             friendId={friend._id}
             name={friend.name}
+            updateUserDelete={updateUserDelete}
         />
         )
     });
