@@ -12,6 +12,7 @@ const ProfilePage = ({ updateUserDelete, savedRestaurants, currentUser, userReco
             name={restaurant.name}
             address={restaurant.location.display_address}
             url={restaurant.url}
+            imageUrl={restaurant.image_url}
             updateUserDelete={updateUserDelete}
         />
         )
@@ -25,6 +26,7 @@ const ProfilePage = ({ updateUserDelete, savedRestaurants, currentUser, userReco
             name={restaurant.name}
             address={restaurant.location.display_address}
             url={restaurant.url}
+            imageUrl={restaurant.image_url}
             updateUserDelete={updateUserDelete}
         />
         )

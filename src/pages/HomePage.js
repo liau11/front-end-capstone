@@ -1,6 +1,7 @@
 import Map from "../components/MapContainer";
 import RecommendationsResultsList from "../components/RecommendationsResultsList";
 import GetRecommendationsForm from "../components/GetRecommendationsForm";
+import './HomePage.css';
 
 const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUserAdd, getFriendsRecommendations, cityCenter }) => {
     return (

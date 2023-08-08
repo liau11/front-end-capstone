@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './RecommendationsResult.css';
 
 
 const RecommendationsResult = (props) => {
@@ -17,6 +18,7 @@ const RecommendationsResult = (props) => {
     return (
         <section>
             <li>
+                <img src={props.imageUrl} alt={props.name} /> 
                 <h2>{props.name}</h2>
                 <div>{addressString}</div>
                 <div>{props.display_phone}</div>
