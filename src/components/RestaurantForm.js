@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from "prop-types";
 
 
-const RestaurantForm = ({ allRestaurants, addNewRestaurant, updateUserAdd }) => {
+const RestaurantForm = ({ handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
 
     const INITIAL_FORM_DATA = {
         location: "",
@@ -33,10 +33,9 @@ const RestaurantForm = ({ allRestaurants, addNewRestaurant, updateUserAdd }) => 
             }
         }
 
-        console.log("New restaurant?", restaurantExists)
 
         if (restaurantExists) {
-                updateUserAdd("recommendations", {"recommendations": formData.term})
+            handleAddToList("recommendations", {"recommendations": formData.term})
         } else {
             const newRestaurantId = await addNewRestaurant(formData);
             updateUserAdd("recommendations", {"recommendations": newRestaurantId})

@@ -160,6 +160,7 @@ function App() {
     try {
       const response = await axios.post(`${API_URL}/new-restaurant`, newRestaurantData);
       console.log("You created a new restaurant!", response);
+      console.log("These are all the restaurants", allRestaurants)
       return response.data._id;
     } catch (error) {
       console.log("error: ", error);
@@ -180,18 +181,18 @@ function App() {
   };
 
   
-const validateId = (arrToAdd, restaurantId) => {
-  if (currentUser[arrToAdd].includes(restaurantId)) {
+const validateId = (arrToAdd, formData) => {
+  if (currentUser[arrToAdd].includes(formData.recommendations)) {
       return false;
   }
   return true;
 }
 
 
-const handleAddToList = (arrToAdd, restaurantId) => {
-    const isNewRestaurant = validateId(arrToAdd, restaurantId);
+const handleAddToList = (arrToAdd, formData) => {
+    const isNewRestaurant = validateId(arrToAdd, formData);
     if (isNewRestaurant) {
-        updateUserAdd(arrToAdd, { [arrToAdd]: restaurantId });
+        updateUserAdd(arrToAdd, { [arrToAdd]: formData.recommendations });
         if (arrToAdd === "savedList") {
             alert("Bookmarked sucessfully.");
         } else if (arrToAdd === "recommendations") {
