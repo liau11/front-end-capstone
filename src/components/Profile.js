@@ -8,7 +8,7 @@ const Profile = ({ getCurrentUser }) => {
     const handleAuth = () => {
       if (isAuthenticated) {
         const formData = {
-          name: user.given_name,
+          name: user.given_name ? user.given_name : user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1),
           username: user.email,
         };
         getCurrentUser(formData);
@@ -29,7 +29,7 @@ const Profile = ({ getCurrentUser }) => {
     isAuthenticated && (
       <div>
         <h2>
-          Welcome, {user.given_name}!
+          Welcome, {user.given_name ? user.given_name : user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1)}!
         </h2>
       </div>
     )
