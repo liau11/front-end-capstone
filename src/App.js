@@ -31,10 +31,7 @@ function App() {
   const [userRecommendations, setUserRecommendations] = useState([])
   const [cityCenter, setCityCenter] = useState([47.6206, -122.3505])
 
-  // console.log("This is the current user", currentUser);
-  // console.log("This is ALL USERS", users);
-  // console.log("This is currentFriends", currentFriends);
-  
+
   useEffect(() => {
     getAllUsers();
     if (Object.keys(currentUser).length) {
@@ -46,10 +43,7 @@ function App() {
   }, [currentUser.friends, currentUser.recommendations, currentUser.savedList]);
 
 
-  console.log("These are all the restaurants in the db", allRestaurants)
-  console.log("These are my recommendations", userRecommendations)
-  console.log("These are my bookmarked restaurants", savedRestaurants)
-
+  // Fetches all user data from the API and updates the users state with the retrieved data
   const getAllUsers = () => {
     axios
       .get(`${API_URL}/get-users`)
@@ -64,9 +58,10 @@ function App() {
         console.log(error.response.status);
         console.log(error.response.data);
       });
-  };  
+  };
 
 
+  // Fetches all restaurant data from the API and updates the allRestaurants state with the retrieved data
   const getAllRestaurants = () => {
     axios
       .get(`${API_URL}/get-restaurants`)
@@ -81,10 +76,10 @@ function App() {
         console.log(error.response.status);
         console.log(error.response.data);
       });
-  };  
+  };
 
 
-  // Get list of friends of current user
+  // Retrieves data of the friends of the current user and updates the currentFriends state with the friend data
   const getFriends = async () => {
     const friendData = [];
 
@@ -96,6 +91,8 @@ function App() {
     setCurrentFriends(friendData);
   };
 
+
+  // Retrieves data of the saved (bookmarked) restaurants of the current user and updates the savedRestaurants state with the restaurant data
   const getSavedRestaurants = async () => {
     const restaurantData = [];
 
@@ -108,6 +105,7 @@ function App() {
   };
 
 
+  // Sends a POST request to the API to create a new user based on provided user data
   const createUser = (newUserData) => {
     axios
       .post(`${API_URL}/new-user`, newUserData)
@@ -119,6 +117,8 @@ function App() {
       });
   };
 
+
+  // Searches through the list of all users to find the user with a specific username and updates the currentUser state with the found user's data.
   const findCurrentUserData = (currentUsername) => {
     for (const user_object of users) {
       if (user_object.username === currentUsername) {
@@ -128,6 +128,7 @@ function App() {
   };
 
 
+  // Checks if the provided username already exists among the users. If not, creates a new user with the provided user data. Then it retrieves the current user's data and updates the currentUser state.
   const getCurrentUser = (formData) => {
     let newUser = true;
 
@@ -145,10 +146,12 @@ function App() {
     if (newUser) {
       createUser(newUserData);
     };
+
     findCurrentUserData(formData.username)
   };
 
 
+  //  Retrieves detailed user data based on a given user ID
   const getUserData = async (userId) => {
     try {
       const response = await axios.get(`${API_URL}/get-users/${userId}`);
@@ -160,6 +163,8 @@ function App() {
     }
   };
 
+
+  // Retrieves detailed restaurant data based on a given restaurant ID
   const getRestaurant = async (restaurantId) => {
     try {
       const response = await axios.get(`${API_URL}/get-restaurants/${restaurantId}`);
@@ -171,11 +176,11 @@ function App() {
   };
 
 
+  // Sends a POST request to the API to create a new restaurant based on provided restaurant data. Returns the ID of the newly created restaurant.
   const addNewRestaurant = async (newRestaurantData) => {
     try {
       const response = await axios.post(`${API_URL}/new-restaurant`, newRestaurantData);
       console.log("You created a new restaurant!", response);
-      console.log("These are all the restaurants", allRestaurants)
       return response.data._id;
     } catch (error) {
       console.log("error: ", error);
@@ -183,6 +188,7 @@ function App() {
   };
 
 
+  // Sends a PATCH request to the API to add a specific ID (e.g., friend ID, recommendation ID) to a field (e.g., friends, recommendations) of the current user's data.
   const updateUserAdd = (field, data) => {
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/add`, data)
@@ -195,31 +201,36 @@ function App() {
       });
   };
 
-  
+
+  // Validates whether a specific ID is already present in a user's field (e.g., savedList, recommendations)
   const validateId = (arrToAdd, formData) => {
     if (currentUser[arrToAdd].includes(formData[arrToAdd])) {
-        return false;
+      return false;
     }
     return true;
   }
 
 
+  // Handles the logic of adding a new restaurant to a user's array, considering validation and providing appropriate alerts.
   const handleAddToList = (arrToAdd, formData) => {
+    const isNewRestaurant = validateId(arrToAdd, formData);
 
-      const isNewRestaurant = validateId(arrToAdd, formData);
-      if (isNewRestaurant) {
-          updateUserAdd(arrToAdd, { [arrToAdd]: formData[arrToAdd] });
-          if (arrToAdd === "savedList") {
-              alert("Bookmarked sucessfully.");
-          } else if (arrToAdd === "recommendations") {
-              alert("Thank you for also recommending this restaurant!");
-          }
-      } else {
-          alert("This restaurant is already in your list.");
+    if (isNewRestaurant) {
+      updateUserAdd(arrToAdd, { [arrToAdd]: formData[arrToAdd] });
+
+      if (arrToAdd === "savedList") {
+        alert("Bookmarked successfully.");
+      } else if (arrToAdd === "recommendations") {
+        alert("Thank you for also recommending this restaurant!");
       }
+
+    } else {
+      alert("This restaurant is already in your list.");
+    }
   };
 
-  
+
+  // Sends a PATCH request to the API to remove a specific ID from a field of the current user's data.
   const updateUserDelete = (field, data) => {
     axios
       .patch(`${API_URL}/get-users/${currentUser.username}/${field}/delete`, data)
@@ -234,24 +245,26 @@ function App() {
   };
 
 
+  // Retrieves restaurant recommendations from the friends of the current user, filtering by a specified location. Updates the recommendationsData state and the cityCenter state for map display.
   const getFriendsRecommendations = async (location) => {
     const restaurantData = [];
-    let matchFound = false; 
-    
+    let matchFound = false;
+
     for (const friendId of currentUser.friends) {
       const friend = await getUserData(friendId);
-      
+
       for (const restaurantId of friend.recommendations) {
         const restaurant = await getRestaurant(restaurantId);
-  
+
         const isRestaurantInRestaurantData = restaurantData.some(obj => obj._id === restaurantId);
+
         if (!isRestaurantInRestaurantData && restaurant.location.city.toLowerCase() === location.toLowerCase()) {
           restaurantData.push(restaurant);
-          matchFound = true; 
+          matchFound = true;
         }
       }
     }
-  
+
     if (!matchFound) {
       alert("No recommendations found in the specified location.");
     } else {
@@ -259,8 +272,9 @@ function App() {
       setCityCenter([restaurantData[0].coordinates.latitude, restaurantData[0].coordinates.longitude]);
     }
   };
-  
 
+
+  // Retrieves detailed data for the restaurants recommended by the current user and updates the userRecommendations state.
   const getUserRecommendations = async () => {
     const restaurantData = [];
 
@@ -273,6 +287,7 @@ function App() {
   };
 
 
+  // Adds a new ID to a specific field of the current user's data and updates the currentUser state with the new ID accordingly
   const addDataToCurrentUser = (field, id) => {
     if (!currentUser[field].includes(id)) {
       setCurrentUser(prevData => ({
@@ -282,12 +297,12 @@ function App() {
     }
   };
 
-  console.log(currentUser)
 
+  // Removes a specific ID from an array of the current user's data and updates the state accordingly.
   const removeDataFromCurrentUser = (field, idToRemove) => {
     setCurrentUser(prevData => ({
       ...prevData,
-      [field]: prevData[field].filter(_id =>_id !== idToRemove)
+      [field]: prevData[field].filter(_id => _id !== idToRemove)
     }));
 
   };
@@ -295,7 +310,7 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
+      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
       // { 
       //   path: "/restaurant-form", 
       //   element: (
@@ -310,8 +325,8 @@ function App() {
       //   )
       // },
       { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
-      { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
-      { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
+      { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends} /> },
+      { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
     return element;
