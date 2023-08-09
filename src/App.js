@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios, { all } from 'axios';
 import Map from "./components/MapContainer";
 import RestaurantForm from "./components/RestaurantForm";
 import Popup from 'reactjs-popup';
@@ -308,25 +308,23 @@ function App() {
   };
 
 
+  // const restaurantFormComp = <RestaurantForm
+  //                               handleAddToList={handleAddToList}
+  //                               allRestaurants={allRestaurants}
+  //                               addNewRestaurant={addNewRestaurant}
+  //                               updateUserAdd={updateUserAdd}
+  //                             />
+
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} /> },
-      // { 
-      //   path: "/restaurant-form", 
-      //   element: (
-      //     <AuthenticationGuard>
-      //       <RestaurantForm
-      //         handleAddToList={handleAddToList}
-      //         allRestaurants={allRestaurants}
-      //         addNewRestaurant={addNewRestaurant}
-      //         updateUserAdd={updateUserAdd}
-      //       />
-      //     </AuthenticationGuard>
-      //   )
-      // },
-      { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
-      { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends} /> },
-      { path: "/map", element: <Map recommendationsData={recommendationsData}></Map> },
+      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
+      { 
+        path: "/restaurant-form", 
+        element: <AuthenticationGuard component={RestaurantForm} handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd}/>
+      },
+      // { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
+      { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
+      { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
     return element;
