@@ -130,24 +130,26 @@ function App() {
 
   // Checks if the provided username already exists among the users. If not, creates a new user with the provided user data. Then it retrieves the current user's data and updates the currentUser state.
   const getCurrentUser = (formData) => {
-    let newUser = true;
+    if (users) {
+      let newUser = true;
 
-    for (const userObject of users) {
-      if (userObject.username === formData.username) {
-        newUser = false;
+      for (const userObject of users) {
+        if (userObject.username === formData.username) {
+          newUser = false;
+        }
       }
+  
+      const newUserData = {
+        name: formData.name,
+        username: formData.username
+      }
+  
+      if (newUser) {
+        createUser(newUserData);
+      };
+  
+      findCurrentUserData(formData.username)
     }
-
-    const newUserData = {
-      name: formData.name,
-      username: formData.username
-    }
-
-    if (newUser) {
-      createUser(newUserData);
-    };
-
-    findCurrentUserData(formData.username)
   };
 
 
@@ -308,13 +310,6 @@ function App() {
   };
 
 
-  // const restaurantFormComp = <RestaurantForm
-  //                               handleAddToList={handleAddToList}
-  //                               allRestaurants={allRestaurants}
-  //                               addNewRestaurant={addNewRestaurant}
-  //                               updateUserAdd={updateUserAdd}
-  //                             />
-
   function Routes() {
     const element = useRoutes([
       { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
@@ -322,7 +317,6 @@ function App() {
         path: "/restaurant-form", 
         element: <AuthenticationGuard component={RestaurantForm} handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd}/>
       },
-      // { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
       { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
