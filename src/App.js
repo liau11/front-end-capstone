@@ -308,13 +308,6 @@ function App() {
   };
 
 
-  // const restaurantFormComp = <RestaurantForm
-  //                               handleAddToList={handleAddToList}
-  //                               allRestaurants={allRestaurants}
-  //                               addNewRestaurant={addNewRestaurant}
-  //                               updateUserAdd={updateUserAdd}
-  //                             />
-
   function Routes() {
     const element = useRoutes([
       { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
@@ -322,7 +315,6 @@ function App() {
         path: "/restaurant-form", 
         element: <AuthenticationGuard component={RestaurantForm} handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd}/>
       },
-      // { path: "/restaurant-form", element: <RestaurantForm handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd} /> },
       { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
