@@ -41,6 +41,7 @@ function App() {
     }
   }, [currentUser.friends, currentUser.recommendations, currentUser.savedList]);
 
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   // Fetches all user data from the API and updates the users state with the retrieved data
   const getAllUsers = () => {
@@ -334,8 +335,15 @@ function App() {
   return (
     <div>
       <h1> Title goes here</h1>
-      <LoginButton />
-      <LogoutButton />
+      {isAuthenticated ? (
+        <>
+          <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out </button>
+        </>
+      ) : (
+        <>
+          <button onClick={loginWithRedirect}>Log In / Sign up</button>
+        </>
+      )}
       <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
