@@ -1,5 +1,28 @@
-img {
-    width: 200px;
-    height: 300px;
-    object-fit: contain;
-  }
+.recommendation-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.card-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.btn-yelp,
+.btn-remove {
+  margin-top: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.btn-remove {
+  background-color: #dc3545;
+}

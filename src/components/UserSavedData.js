@@ -5,6 +5,7 @@ const UserSavedData = ({  restaurantId, name, address, updateUserDelete, url, im
         window.open(url, '_blank');
     };
 
+
     return (
         <section>
             <img src={imageUrl} alt={name} /> 
