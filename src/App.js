@@ -16,7 +16,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
 
-
 const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
@@ -128,30 +127,38 @@ function App() {
   };
 
 
-  // Checks if the provided username already exists among the users. If not, creates a new user with the provided user data. Then it retrieves the current user's data and updates the currentUser state.
-  const getCurrentUser = (formData) => {
-    if (users) {
+  // Checks if user is new based on formData
+  const validateUser = (formData) => {
+    if (users.length) {
       let newUser = true;
 
       for (const userObject of users) {
         if (userObject.username === formData.username) {
           newUser = false;
+          break;
         }
       }
-  
+
+      return newUser;
+    }
+  }
+
+
+  // Creates a new user if needed and set current user
+  const createAndFindUserIfNeeded = (formData) => {
+    const newUser = validateUser(formData);
+    
+    if (newUser) { 
       const newUserData = {
         name: formData.name,
         username: formData.username
-      }
-  
-      if (newUser) {
-        createUser(newUserData);
       };
-  
-      findCurrentUserData(formData.username)
+      createUser(newUserData);
     }
+  
+    findCurrentUserData(formData.username);
   };
-
+  
 
   //  Retrieves detailed user data based on a given user ID
   const getUserData = async (userId) => {
@@ -329,7 +336,7 @@ function App() {
       <h1> Title goes here</h1>
       <LoginButton />
       <LogoutButton />
-      <Profile getCurrentUser={getCurrentUser} />
+      <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
       <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>

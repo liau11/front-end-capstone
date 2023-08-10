@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Profile = ({ getCurrentUser }) => {
+const Profile = ({ createAndFindUserIfNeeded }) => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Profile = ({ getCurrentUser }) => {
           name: user.given_name ? user.given_name : user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1),
           username: user.email,
         };
-        getCurrentUser(formData);
+        createAndFindUserIfNeeded(formData);
       }
     };
 
