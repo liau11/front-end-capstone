@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from 'react-bootstrap/FormControl';
+
 
 
 const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
@@ -31,19 +37,46 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="location">Please enter the city: </label>
-                <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                />
-                <input type="submit" value="Search" />
-            </div>
-        </form>
+                // <Form>
+                //     <Form.Row className="align-items-center">
+                //         <Col xs="auto">
+                //             <Form.Label htmlFor="inlineFormInput" srOnly>
+                //                 Name
+                //             </Form.Label>
+                //             <Form.Control
+                //                 className="mb-2"
+                //                 id="inlineFormInput"
+                //                 placeholder="Jane Doe"
+                //             />
+                //         </Col>
+                //     </Form.Row>
+                // </Form>
+            // <InputGroup className="mb-3">
+            //     <FormControl
+            //         placeholder="Recipient's username"
+            //         aria-label="Recipient's username"
+            //         aria-describedby="basic-addon2"
+            //     />
+            //     <InputGroup.Append>
+            //         <Button variant="outline-secondary">Button</Button>
+            //     </InputGroup.Append>
+            // </InputGroup>
+            <section>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="location">Please enter the city: </label>
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                        />
+                        {' '}<Button as="input" type="submit" value="Search" variant="outline-primary" size="sm"/>
+                        {/* <input type="submit" value="Search" /> */}
+                    </div>
+                </form>
+            </section>
     );
 };
 
