@@ -5,7 +5,7 @@ import FriendsPage from './FriendsPage';
 import UserRecommendationData from '../components/UserRecommendationData';
 import UserSavedData from '../components/UserSavedData';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './ProfilePage.css'; 
+// import './ProfilePage.css'; 
 
 const ProfilePage = ({
   updateUserDelete,
@@ -21,34 +21,41 @@ const ProfilePage = ({
   const handleTabSelect = (selectedTab) => {
     setActiveTab(selectedTab);
   };
-
-
-
 	
 
-  const allRecommendationResults = userRecommendations.map((restaurant) => (
-    <UserRecommendationData
-      key={restaurant._id}
-      restaurantId={restaurant._id}
-      name={restaurant.name}
-      address={restaurant.location.display_address}
-      url={restaurant.url}
-      imageUrl={restaurant.image_url}
-      updateUserDelete={updateUserDelete}
-    />
-  ));
+	const allRecommendationResults = userRecommendations.map((restaurant) => {
+		const addressString = restaurant.location.display_address.join(" ");
+	
+		return (
+			<UserRecommendationData
+				key={restaurant._id}
+				restaurantId={restaurant._id}
+				name={restaurant.name}
+				address={addressString}
+				url={restaurant.url}
+				imageUrl={restaurant.image_url}
+				updateUserDelete={updateUserDelete}
+			/>
+		);
+	});
+	
 
-  const allSavedResults = savedRestaurants.map((restaurant) => (
-    <UserSavedData
-      key={restaurant._id}
-      restaurantId={restaurant._id}
-      name={restaurant.name}
-      address={restaurant.location.display_address}
-      url={restaurant.url}
-      imageUrl={restaurant.image_url}
-      updateUserDelete={updateUserDelete}
-    />
-  ));
+	const allSavedResults = savedRestaurants.map((restaurant) => {
+		const addressString = restaurant.location.display_address.join(" ");
+	
+		return (
+			<UserSavedData
+				key={restaurant._id}
+				restaurantId={restaurant._id}
+				name={restaurant.name}
+				address={addressString}
+				url={restaurant.url}
+				imageUrl={restaurant.image_url}
+				updateUserDelete={updateUserDelete}
+			/>
+		);
+	});
+	
 
   return (
     <section>
