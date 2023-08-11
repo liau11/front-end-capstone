@@ -9,16 +9,24 @@ import Col from 'react-bootstrap/Col';
 const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUserAdd, getFriendsRecommendations, cityCenter }) => {
     return (
         <section>
-            <h1>Welcome to the Home Page!</h1>
-            <Container fluid>
-                <Row>
-                    <Col sm={5} >
+            <h1 className="text-center"> Welcome to the Home Page! </h1>
+            <br />
+            <Container fluid >
+                <Row className="text-center">
+                    <GetRecommendationsForm 
+                        currentUser={currentUser} 
+                        getFriendsRecommendations={getFriendsRecommendations}
+                    />
+                </Row>
+                <br />
+                <Row >
+                    <Col md={8}>
                         < Map 
                             cityCenter={cityCenter} 
                             recommendationsData={recommendationsData} 
                         />
                     </Col>
-                    <Col>
+                    <Col md={3} className="scrollable-column">
                         <RecommendationsResultsList 
                             handleAddToList={handleAddToList} 
                             currentUser={currentUser} 
@@ -27,18 +35,7 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
                         />
                     </Col>
                 </Row>
-                <Row>
-                    {/* <Col>1 of 3</Col>
-                    <Col>2 of 3</Col>
-                    <Col>3 of 3</Col> */}
-                    <GetRecommendationsForm  
-                        currentUser={currentUser} 
-                        getFriendsRecommendations={getFriendsRecommendations}
-                    />
-                </Row>
             </Container>
-    
-            
         </section>
     );
 
