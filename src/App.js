@@ -12,6 +12,7 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
+import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
@@ -334,8 +335,14 @@ function App() {
 
   return (
     <div>
-      <h1> Title goes here</h1>
-      {isAuthenticated ? (
+      <Container>
+        <Row className="align-items-center justify-content-between">
+          <Col />
+          <Col>
+            <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> 🍣 FoodSteps 🍣</h1>
+          </Col>
+          <Col className="d-flex justify-content-end">
+            {isAuthenticated ? (
         <>
           <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out </button>
         </>
@@ -344,8 +351,14 @@ function App() {
           <button onClick={loginWithRedirect}>Log In / Sign up</button>
         </>
       )}
+          </Col>
+        </Row>
+      </Container>
+      {/* <h1 class="text-center"> 🍣 FoodSteps 🍣</h1> */}
+      {/* <LoginButton />
+      <LogoutButton /> */}
       <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
-      <Popup trigger=
+      {/* <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
         {
@@ -363,24 +376,48 @@ function App() {
             </div>
           )
         }
-      </Popup>
-      <Router>
-        <nav style={{ margin: 10 }}>
-          <Link to="/" style={{ padding: 5 }}>
-            Home
-          </Link>
-          <Link to="/restaurant-form" style={{ padding: 5 }}>
-            Recommend A Restaurant
-          </Link>
-          <Link to="/profile" style={{ padding: 5 }}>
-            Profile
-          </Link>
-          <Link to="/not-found" style={{ padding: 5 }}>
-            About
-          </Link>
-        </nav>
-        <Routes />
-      </Router>
+      </Popup> */}
+      {/* <>
+        <Navbar bg="light" variant="light">
+          <Navbar.Brand href="#home">Welcome</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Navbar>
+      </> */}
+      <Container fluid className="d-flexjustify-content-end">
+        <Router>
+            <Navbar bg="light" variant="light" expand="lg" className="justify-content-center">
+              {/* <Navbar.Brand>🔥 Welcome 🔥 </Navbar.Brand> */}
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <Nav.Link as={Link} to="/">Home</Nav.Link>
+                  <Nav.Link as={Link} to="/restaurant-form">Recommend A Restaurant</Nav.Link>
+                  <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                  <Nav.Link as={Link} to="/not-found">About</Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+          {/* <nav class="text-center" style={{ margin: 10 }}>
+            <Link to="/" style={{ padding: 5 }}>
+              Home
+            </Link>
+            <Link to="/restaurant-form" style={{ padding: 5 }}>
+              Recommend A Restaurant
+            </Link>
+            <Link to="/profile" style={{ padding: 5 }}>
+              Profile
+            </Link>
+            <Link to="/not-found" style={{ padding: 5 }}>
+              About
+            </Link>
+          </nav> */}
+          <Routes />
+        </Router>
+      </Container>
       {/* <h1>Restaurant Recommendation >: D</h1>
 
       <h1>Restaurant Recommendation >: D</h1>
