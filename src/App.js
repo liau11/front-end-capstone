@@ -12,9 +12,7 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
@@ -371,23 +369,47 @@ function App() {
           )
         }
       </Popup> */}
-      <Router>
-        <nav class="text-center" style={{ margin: 10 }}>
-          <Link to="/" style={{ padding: 5 }}>
-            Home
-          </Link>
-          <Link to="/restaurant-form" style={{ padding: 5 }}>
-            Recommend A Restaurant
-          </Link>
-          <Link to="/profile" style={{ padding: 5 }}>
-            Profile
-          </Link>
-          <Link to="/not-found" style={{ padding: 5 }}>
-            About
-          </Link>
-        </nav>
-        <Routes />
-      </Router>
+      {/* <>
+        <Navbar bg="light" variant="light">
+          <Navbar.Brand href="#home">Welcome</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          </Nav>
+        </Navbar>
+      </> */}
+      <Container fluid className="d-flexjustify-content-end">
+        <Router>
+            <Navbar bg="light" variant="light" expand="lg" className="justify-content-center">
+              {/* <Navbar.Brand>🔥 Welcome 🔥 </Navbar.Brand> */}
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="mr-auto">
+                  <Nav.Link as={Link} to="/">Home</Nav.Link>
+                  <Nav.Link as={Link} to="/restaurant-form">Recommend A Restaurant</Nav.Link>
+                  <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                  <Nav.Link as={Link} to="/not-found">About</Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
+          {/* <nav class="text-center" style={{ margin: 10 }}>
+            <Link to="/" style={{ padding: 5 }}>
+              Home
+            </Link>
+            <Link to="/restaurant-form" style={{ padding: 5 }}>
+              Recommend A Restaurant
+            </Link>
+            <Link to="/profile" style={{ padding: 5 }}>
+              Profile
+            </Link>
+            <Link to="/not-found" style={{ padding: 5 }}>
+              About
+            </Link>
+          </nav> */}
+          <Routes />
+        </Router>
+      </Container>
       {/* <h1>Restaurant Recommendation >: D</h1>
 
       <h1>Restaurant Recommendation >: D</h1>

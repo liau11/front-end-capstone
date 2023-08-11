@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col';
 const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUserAdd, getFriendsRecommendations, cityCenter }) => {
     return (
         <section>
-            <h1 className="text-center"> Welcome to the Home Page! </h1>
+            <h2 className="text-center"> Welcome to the Home Page! </h2>
             <br />
             <Container fluid >
                 <Row className="text-center">

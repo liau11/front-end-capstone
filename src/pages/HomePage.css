@@ -5,4 +5,5 @@
 .scrollable-column {
     overflow-y: auto;
     max-height: 100vh; /* Adjust the value based on your design */
+    outline: 1px solid darkgrey;
 }
