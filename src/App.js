@@ -12,7 +12,7 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
-import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, Dropdown } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
@@ -382,21 +382,24 @@ function App() {
           )
         }
       </Popup> */}
-      {/* <>
-        <Navbar bg="light" variant="light">
-          <Navbar.Brand href="#home">Welcome</Navbar.Brand>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Navbar>
-      </> */}
-      <Container fluid className="d-flexjustify-content-end">
-        <Router>
-            <Navbar bg="light" variant="light" expand="lg" className="justify-content-center">
+      <Container fluid >
+        <Router >
+            <Navbar bg="light" variant="light" expand="lg" className="justify-content-end" >
+              <Dropdown style={{ marginRight: '150px' }}>
+                <Dropdown.Toggle variant="light" id="dropdown-basic" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                  </svg>
+                </Dropdown.Toggle>
+                <Dropdown.Menu >
+                  <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/restaurant-form">Recommend A Restaurant</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/not-found">About</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
               {/* <Navbar.Brand>🔥 Welcome 🔥 </Navbar.Brand> */}
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                   <Nav.Link as={Link} to="/">Home</Nav.Link>
@@ -404,7 +407,7 @@ function App() {
                   <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
                   <Nav.Link as={Link} to="/not-found">About</Nav.Link>
                 </Nav>
-              </Navbar.Collapse>
+              </Navbar.Collapse> */}
             </Navbar>
           {/* <nav class="text-center" style={{ margin: 10 }}>
             <Link to="/" style={{ padding: 5 }}>
