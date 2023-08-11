@@ -340,7 +340,7 @@ function App() {
         <Row className="align-items-center justify-content-between">
           <Col />
           <Col>
-            <h1 className="text-center"> 🍣 FoodSteps 🍣</h1>
+            <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> 🍣 FoodSteps 🍣</h1>
           </Col>
           <Col className="d-flex justify-content-end">
             <LoginButton />
