@@ -6,7 +6,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const Map = ({ cityCenter, recommendationsData }) => {
-    const mapStyle = { width: "100%", height: "500px" };
+    const mapStyle = { width: "100%", height: "100vh" };
 
     const zoom = 13;
 
