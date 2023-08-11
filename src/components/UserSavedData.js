@@ -9,7 +9,7 @@ const UserSavedData = ({  restaurantId, name, address, updateUserDelete, url, im
     };
 
     return (
-      <Card style={{ width: '18rem', marginTop: '40px' }} className='border p-4'>
+      <Card style={{ width: '18rem', marginTop: '40px' }} className='border p-4' id='card'>
           <div className='card-image-container'>
               <Card.Img variant='top' src={imageUrl} className='centered-image' />
           </div>

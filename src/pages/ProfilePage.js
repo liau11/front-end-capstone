@@ -20,7 +20,6 @@ const ProfilePage = ({
 
 	const handleTabSelect = (selectedTab) => {setActiveTab(selectedTab)};
 	
-	console.log("TAB", activeTab);
 	const allRecommendationResults = userRecommendations.map((restaurant) => {
 		const addressString = restaurant.location.display_address.join(" ");
 	
@@ -57,7 +56,7 @@ const ProfilePage = ({
 
   return (
     <section>
-      <Tabs activeKey={activeTab} onSelect={handleTabSelect}>
+      <Tabs activeKey={activeTab} onSelect={handleTabSelect} className='active-tab'>
 			<Tab eventKey="bookmarks" title="My Bookmarks">
           <div className="grid">{allSavedResults}</div>
         </Tab>

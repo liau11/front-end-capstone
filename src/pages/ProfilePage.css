@@ -1,6 +1,10 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns */
-    gap: 20px; /* Adjust the gap between columns */
-  }
-  
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px; 
+    background-color: rgb(136, 163, 120);
+}
+
+.active-tab .nav-link.active{
+    background-color: rgb(136, 163, 120);
+}
