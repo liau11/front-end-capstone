@@ -12,6 +12,9 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
@@ -333,11 +336,23 @@ function App() {
 
   return (
     <div>
-      <h1> Title goes here</h1>
-      <LoginButton />
-      <LogoutButton />
+      <Container>
+        <Row className="align-items-center justify-content-between">
+          <Col />
+          <Col>
+            <h1 className="text-center"> 🍣 FoodSteps 🍣</h1>
+          </Col>
+          <Col className="d-flex justify-content-end">
+            <LoginButton />
+            <LogoutButton />
+          </Col>
+        </Row>
+      </Container>
+      {/* <h1 class="text-center"> 🍣 FoodSteps 🍣</h1> */}
+      {/* <LoginButton />
+      <LogoutButton /> */}
       <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
-      <Popup trigger=
+      {/* <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
         {
@@ -355,9 +370,9 @@ function App() {
             </div>
           )
         }
-      </Popup>
+      </Popup> */}
       <Router>
-        <nav style={{ margin: 10 }}>
+        <nav class="text-center" style={{ margin: 10 }}>
           <Link to="/" style={{ padding: 5 }}>
             Home
           </Link>
