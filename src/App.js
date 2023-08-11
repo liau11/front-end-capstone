@@ -62,6 +62,11 @@ function App() {
   };
 
 
+	console.log("USERS", users)
+  console.log("current user", currentUser)
+
+
+
   // Fetches all restaurant data from the API and updates the allRestaurants state with the retrieved data
   const getAllRestaurants = () => {
     axios
