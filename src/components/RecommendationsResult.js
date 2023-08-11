@@ -20,8 +20,8 @@ const RecommendationsResult = (props) => {
 
     return (
         <section>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={props.imageUrl}/>
+            <Card style={{ width: '18rem', marginTop: '40px' }} className='border p-2' id='card'>
+                <Card.Img variant="top" src={props.imageUrl} className='centered-image'/>
                 <Card.Body>
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Text>
