@@ -5,7 +5,7 @@ import FriendsPage from './FriendsPage';
 import UserRecommendationData from '../components/UserRecommendationData';
 import UserSavedData from '../components/UserSavedData';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import './ProfilePage.css'; 
+import './ProfilePage.css'; 
 
 const ProfilePage = ({
   updateUserDelete,
@@ -16,13 +16,11 @@ const ProfilePage = ({
   updateUserAdd,
   currentFriends,
 }) => {
-  const [activeTab, setActiveTab] = useState('bookmarks');
+	const [activeTab, setActiveTab] = useState('bookmarks');
 
-  const handleTabSelect = (selectedTab) => {
-    setActiveTab(selectedTab);
-  };
+	const handleTabSelect = (selectedTab) => {setActiveTab(selectedTab)};
 	
-
+	console.log("TAB", activeTab);
 	const allRecommendationResults = userRecommendations.map((restaurant) => {
 		const addressString = restaurant.location.display_address.join(" ");
 	

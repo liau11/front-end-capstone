@@ -1,25 +1,32 @@
 import React from 'react';
-import './UserRecommendationData.css';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import './CardStyle.css';
+
 
 const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address, url, imageUrl }) => {
     const openYelpInNewTab = () => {
         window.open(url, '_blank');
     };
 
-    
     return (
-        <div className='recommendation-card'>
-            <img src={imageUrl} alt={name} className='card-image' />
-            <div className='card-content'>
-                <h3 className='name'>{name}</h3>
-                <div className='address'>{address}</div>
-                <button className='btn-yelp' onClick={openYelpInNewTab}>Yelp</button>
-                <button className='btn-remove' onClick={() => updateUserDelete('recommendations', {'recommendations': restaurantId })}>
-                    Remove Recommendation 
-                </button>
+        <Card style={{ width: '18rem' }} className="border p-4">
+            <div className="card-image-container">
+                <Card.Img variant="top" src={imageUrl} className="centered-image" />
             </div>
-        </div>
+            <Card.Body>
+                <Card.Title>{name}</Card.Title>
+                <Card.Text>{address}</Card.Text>
+								<Card.Footer  className="d-flex justify-content-center align-items-center">
+                <Button variant="primary" onClick={openYelpInNewTab}>Yelp</Button>
+                <Button variant="danger" onClick={() => updateUserDelete('recommendations', {'recommendations': restaurantId })}>
+                    Remove Recommendation 
+                </Button>
+								</Card.Footer>
+            </Card.Body>
+        </Card>
     );
 };
+
 
 export default UserRecommendationData;
