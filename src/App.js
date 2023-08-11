@@ -30,6 +30,7 @@ function App() {
   const [currentFriends, setCurrentFriends] = useState([])
   const [userRecommendations, setUserRecommendations] = useState([])
   const [cityCenter, setCityCenter] = useState([47.6206, -122.3505])
+  const [activeTab, setActiveTab] = useState('bookmarks');
 
 
   useEffect(() => {
@@ -60,11 +61,6 @@ function App() {
         console.log(error.response.data);
       });
   };
-
-
-	console.log("USERS", users)
-  console.log("current user", currentUser)
-
 
 
   // Fetches all restaurant data from the API and updates the allRestaurants state with the retrieved data
@@ -331,7 +327,7 @@ function App() {
         path: "/restaurant-form", 
         element: <AuthenticationGuard component={RestaurantForm} handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd}/>
       },
-      { path: "/profile", element: <ProfilePage updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
+      { path: "/profile", element: <ProfilePage activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);

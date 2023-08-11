@@ -15,8 +15,9 @@ const ProfilePage = ({
   users,
   updateUserAdd,
   currentFriends,
+  activeTab,
+  setActiveTab,
 }) => {
-	const [activeTab, setActiveTab] = useState('bookmarks');
 
 	const handleTabSelect = (selectedTab) => {setActiveTab(selectedTab)};
 	
