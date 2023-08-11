@@ -1,6 +1,5 @@
 import { withAuthenticationRequired } from "@auth0/auth0-react";
 import React from "react";
-// import { PageLoader } from "./page-loader";
 
 const AuthenticationGuard = ({ component, ...props }) => {
   const Component = withAuthenticationRequired(component, {

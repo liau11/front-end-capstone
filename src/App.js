@@ -17,6 +17,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
 
+
 const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
   }, [currentUser.friends, currentUser.recommendations, currentUser.savedList]);
 
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+
 
   // Fetches all user data from the API and updates the users state with the retrieved data
   const getAllUsers = () => {
@@ -327,7 +329,10 @@ function App() {
         path: "/restaurant-form", 
         element: <AuthenticationGuard component={RestaurantForm} handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd}/>
       },
-      { path: "/profile", element: <ProfilePage activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>},
+      { 
+        path: "/profile", 
+        element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
+      },
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
