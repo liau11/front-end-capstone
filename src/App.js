@@ -324,7 +324,7 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage allRestaurants={allRestaurants} handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
+      { path: "/", element: <HomePage addNewRestaurant={addNewRestaurant} allRestaurants={allRestaurants} handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
       { 
         path: "/profile", 
         element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
@@ -389,7 +389,7 @@ function App() {
         </Popup> */}
       <Container fluid >
         <Router >
-            <Navbar bg="light" variant="light" expand="lg"  >
+            <Navbar sticky="top" bg="light" variant="light" expand="lg" >
               <Dropdown  style={{ marginLeft: "20px", marginRight: '300px' }}>
                 <Dropdown.Toggle variant="light" id="dropdown-basic" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
