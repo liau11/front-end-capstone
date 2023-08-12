@@ -26,15 +26,15 @@ const UserSavedData = ({  restaurantId, name, address, updateUserDelete, url, pr
 				{isClosed ? (
           			<Card.Text>Currently Closed</Card.Text>) : 
 					(<Card.Text>Open Now</Card.Text>)
-				}
+					}
 				<Card.Footer  className='d-flex justify-content-center align-items-center'>
-				<Button className="btn-size btn-sm btn-yelp" onClick={openYelpInNewTab}>
-					<Icon icon="bi:yelp" color="white" width="18" height="18" />
+				<Button className="btn-sm" variant="outline-danger" onClick={openYelpInNewTab}>
+					<Icon icon="bi:yelp" color="red" width="18" height="18" />
 				</Button>
-				<Button className="btn-sm btn-google btn-size" onClick={openGoogleMaps}>
+				<Button className="btn-sm" variant="info" onClick={openGoogleMaps}>
 					<Icon icon="bi:map" color="white" width="18" height="18" />
-	      </Button>
-				<Button className='btn-size btn-sm' variant='danger' onClick={() => updateUserDelete('savedList', {'savedList': restaurantId })}>
+	      		</Button>
+				<Button className='btn-sm' variant='danger' onClick={() => updateUserDelete('savedList', {'savedList': restaurantId })}>
 					<Icon icon="bi:trash" width="18" height="18" />
 				</Button>
 			</Card.Footer>
