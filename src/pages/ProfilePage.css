@@ -1,8 +1,8 @@
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 20px; 
-    background-color: #ebe2d9;
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr); 
+	gap: 20px; 
+	background-color: #ebe2d9;
 }
 
 .active-tab .nav-link.active{

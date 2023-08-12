@@ -5,5 +5,19 @@
 }
 
 #card {
-  background-color: rgb(199, 221, 199);
+  background-color: #ffffff;
+}
+
+.btn-yelp {
+	background-color: #f11c1c;
+	border: 1px solid rgb(133, 125, 125);
+}
+
+.btn-google {
+  background-color: #6d9ae2; 
+  border-color: #4285F4; 
+}
+
+.btn-size {
+  padding: 0.15rem 0.55rem; 
 }
