@@ -27,8 +27,11 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log("You just hit submit. this is current user", currentUser)
-        if (!currentUser.friends.length) {
-            alert("You need to add friends first!")
+        if (!currentUser.length) {
+            alert("Please log in first!");
+        }
+        else if (!currentUser.friends.length) {
+            alert("You need to add friends first!");
         } else {
             console.log("You entered here")
             getFriendsRecommendations(formData.location);
