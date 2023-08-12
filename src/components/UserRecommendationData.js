@@ -35,7 +35,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 				<Button className="btn-sm" variant="info" onClick={openGoogleMaps}>
 					<Icon icon="bi:map" color="white" width="18" height="18" />
 	      		</Button>
-				<Button className='btn-sm' variant='danger' onClick={() => updateUserDelete('savedList', {'savedList': restaurantId })}>
+				<Button className='btn-sm' variant='danger' onClick={() => updateUserDelete('recommendations', {'recommendations': restaurantId })}>
 					<Icon icon="bi:trash" width="18" height="18" />
 				</Button>
 				</Card.Footer>
