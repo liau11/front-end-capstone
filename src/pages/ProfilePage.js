@@ -23,6 +23,7 @@ const ProfilePage = ({
 	
 	const allRecommendationResults = userRecommendations.map((restaurant) => {
 		const addressString = restaurant.location.display_address.join(" ");
+		
 	
 		return (
 			<UserRecommendationData
@@ -32,6 +33,8 @@ const ProfilePage = ({
 				address={addressString}
 				url={restaurant.url}
 				imageUrl={restaurant.image_url}
+				price={restaurant.price}
+				isClosed={restaurant.is_closed}
 				updateUserDelete={updateUserDelete}
 			/>
 		);
@@ -40,6 +43,7 @@ const ProfilePage = ({
 
 	const allSavedResults = savedRestaurants.map((restaurant) => {
 		const addressString = restaurant.location.display_address.join(" ");
+
 	
 		return (
 			<UserSavedData
@@ -49,6 +53,8 @@ const ProfilePage = ({
 				address={addressString}
 				url={restaurant.url}
 				imageUrl={restaurant.image_url}
+				price={restaurant.price}
+				isClosed={restaurant.is_closed}
 				updateUserDelete={updateUserDelete}
 			/>
 		);
