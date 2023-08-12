@@ -26,8 +26,7 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("You just hit submit. this is current user", currentUser)
-        if (!currentUser.length) {
+        if (!Object.keys(currentUser).length) {
             alert("Please log in first!");
         }
         else if (!currentUser.friends.length) {
@@ -65,6 +64,7 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
             //     </InputGroup.Append>
             // </InputGroup>
             <section>
+                <h4>Find Restaurants: </h4>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="location">Please enter the city: </label>
