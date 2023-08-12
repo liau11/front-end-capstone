@@ -326,10 +326,6 @@ function App() {
     const element = useRoutes([
       { path: "/", element: <HomePage allRestaurants={allRestaurants} handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
       { 
-        path: "/restaurant-form", 
-        element: <AuthenticationGuard component={RestaurantForm} handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd}/>
-      },
-      { 
         path: "/profile", 
         element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
       },
@@ -395,7 +391,6 @@ function App() {
                 </Dropdown.Toggle>
                 <Dropdown.Menu >
                   <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/restaurant-form">Recommend A Restaurant</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/not-found">About</Dropdown.Item>
                 </Dropdown.Menu>

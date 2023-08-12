@@ -20,7 +20,7 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
                     />
                 </Row>
                 <br />
-                <Row>
+                <Row className="text-center">
                     <RestaurantForm
                         handleAddToList={handleAddToList} 
                         allRestaurants={allRestaurants} 
