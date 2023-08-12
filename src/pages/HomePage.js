@@ -14,13 +14,6 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
             <br />
             <Container fluid >
                 <Row className="text-center">
-                    <GetRecommendationsForm 
-                        currentUser={currentUser} 
-                        getFriendsRecommendations={getFriendsRecommendations}
-                    />
-                </Row>
-                <br />
-                <Row className="text-center">
                     <RestaurantForm
                         handleAddToList={handleAddToList} 
                         allRestaurants={allRestaurants} 
@@ -29,13 +22,21 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
                     ></RestaurantForm>
                 </Row>
                 <br />
-                <Row >
+                <Row className="text-center">
+                    <GetRecommendationsForm 
+                        currentUser={currentUser} 
+                        getFriendsRecommendations={getFriendsRecommendations}
+                    />
+                </Row>
+                <br />
+                <Row className="justify-content-center">
                     <Col md={8}>
                         < Map 
                             cityCenter={cityCenter} 
                             recommendationsData={recommendationsData} 
                         />
                     </Col>
+                    {recommendationsData.length && Object.keys(currentUser).length ? 
                     <Col md={3} className="scrollable-column">
                         <RecommendationsResultsList 
                             handleAddToList={handleAddToList} 
@@ -43,7 +44,7 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
                             recommendationsData={recommendationsData} 
                             updateUserAdd={updateUserAdd} 
                         />
-                    </Col>
+                    </Col> : <></>}
                 </Row>
             </Container>
         </section>
