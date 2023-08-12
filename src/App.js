@@ -341,8 +341,16 @@ function App() {
         <Row className="align-items-center justify-content-between">
           <Col />
           <Col className="d-flex align-items-center">
-            <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" />
-              <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
+            <Router>
+              {/* <Link to="/" style={{ padding: 5 }}> */}
+                <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" />
+                <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
+              {/* </Link>
+              <Link to="/" style={{ padding: 5 }}>
+                Home
+              </Link> */}
+              {/* <Routes /> */}
+            </Router>
           </Col>
           <Col className="d-flex justify-content-end">
             {isAuthenticated ? (
@@ -360,30 +368,29 @@ function App() {
       {/* <h1 class="text-center"> 🍣 FoodSteps 🍣</h1> */}
       {/* <LoginButton />
       <LogoutButton /> */}
-      <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
       {/* <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
         {
           close => (
             <div className='modal'>
-              <div className='content'>
-                BOO!!!
-              </div>
-              <div>
-                <button onClick=
-                  {() => close()}>
-                  close
-                </button>
-              </div>
+            <div className='content'>
+            BOO!!!
             </div>
-          )
-        }
-      </Popup> */}
+            <div>
+            <button onClick=
+            {() => close()}>
+            close
+            </button>
+            </div>
+            </div>
+            )
+          }
+        </Popup> */}
       <Container fluid >
         <Router >
-            <Navbar bg="light" variant="light" expand="lg" className="justify-content-end" >
-              <Dropdown style={{ marginRight: '150px' }}>
+            <Navbar bg="light" variant="light" expand="lg"  >
+              <Dropdown  style={{ marginLeft: "20px", marginRight: '300px' }}>
                 <Dropdown.Toggle variant="light" id="dropdown-basic" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -395,6 +402,9 @@ function App() {
                   <Dropdown.Item as={Link} to="/not-found">About</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
+              <div className="m1-auto" style={{marginLeft: "800px"}}>
+                <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
+              </div>
               {/* <Navbar.Brand>🔥 Welcome 🔥 </Navbar.Brand> */}
               {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
