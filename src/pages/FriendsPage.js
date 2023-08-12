@@ -3,23 +3,24 @@ import FriendData from "../components/FriendData";
 
 const FriendsPage = ({ updateUserDelete, setUpdated, currentUser, users, updateUserAdd, currentFriends }) => {
 
-    // console.log("I'm in Friends Page. Users:", users)
-
     const allResults = currentFriends.map((friend) => {
-        return (<FriendData
-            key={friend._id}
-            friendId={friend._id}
-            name={friend.name}
-            updateUserDelete={updateUserDelete}
-        />
-        )
+			return (<FriendData
+				key={friend._id}
+				friendId={friend._id}
+				name={friend.name}
+				email={friend.username}
+				updateUserDelete={updateUserDelete}
+			/>
+			)
     });
 
     return (
-        <section>
-            <FindFriendForm setUpdated={setUpdated} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} />
-            {allResults}
-        </section>
+			<section>
+				<FindFriendForm setUpdated={setUpdated} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} />
+				<div className='grid-container'>
+					{allResults}
+				</div>
+			</section>
     )
 };
 
