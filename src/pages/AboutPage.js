@@ -4,7 +4,7 @@ const AboutPage = () => {
 	return (
 		<section className="container my-5">
 			<div className="col-md-12 mx-auto">
-					<h4 className="mb-4">Crafted with Love and Driven by Indecision</h4>
+					<h3 className="mb-3">Crafted with Love and Driven by Indecision</h3>
 					<p>Sophia and Lily love to eat. But, they sometimes end up in a bit of a
 							dilemma when it comes to picking where to eat. They want to avoid wasting
 							time and money on dishes they're not crazy about. Although Yelp and Google
@@ -32,8 +32,8 @@ const AboutPage = () => {
 							Follow your friends and eat the best. We hope you enjoy ‘Foodsteps’!
 					</p>
 					
-					<p className="mb-0">Technologies Used:</p>
-					<ul className="list-unstyled">
+					<h6 className="mb-2">Technologies Used:</h6>
+					<ul>
 						<li>MongoDB Atlas & Mongo Compass</li>
 						<li>Yelp Fusion API</li>
 						<li>React</li>
