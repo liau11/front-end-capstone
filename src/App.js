@@ -7,7 +7,7 @@ import 'reactjs-popup/dist/index.css';
 import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import FriendsPage from "./pages/FriendsPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import NotFoundPage from "./pages/AboutPage";
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
@@ -397,7 +397,7 @@ function App() {
                   <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/restaurant-form">Recommend A Restaurant</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/not-found">About</Dropdown.Item>
+                  <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               {/* <Navbar.Brand>🔥 Welcome 🔥 </Navbar.Brand> */}
