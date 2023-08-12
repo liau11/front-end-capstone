@@ -2,9 +2,16 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
     gap: 20px; 
-    background-color: rgb(136, 163, 120);
+    background-color: #ebe2d9;
 }
 
 .active-tab .nav-link.active{
-    background-color: rgb(136, 163, 120);
+    background-color: #ebe2d9;
+		color: #784727;
+}
+
+.nav-tabs .nav-link {
+  background-color: #ffffff;
+  color: #676d74; 
+  border-color: #dee2e6;
 }
