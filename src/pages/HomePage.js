@@ -10,34 +10,35 @@ import Col from 'react-bootstrap/Col';
 const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUserAdd, getFriendsRecommendations, cityCenter, allRestaurants, addNewRestaurant }) => {
     return (
         <section>
-            <h2 className="text-center"> Welcome to the Home Page! </h2>
+            {/* <h2 className="text-center"> Welcome to the Home Page! </h2> */}
             <br />
             <Container fluid >
                 <Row className="text-center">
-                    <RestaurantForm
-                        handleAddToList={handleAddToList} 
-                        allRestaurants={allRestaurants} 
-                        addNewRestaurant={addNewRestaurant} 
-                        updateUserAdd={updateUserAdd}
-                    ></RestaurantForm>
-                </Row>
-                <br />
-                <Row className="text-center">
-                    <GetRecommendationsForm 
-                        currentUser={currentUser} 
-                        getFriendsRecommendations={getFriendsRecommendations}
-                    />
+                    <Col>
+                        <GetRecommendationsForm 
+                            currentUser={currentUser} 
+                            getFriendsRecommendations={getFriendsRecommendations}
+                        />
+                    </Col>
+                    <Col>
+                        <RestaurantForm
+                            handleAddToList={handleAddToList} 
+                            allRestaurants={allRestaurants} 
+                            addNewRestaurant={addNewRestaurant} 
+                            updateUserAdd={updateUserAdd}
+                        ></RestaurantForm>
+                    </Col>
                 </Row>
                 <br />
                 <Row className="justify-content-center">
-                    <Col md={8}>
+                    <Col md={8} lg={8} xl={8}>
                         < Map 
                             cityCenter={cityCenter} 
                             recommendationsData={recommendationsData} 
                         />
                     </Col>
                     {recommendationsData.length && Object.keys(currentUser).length ? 
-                    <Col md={3} className="scrollable-column">
+                    <Col md={3} lg={3} xl={3} className="scrollable-column">
                         <RecommendationsResultsList 
                             handleAddToList={handleAddToList} 
                             currentUser={currentUser} 
