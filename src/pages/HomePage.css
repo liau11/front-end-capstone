@@ -6,9 +6,6 @@
     overflow-y: auto;
     max-height: 100vh; /* Adjust the value based on your design */
     outline: 1px solid darkgrey;
+    background-color: rgb(252, 247, 247);;
 }
-
-/* .body {
-    background-color: rgb(217,226,235) ;
-} */
 

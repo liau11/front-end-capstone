@@ -4,6 +4,7 @@ import './RecommendationsResult.css';
 import Card from 'react-bootstrap/Card';
 // import { BsYelp } from 'react-icons/bs';
 import { Icon } from '@iconify/react';
+import './RecommendationsResult.css';
 
 
 const RecommendationsResult = (props) => {
