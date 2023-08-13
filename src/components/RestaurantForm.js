@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
 import './CardStyle.css';
 
-const RestaurantForm = ({ handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
+const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
 
     const INITIAL_FORM_DATA = {
         location: "",
@@ -24,6 +24,10 @@ const RestaurantForm = ({ handleAddToList, allRestaurants, addNewRestaurant, upd
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!Object.keys(currentUser).length) {
+            alert("Please log in first!");
+        }
 
         let restaurantExists = false;
 

@@ -22,6 +22,7 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
                     </Col>
                     <Col>
                         <RestaurantForm
+                            currentUser={currentUser}
                             handleAddToList={handleAddToList} 
                             allRestaurants={allRestaurants} 
                             addNewRestaurant={addNewRestaurant} 
