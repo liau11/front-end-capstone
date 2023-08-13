@@ -2,11 +2,11 @@
 	display: grid;
 	grid-template-columns: repeat(5, 1fr); 
 	gap: 20px; 
-	background-color: #ebe2d9;
+	background-color: rgb(252, 247, 247);
 }
 
 .active-tab .nav-link.active{
-    background-color: #ebe2d9;
+    background-color: rgb(252, 247, 247);
 		color: #784727;
 }
 

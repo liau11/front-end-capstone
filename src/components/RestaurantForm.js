@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Card from 'react-bootstrap/Card';
 import './CardStyle.css';
 import Button from 'react-bootstrap/Button';
+import './CardStyle.css';
 
 const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
 
@@ -50,8 +51,8 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
 
     return (
       <form onSubmit={handleSubmit}>
-				<Card className="card">
-					<Card.Body>
+				<Card>
+					<Card.Body className="card-form">
 						<Card.Title> 
 							Recommend a Restaurant:  
 						</Card.Title>

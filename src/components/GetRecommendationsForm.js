@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card }from 'react-bootstrap';
-
+import './CardStyle.css';
 
 
 const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
@@ -36,8 +36,8 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Card className="card">
-                <Card.Body>
+            <Card>
+                <Card.Body className="card-form">
                     <Card.Title> Find Restaurants: </Card.Title>
                     <Card.Text>
                         <label htmlFor="location">Please enter the city: </label>{' '}
