@@ -5,7 +5,7 @@ import './CardStyle.css';
 import { Icon } from '@iconify/react';
 
 
-const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address, url, price, imageUrl, isClosed }) => {
+const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address, url, price, imageUrl }) => {
 	const openYelpInNewTab = () => {
 		window.open(url, '_blank');
 	};
@@ -24,10 +24,6 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 				<Card.Title>{name}</Card.Title>
 				<Card.Text>{address}</Card.Text>
 				<Card.Text>{price}</Card.Text>
-				{isClosed ? (
-          			<Card.Text>Currently Closed</Card.Text>) : 
-					(<Card.Text>Open Now</Card.Text>)
-				}
 				<Card.Footer  className='d-flex justify-content-center align-items-center'>
 				<Button className="btn-sm" variant="outline-danger" onClick={openYelpInNewTab}>
 					<Icon icon="bi:yelp" color="red" width="18" height="18" />

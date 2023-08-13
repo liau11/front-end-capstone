@@ -34,7 +34,6 @@ const ProfilePage = ({
 				url={restaurant.url}
 				imageUrl={restaurant.image_url}
 				price={restaurant.price}
-				isClosed={restaurant.is_closed}
 				updateUserDelete={updateUserDelete}
 			/>
 		);
@@ -54,7 +53,6 @@ const ProfilePage = ({
 				url={restaurant.url}
 				imageUrl={restaurant.image_url}
 				price={restaurant.price}
-				isClosed={restaurant.is_closed}
 				updateUserDelete={updateUserDelete}
 			/>
 		);
