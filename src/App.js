@@ -407,7 +407,7 @@ function App() {
                 <div className="d-flex justify-content-end">
                   {isAuthenticated ? (
                     <>
-                      <Button variant="outline-secondary" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
+                      <Button variant="outline-secondary" className="me-3" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
                     </>
                   ) : (
                     <>
