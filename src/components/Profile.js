@@ -27,10 +27,8 @@ const Profile = ({ createAndFindUserIfNeeded }) => {
 
   return (
     isAuthenticated && (
-      <div>
-        <h6 style={{color: "gray"}}>
+      <div style={{color: "gray"}}>
           Welcome, {user.given_name ? user.given_name : user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1)}!
-        </h6>
       </div>
     )
   );
