@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from "prop-types";
+import Card from 'react-bootstrap/Card';
+import './CardStyle.css';
 
-
-const RestaurantForm = ({ handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
+const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
 
     const INITIAL_FORM_DATA = {
         location: "",
@@ -23,6 +24,10 @@ const RestaurantForm = ({ handleAddToList, allRestaurants, addNewRestaurant, upd
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!Object.keys(currentUser).length) {
+            alert("Please log in first!");
+        }
 
         let restaurantExists = false;
 
@@ -45,25 +50,30 @@ const RestaurantForm = ({ handleAddToList, allRestaurants, addNewRestaurant, upd
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="location">Location</label>
-                <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                />
-                <label htmlFor="term">Restaurant Name</label>
-                <input
-                    type="text"
-                    id="term"
-                    name="term"
-                    value={formData.term}
-                    onChange={handleChange}
-                />
-                <input type="submit" value="submit" />
-            </div>
+            <Card className="card">
+                <Card.Body>
+                    <Card.Title> Recommend a Restaurant:  </Card.Title>
+                    <Card.Text>
+                        <label htmlFor="location">Location:</label>
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                        />
+                        <label htmlFor="term">Restaurant Name:</label>
+                        <input
+                            type="text"
+                            id="term"
+                            name="term"
+                            value={formData.term}
+                            onChange={handleChange}
+                        />
+                        <input type="submit" value="submit" />
+                    </Card.Text>
+                </Card.Body>
+            </Card>
         </form>
     );
 };

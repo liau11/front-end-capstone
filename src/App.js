@@ -12,7 +12,7 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
-import { Container, Row, Col, Navbar, Nav, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, Dropdown, Button } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
@@ -324,11 +324,7 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
-      { 
-        path: "/restaurant-form", 
-        element: <AuthenticationGuard component={RestaurantForm} handleAddToList={handleAddToList} allRestaurants={allRestaurants} addNewRestaurant={addNewRestaurant} updateUserAdd={updateUserAdd}/>
-      },
+      { path: "/", element: <HomePage addNewRestaurant={addNewRestaurant} allRestaurants={allRestaurants} handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
       { 
         path: "/profile", 
         element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
@@ -343,12 +339,20 @@ function App() {
     <div>
       <Container>
         <Row className="align-items-center justify-content-between">
-          <Col />
-          <Col className="d-flex align-items-center">
-            <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" />
-              <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
+          {/* <Col /> */}
+          <Col className="d-flex justify-content-center align-items-center">
+            {/* <Router> */}
+              {/* <Link to="/" style={{ padding: 5 }}> */}
+                <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" />
+                <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
+              {/* </Link>
+              <Link to="/" style={{ padding: 5 }}>
+                Home
+              </Link> */}
+              {/* <Routes /> */}
+            {/* </Router> */}
           </Col>
-          <Col className="d-flex justify-content-end">
+          {/* <Col className="d-flex justify-content-end">
             {isAuthenticated ? (
         <>
           <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out </button>
@@ -358,36 +362,32 @@ function App() {
           <button onClick={loginWithRedirect}>Log In / Sign up</button>
         </>
       )}
-          </Col>
+          </Col> */}
         </Row>
       </Container>
-      {/* <h1 class="text-center"> 🍣 FoodSteps 🍣</h1> */}
-      {/* <LoginButton />
-      <LogoutButton /> */}
-      <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
       {/* <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
         {
           close => (
             <div className='modal'>
-              <div className='content'>
-                BOO!!!
-              </div>
-              <div>
-                <button onClick=
-                  {() => close()}>
-                  close
-                </button>
-              </div>
+            <div className='content'>
+            BOO!!!
             </div>
-          )
-        }
-      </Popup> */}
+            <div>
+            <button onClick=
+            {() => close()}>
+            close
+            </button>
+            </div>
+            </div>
+            )
+          }
+        </Popup> */}
       <Container fluid >
         <Router >
-            <Navbar bg="light" variant="light" expand="lg" className="justify-content-end" >
-              <Dropdown style={{ marginRight: '150px' }}>
+            <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between">
+              <Dropdown >
                 <Dropdown.Toggle variant="light" id="dropdown-basic" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -395,12 +395,27 @@ function App() {
                 </Dropdown.Toggle>
                 <Dropdown.Menu >
                   <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/restaurant-form">Recommend A Restaurant</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
                   <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              {/* <Navbar.Brand>🔥 Welcome 🔥 </Navbar.Brand> */}
+              <div className="d-flex align-items-center">
+                <div className="mr-auto"></div>
+                <Navbar.Brand>
+                  <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
+                </Navbar.Brand>
+                <div className="d-flex justify-content-end">
+                  {isAuthenticated ? (
+                    <>
+                      <Button variant="outline-secondary" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button variant="outline-secondary" onClick={loginWithRedirect}>Log In / Sign up</Button>
+                    </>
+                  )}
+                </div>
+              </div>
               {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
