@@ -12,7 +12,7 @@ import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
-import { Container, Row, Col, Navbar, Nav, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, Dropdown, Button } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 
@@ -339,9 +339,9 @@ function App() {
     <div>
       <Container>
         <Row className="align-items-center justify-content-between">
-          <Col />
-          <Col className="d-flex align-items-center">
-            <Router>
+          {/* <Col /> */}
+          <Col className="d-flex justify-content-center align-items-center">
+            {/* <Router> */}
               {/* <Link to="/" style={{ padding: 5 }}> */}
                 <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" />
                 <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
@@ -350,9 +350,9 @@ function App() {
                 Home
               </Link> */}
               {/* <Routes /> */}
-            </Router>
+            {/* </Router> */}
           </Col>
-          <Col className="d-flex justify-content-end">
+          {/* <Col className="d-flex justify-content-end">
             {isAuthenticated ? (
         <>
           <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out </button>
@@ -362,12 +362,9 @@ function App() {
           <button onClick={loginWithRedirect}>Log In / Sign up</button>
         </>
       )}
-          </Col>
+          </Col> */}
         </Row>
       </Container>
-      {/* <h1 class="text-center"> 🍣 FoodSteps 🍣</h1> */}
-      {/* <LoginButton />
-      <LogoutButton /> */}
       {/* <Popup trigger=
         {<button> CLICK ME FOR COOL POP UP </button>}
         modal nested>
@@ -389,8 +386,8 @@ function App() {
         </Popup> */}
       <Container fluid >
         <Router >
-            <Navbar sticky="top" bg="light" variant="light" expand="lg" >
-              <Dropdown  style={{ marginLeft: "20px", marginRight: '300px' }}>
+            <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between">
+              <Dropdown >
                 <Dropdown.Toggle variant="light" id="dropdown-basic" >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
                     <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -402,10 +399,23 @@ function App() {
                   <Dropdown.Item as={Link} to="/not-found">About</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              <div className="m1-auto" style={{marginLeft: "800px"}}>
-                <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
+              <div className="d-flex align-items-center">
+                <div className="mr-auto"></div>
+                <Navbar.Brand>
+                  <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
+                </Navbar.Brand>
+                <div className="d-flex justify-content-end">
+                  {isAuthenticated ? (
+                    <>
+                      <Button variant="outline-secondary" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
+                    </>
+                  ) : (
+                    <>
+                      <button onClick={loginWithRedirect}>Log In / Sign up</button>
+                    </>
+                  )}
+                </div>
               </div>
-              {/* <Navbar.Brand>🔥 Welcome 🔥 </Navbar.Brand> */}
               {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
