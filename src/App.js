@@ -338,7 +338,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Container>
+        <Container fluid style={{ backgroundColor: '#f8f9fa' }}>
           <Row className="align-items-center justify-content-between">
             <Col className="d-flex justify-content-center align-items-center">
                 <Link to="/" style={{ padding: 5, textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center' }}>
@@ -367,9 +367,9 @@ function App() {
               )
             }
           </Popup> */}
-        <Container fluid >
+        <Container fluid style={{ backgroundColor: '#f8f9fa' }}>
           {/* <Router > */}
-              <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between">
+              <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between shadow-sm">
                 <Dropdown >
                   <Dropdown.Toggle variant="light" id="dropdown-basic" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
