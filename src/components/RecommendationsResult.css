@@ -3,3 +3,8 @@ img {
     height: 300px;
     object-fit: contain;
   }
+
+.btn-google-maps {
+  border-color: purple;
+  color: purple; 
+}

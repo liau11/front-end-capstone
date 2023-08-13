@@ -13,7 +13,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 	const openGoogleMaps = () => {
 		const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${address}`;
 		window.open(googleMapsUrl, '_blank');
-	  };
+	};
 
 	return (
 		<Card style={{ width: '18rem', marginTop: '40px' , marginBottom: '40px'}} className='border p-4' id='card'>
