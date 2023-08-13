@@ -411,7 +411,7 @@ function App() {
                     </>
                   ) : (
                     <>
-                      <button onClick={loginWithRedirect}>Log In / Sign up</button>
+                      <Button variant="outline-secondary" onClick={loginWithRedirect}>Log In / Sign up</Button>
                     </>
                   )}
                 </div>
