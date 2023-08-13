@@ -337,112 +337,96 @@ function App() {
 
   return (
     <div>
-      <Container>
-        <Row className="align-items-center justify-content-between">
-          {/* <Col /> */}
-          <Col className="d-flex justify-content-center align-items-center">
-            {/* <Router> */}
-              {/* <Link to="/" style={{ padding: 5 }}> */}
-                <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "200px" }} />
-                <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
-              {/* </Link>
+      <Router>
+        <Container>
+          <Row className="align-items-center justify-content-between">
+            <Col className="d-flex justify-content-center align-items-center">
+                <Link to="/" style={{ padding: 5, textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center' }}>
+                    <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "200px" }} />
+                    <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
+                </Link>
+            </Col>
+          </Row>
+        </Container>
+        {/* <Popup trigger=
+          {<button> CLICK ME FOR COOL POP UP </button>}
+          modal nested>
+          {
+            close => (
+              <div className='modal'>
+              <div className='content'>
+              BOO!!!
+              </div>
+              <div>
+              <button onClick=
+              {() => close()}>
+              close
+              </button>
+              </div>
+              </div>
+              )
+            }
+          </Popup> */}
+        <Container fluid >
+          {/* <Router > */}
+              <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between">
+                <Dropdown >
+                  <Dropdown.Toggle variant="light" id="dropdown-basic" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
+                      <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu >
+                    <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+                <div className="d-flex align-items-center">
+                  <div className="mr-auto"></div>
+                  <Navbar.Brand>
+                    <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
+                  </Navbar.Brand>
+                  <div className="d-flex justify-content-end">
+                    {isAuthenticated ? (
+                      <>
+                        <Button variant="outline-secondary" className="me-2" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button variant="outline-secondary" className="me-2" onClick={loginWithRedirect}>Log In / Sign up</Button>
+                      </>
+                    )}
+                  </div>
+                </div>
+                {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                    <Nav.Link as={Link} to="/">Home</Nav.Link>
+                    <Nav.Link as={Link} to="/restaurant-form">Recommend A Restaurant</Nav.Link>
+                    <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
+                    <Nav.Link as={Link} to="/not-found">About</Nav.Link>
+                  </Nav>
+                </Navbar.Collapse> */}
+              </Navbar>
+            {/* <nav class="text-center" style={{ margin: 10 }}>
               <Link to="/" style={{ padding: 5 }}>
                 Home
-              </Link> */}
-              {/* <Routes /> */}
-            {/* </Router> */}
-          </Col>
-          {/* <Col className="d-flex justify-content-end">
-            {isAuthenticated ? (
-        <>
-          <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out </button>
-        </>
-      ) : (
-        <>
-          <button onClick={loginWithRedirect}>Log In / Sign up</button>
-        </>
-      )}
-          </Col> */}
-        </Row>
-      </Container>
-      {/* <Popup trigger=
-        {<button> CLICK ME FOR COOL POP UP </button>}
-        modal nested>
-        {
-          close => (
-            <div className='modal'>
-            <div className='content'>
-            BOO!!!
-            </div>
-            <div>
-            <button onClick=
-            {() => close()}>
-            close
-            </button>
-            </div>
-            </div>
-            )
-          }
-        </Popup> */}
-      <Container fluid >
-        <Router >
-            <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between">
-              <Dropdown >
-                <Dropdown.Toggle variant="light" id="dropdown-basic" >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
-                    <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                  </svg>
-                </Dropdown.Toggle>
-                <Dropdown.Menu >
-                  <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
-                  <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <div className="d-flex align-items-center">
-                <div className="mr-auto"></div>
-                <Navbar.Brand>
-                  <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
-                </Navbar.Brand>
-                <div className="d-flex justify-content-end">
-                  {isAuthenticated ? (
-                    <>
-                      <Button variant="outline-secondary" className="me-2" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button variant="outline-secondary" className="me-2" onClick={loginWithRedirect}>Log In / Sign up</Button>
-                    </>
-                  )}
-                </div>
-              </div>
-              {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                  <Nav.Link as={Link} to="/">Home</Nav.Link>
-                  <Nav.Link as={Link} to="/restaurant-form">Recommend A Restaurant</Nav.Link>
-                  <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                  <Nav.Link as={Link} to="/not-found">About</Nav.Link>
-                </Nav>
-              </Navbar.Collapse> */}
-            </Navbar>
-          {/* <nav class="text-center" style={{ margin: 10 }}>
-            <Link to="/" style={{ padding: 5 }}>
-              Home
-            </Link>
-            <Link to="/restaurant-form" style={{ padding: 5 }}>
-              Recommend A Restaurant
-            </Link>
-            <Link to="/profile" style={{ padding: 5 }}>
-              Profile
-            </Link>
-            <Link to="/not-found" style={{ padding: 5 }}>
-              About
-            </Link>
-          </nav> */}
-          <Routes />
-        </Router>
-      </Container>
+              </Link>
+              <Link to="/restaurant-form" style={{ padding: 5 }}>
+                Recommend A Restaurant
+              </Link>
+              <Link to="/profile" style={{ padding: 5 }}>
+                Profile
+              </Link>
+              <Link to="/not-found" style={{ padding: 5 }}>
+                About
+              </Link>
+            </nav> */}
+            <Routes />
+          {/* </Router> */}
+        </Container>
+      </Router>
       {/* <h1>Restaurant Recommendation >: D</h1>
 
       <h1>Restaurant Recommendation >: D</h1>
