@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card }from 'react-bootstrap';
+import { Button, Card, Form, Row, Col }from 'react-bootstrap';
 import './CardStyle.css';
 
 
@@ -35,24 +35,42 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <Card>
-                <Card.Body className="card-form">
-                    <Card.Title> Find Restaurants: </Card.Title>
-                    <Card.Text>
-                        <label htmlFor="location">Please enter the city: </label>{' '}
-                        <input
-                            type="text"
-                            id="location"
-                            name="location"
-                            value={formData.location}
-                            onChange={handleChange}
-                        />
-                        {' '}<Button as="input" type="submit" value="Search" variant="outline-primary" size="sm"/>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </form>
+        <div >
+            <form onSubmit={handleSubmit}>
+                <Card>
+                    <Card.Body className="card-form">
+                        <Card.Title className="text-center"> Find Restaurants: </Card.Title>
+                        <Card.Text className="align-items-center text-center">
+                            <Form.Group as={Row} className="align-items-center">
+                                <Col sm={5} className="my-1">
+                                    <Form.Control 
+                                        type="text"
+                                        id="location"
+                                        name="location"
+                                        placeholder="What city are you in?"
+                                        value={formData.location}
+                                        onChange={handleChange}
+                                        >
+                                    </Form.Control>
+                                </Col>
+                                <Col className="my-1">
+                                    <Button as="input" type="submit" value="Search" variant="outline-primary" size="sm"/>
+                                </Col>
+                            </Form.Group>
+                            {/* <label htmlFor="location"></label> */}
+                            {/* <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                placeholder="What city?"
+                                value={formData.location}
+                                onChange={handleChange}
+                            /> */}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </form>
+        </div>
     );
 };
 
