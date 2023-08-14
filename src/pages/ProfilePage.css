@@ -3,6 +3,7 @@
 	grid-template-columns: repeat(5, 1fr); 
 	gap: 20px; 
 	background-color: rgb(252, 247, 247);
+	justify-items: center;
 }
 
 .active-tab .nav-link.active{

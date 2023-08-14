@@ -64,8 +64,10 @@ const ProfilePage = ({
   return (
     <section>
       <Tabs activeKey={activeTab} onSelect={handleTabSelect} className='active-tab'>
-			<Tab eventKey="bookmarks" title="My Bookmarks">
-          <div className="grid-container">{allSavedResults}</div>
+				<Tab eventKey="bookmarks" title="My Bookmarks">
+          <div className="grid-container">
+						{allSavedResults}
+					</div>
         </Tab>
         <Tab eventKey="recommendations" title="My Recommendations">
 					<div className="grid-container">
