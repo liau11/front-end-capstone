@@ -41,7 +41,7 @@ const RecommendationsResult = (props) => {
 						Yelp
 					</button>
 					<button class="btn btn-sm btn-google-maps" onClick={openGoogleMaps}>
-						<Icon icon="bi:map" color="purple" width="17" height="17" className="me-1"/> 
+						<Icon icon="bi:map" color="purple" width="17" height="17"/> 
 						Google Maps
 					</button>
 					<button class="btn btn-outline-primary btn-sm" onClick={() => props.handleAddToList("savedList", {"savedList":props.restaurantId } )}>
