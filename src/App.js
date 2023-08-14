@@ -323,12 +323,18 @@ function App() {
   };
 
 
+  const handleMoveToRecommendations = (restaurantId) => {
+    updateUserDelete('savedList', { 'savedList': restaurantId });
+    handleAddToList('recommendations', { 'recommendations': restaurantId });
+  };
+
+
   function Routes() {
     const element = useRoutes([
       { path: "/", element: <HomePage addNewRestaurant={addNewRestaurant} allRestaurants={allRestaurants} handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
       { 
         path: "/profile", 
-        element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends} handleAddToList={handleAddToList} />
+        element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends} handleMoveToRecommendations={handleMoveToRecommendations} />
       },
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }

@@ -17,7 +17,7 @@ const ProfilePage = ({
   currentFriends,
   activeTab,
   setActiveTab,
-  handleAddToList
+  handleMoveToRecommendations
 }) => {
 
 	const handleTabSelect = (selectedTab) => {setActiveTab(selectedTab)};
@@ -36,7 +36,6 @@ const ProfilePage = ({
 				imageUrl={restaurant.image_url}
 				price={restaurant.price}
 				updateUserDelete={updateUserDelete}
-				handleAddToList={handleAddToList}
 			/>
 		);
 	});
@@ -56,6 +55,7 @@ const ProfilePage = ({
 				imageUrl={restaurant.image_url}
 				price={restaurant.price}
 				updateUserDelete={updateUserDelete}
+				handleMoveToRecommendations={handleMoveToRecommendations}
 			/>
 		);
 	});
