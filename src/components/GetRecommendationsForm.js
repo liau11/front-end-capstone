@@ -38,10 +38,10 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
         <div >
             <form onSubmit={handleSubmit}>
                 <Card>
-                    <Card.Body className="card-form">
+                    <Card.Body className="card-form justify-content-between">
                         <Card.Title className="text-center"> Find Restaurants: </Card.Title>
                         <Card.Text className="align-items-center text-center">
-                            <Form.Group as={Row} className="align-items-center">
+                            <Form.Group as={Row} className="align-items-center justify-content-center">
                                 <Col sm={5} className="my-1">
                                     <Form.Control 
                                         type="text"
@@ -53,7 +53,7 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
                                         >
                                     </Form.Control>
                                 </Col>
-                                <Col className="my-1">
+                                <Col sm="1" className="my-1">
                                     <Button as="input" type="submit" value="Search" variant="outline-primary" size="sm"/>
                                 </Col>
                             </Form.Group>

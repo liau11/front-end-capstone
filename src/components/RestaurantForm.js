@@ -52,12 +52,12 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
     <form onSubmit={handleSubmit}>
         <Card >
             <Card.Body className="card-form justify-content-between">
-                <Card.Title> 
+                <Card.Title className="text-center"> 
                     Recommend a Restaurant:  
                 </Card.Title>
-                <Form.Group as={Row}>
+                <Form.Group as={Row} className="align-items-center justify-content-center">
                     {/* <Form.Label column sm="2" /> */}
-                    <Col sm="5">
+                    <Col sm="4">
                         <Form.Control
                             type="text"
                             id="location"
@@ -68,7 +68,7 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
                         />
                     </Col>
                     {/* <Form.Label column sm="2" /> */}
-                    <Col sm="5">
+                    <Col sm="4">
                         <Form.Control
                             type="text"
                             id="term"
@@ -78,7 +78,7 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
                             onChange={handleChange}
                         />
                     </Col>
-                    <Col sm="2" className="mt-2">
+                    <Col sm="1" className="mt-2">
                         <Button type="submit" variant="outline-primary" size="sm" className="ms-1">
                             Submit
                         </Button>
