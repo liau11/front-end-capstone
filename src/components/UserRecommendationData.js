@@ -3,6 +3,8 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import './CardStyle.css';
 import { Icon } from '@iconify/react';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address, url, price, imageUrl }) => {
@@ -25,15 +27,30 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 				<Card.Text>{address}</Card.Text>
 				<Card.Text>{price}</Card.Text>
 				<Card.Footer  className='d-flex justify-content-center align-items-center'>
-				<Button className="btn-sm" variant="outline-danger" onClick={openYelpInNewTab}>
-					<Icon icon="bi:yelp" color="red" width="18" height="18" />
-				</Button>
-				<Button className="btn-sm" variant="info" onClick={openGoogleMaps}>
-					<Icon icon="bi:map" color="white" width="18" height="18" />
-	      		</Button>
-				<Button className='btn-sm' variant='danger' onClick={() => updateUserDelete('recommendations', {'recommendations': restaurantId })}>
-					<Icon icon="bi:trash" width="18" height="18" />
-				</Button>
+				<OverlayTrigger
+					placement='top'
+					overlay={<Tooltip id={'yelp-msg'}>Open Yelp</Tooltip>}
+				>
+					<Button className="btn-sm" variant="outline-danger" onClick={openYelpInNewTab}>
+						<Icon icon="bi:yelp" color="red" width="18" height="18" />
+					</Button>
+				</OverlayTrigger>
+				<OverlayTrigger
+					placement='top'
+					overlay={<Tooltip id={'google-maps-msg'}>Open Google Maps</Tooltip>}
+				>
+					<Button className="btn-sm" variant="info" onClick={openGoogleMaps}>
+						<Icon icon="bi:map" color="white" width="18" height="18" />
+					</Button>
+				</OverlayTrigger>
+				<OverlayTrigger
+					placement='top'
+					overlay={<Tooltip id={'delete-msg'}>Delete Recommendation</Tooltip>}
+				>
+					<Button className='btn-sm' variant='danger' onClick={() => updateUserDelete('recommendations', {'recommendations': restaurantId })}>
+						<Icon icon="bi:trash" width="18" height="18" />
+					</Button>
+				</OverlayTrigger>
 				</Card.Footer>
 			</Card.Body>
 		</Card>
