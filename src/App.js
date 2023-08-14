@@ -236,6 +236,7 @@ function App() {
         alert("Bookmarked successfully.");
       } else if (arrToAdd === "recommendations") {
         alert("Thank you for also recommending this restaurant!");
+        console.log("You should see this")
       }
 
     } else {
@@ -327,7 +328,7 @@ function App() {
       { path: "/", element: <HomePage addNewRestaurant={addNewRestaurant} allRestaurants={allRestaurants} handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
       { 
         path: "/profile", 
-        element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends}/>
+        element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends} handleAddToList={handleAddToList} />
       },
       { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
