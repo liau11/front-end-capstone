@@ -29,7 +29,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 				<Card.Footer  className='d-flex justify-content-center align-items-center'>
 				<OverlayTrigger
 					placement='top'
-					overlay={<Tooltip id={'yelp-msg'}>Open Yelp</Tooltip>}
+					overlay={<Tooltip id={'yelp-msg'} style={{position:"fixed"}}>Open Yelp</Tooltip>}
 				>
 					<Button className="btn-sm" variant="outline-danger" onClick={openYelpInNewTab}>
 						<Icon icon="bi:yelp" color="red" width="18" height="18" />
@@ -37,7 +37,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 				</OverlayTrigger>
 				<OverlayTrigger
 					placement='top'
-					overlay={<Tooltip id={'google-maps-msg'}>Open Google Maps</Tooltip>}
+					overlay={<Tooltip id={'google-maps-msg'} style={{position:"fixed"}}>Open Google Maps</Tooltip>}
 				>
 					<Button className="btn-sm" variant="info" onClick={openGoogleMaps}>
 						<Icon icon="bi:map" color="white" width="18" height="18" />
@@ -45,7 +45,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 				</OverlayTrigger>
 				<OverlayTrigger
 					placement='top'
-					overlay={<Tooltip id={'delete-msg'}>Delete Recommendation</Tooltip>}
+					overlay={<Tooltip id={'delete-msg'} style={{position:"fixed"}}>Delete Recommendation</Tooltip>}
 				>
 					<Button className='btn-sm' variant='danger' onClick={() => updateUserDelete('recommendations', {'recommendations': restaurantId })}>
 						<Icon icon="bi:trash" width="18" height="18" />
