@@ -16,9 +16,9 @@ const FriendsPage = ({ updateUserDelete, setUpdated, currentUser, users, updateU
 
     return (
 			<section>
+				<div>
 				<FindFriendForm setUpdated={setUpdated} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} />
-				<div className='grid-container'>
-					{allResults}
+				{allResults}
 				</div>
 			</section>
     )
