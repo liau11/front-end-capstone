@@ -1,23 +1,18 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import './AboutPage.css';
+import CarouselFade from '../components/CarouselFade';
 
 const AboutPage = () => {
-	// const backgroundImageUrl = 'https://assets.gqindia.com/photos/61b86d441279745aeb605a91/16:9/w_960,c_limit/top-image-04%20(7).jpg'
 
-	// const backgroundStyles = {
-	// 	backgroundImage: `url(${backgroundImageUrl})`,
-	// 	backgroundSize: 'cover',
-	// 	backgroundPosition: 'center',
-	// 	// Add other background-related styles here if needed
-	// };
-
-	return (
-		<section className="container my-5">
-			<Card className="custom-card" style={{ width: '42rem', backgroundColor: '#fffaf0' }}>
-				<Card.Body>
-					<Card.Title>Crafted with Love and Driven by Indecision</Card.Title>
-					<Card.Text>
+  return (
+		<section className="parent-container">
+        <CarouselFade className="carousel"/>
+        <div className="card-overlay">
+          <Card id="custom-card" style={{ width: '42rem', backgroundColor: '#fffaf0' }}>
+            <Card.Body>
+              <Card.Title>Crafted with Love and Driven by Indecision</Card.Title>
+              <Card.Text>
 						<p>Sophia and Lily love to eat. But, they sometimes end up in a bit of a
 							dilemma when it comes to picking where to eat. They want to avoid wasting
 							time and money on dishes they're not crazy about. Although Yelp and Google
@@ -60,6 +55,7 @@ const AboutPage = () => {
 					</Card.Text>
 				</Card.Body>
 			</Card>
+			</div>
 		</section>
 	);
 };
