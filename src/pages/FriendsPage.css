@@ -6,7 +6,7 @@
 .btn-add {
     display: flex;
     justify-content: flex-end;
-    margin-right: 1rem;
-    margin-top: 1.2rem;
+    padding-right: 1rem;
+    padding-top: 1.2rem;
     margin-bottom: 1rem;
 }
