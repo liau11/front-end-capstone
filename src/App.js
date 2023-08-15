@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage";
 import { Container, Row, Col, Navbar, Nav, Dropdown, Button } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
+import "./App.css";
 
 
 
@@ -336,7 +337,6 @@ function App() {
         path: "/profile", 
         element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends} handleMoveToRecommendations={handleMoveToRecommendations} />
       },
-      { path: "/map", element: <Map  recommendationsData={recommendationsData}></Map> },
       { path: "*", element: <NotFoundPage /> }
     ]);
     return element;
@@ -374,11 +374,14 @@ function App() {
               )
             }
           </Popup> */}
-        <Container fluid style={{ backgroundColor: '#f8f9fa' }}>
+
+        {/* style={{ backgroundColor: '#f8f9fa' }} */}
+          
+        <Container fluid >
           {/* <Router > */}
-              <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between shadow-sm">
+              <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between shadow-sm navbar-full-width">
                 <Dropdown >
-                  <Dropdown.Toggle variant="light" id="dropdown-basic" >
+                  <Dropdown.Toggle variant="light" id="dropdown-basic" className="ms-4">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
                       <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
@@ -397,11 +400,11 @@ function App() {
                   <div className="d-flex justify-content-end">
                     {isAuthenticated ? (
                       <>
-                        <Button variant="outline-secondary" className="me-2" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
+                        <Button variant="outline-secondary" className="me-4" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
                       </>
                     ) : (
                       <>
-                        <Button variant="outline-secondary" className="me-2" onClick={loginWithRedirect}>Log In / Sign up</Button>
+                        <Button variant="outline-secondary" className="me-4" onClick={loginWithRedirect}>Log In / Sign up</Button>
                       </>
                     )}
                   </div>

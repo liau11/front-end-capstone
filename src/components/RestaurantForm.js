@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from "prop-types";
-import Card from 'react-bootstrap/Card';
+import { Card, Button, Col, Row, Form } from 'react-bootstrap';
 import './CardStyle.css';
-import Button from 'react-bootstrap/Button';
 import './CardStyle.css';
 
 const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
@@ -50,37 +49,44 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
 	}
 
     return (
-      <form onSubmit={handleSubmit}>
-				<Card>
-					<Card.Body className="card-form">
-						<Card.Title> 
-							Recommend a Restaurant:  
-						</Card.Title>
-							<Card.Text> 
-								<label htmlFor="location">Location:</label> {' '}
-								<input
-									type="text"
-									id="location"
-									name="location"
-									value={formData.location}
-									onChange={handleChange}
-								/>
-								{' '}
-								<label htmlFor="term">Restaurant Name:</label> {' '}
-								<input
-									type="text"
-									id="term"
-									name="term"
-									value={formData.term}
-									onChange={handleChange}
-								/>
-							<Button type="submit" variant="outline-primary" size="sm" className="ms-1">
-								Submit
-							</Button>
-						</Card.Text>
-					</Card.Body>
-				</Card>
-      </form>
+    <form onSubmit={handleSubmit}>
+        <Card >
+            <Card.Body className="card-form justify-content-between">
+                <Card.Title className="text-center"> 
+                    Recommend a Restaurant:  
+                </Card.Title>
+                <Form.Group as={Row} className="align-items-center justify-content-center">
+                    {/* <Form.Label column sm="2" /> */}
+                    <Col sm="4">
+                        <Form.Control
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="City"
+                            value={formData.location}
+                            onChange={handleChange}
+                        />
+                    </Col>
+                    {/* <Form.Label column sm="2" /> */}
+                    <Col sm="4">
+                        <Form.Control
+                            type="text"
+                            id="term"
+                            name="term"
+                            placeholder="Restaurant Name"
+                            value={formData.term}
+                            onChange={handleChange}
+                        />
+                    </Col>
+                    <Col sm="1" className="mt-2">
+                        <Button type="submit" variant="outline-primary" size="sm" className="ms-1">
+                            Submit
+                        </Button>
+                    </Col>
+                </Form.Group>
+            </Card.Body>
+        </Card>
+    </form>
     );
 };
 
