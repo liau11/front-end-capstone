@@ -5,14 +5,15 @@
     text-align: center;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-.card img {
+
+/* .card img {
 width: 65%;
 border-radius: 50%;
 margin: 0 auto;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .card .card-title {
-font-weight: 700;
+font-weight: 300;
 font-size: 1.5em;
 }
 .card .btn {
@@ -25,4 +26,4 @@ padding: 0.5em 1.5em;
 background-color: rgba(0, 128, 128, 0.7);
 color: #ffffff;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+} */

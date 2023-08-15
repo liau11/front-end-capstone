@@ -3,9 +3,18 @@ import Card from 'react-bootstrap/Card';
 import './AboutPage.css';
 
 const AboutPage = () => {
+	// const backgroundImageUrl = 'https://assets.gqindia.com/photos/61b86d441279745aeb605a91/16:9/w_960,c_limit/top-image-04%20(7).jpg'
+
+	// const backgroundStyles = {
+	// 	backgroundImage: `url(${backgroundImageUrl})`,
+	// 	backgroundSize: 'cover',
+	// 	backgroundPosition: 'center',
+	// 	// Add other background-related styles here if needed
+	// };
+
 	return (
 		<section className="container my-5">
-			<Card className="custom-card" style={{ width: '42rem' }}>
+			<Card className="custom-card" style={{ width: '42rem', backgroundColor: '#fffaf0' }}>
 				<Card.Body>
 					<Card.Title>Crafted with Love and Driven by Indecision</Card.Title>
 					<Card.Text>
