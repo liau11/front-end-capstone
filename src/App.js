@@ -324,6 +324,7 @@ function App() {
   };
 
 
+  // Removes restaurantId from savedList and add it to recommendations
   const handleMoveToRecommendations = (restaurantId) => {
     updateUserDelete('savedList', { 'savedList': restaurantId });
     handleAddToList('recommendations', { 'recommendations': restaurantId });
@@ -349,36 +350,13 @@ function App() {
           <Row className="align-items-center justify-content-between">
             <Col className="d-flex justify-content-center align-items-center">
                 <Link to="/" style={{ padding: 5, textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center' }}>
-                    <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "200px" }} />
+                    <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "100px" }} />
                     <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
                 </Link>
             </Col>
           </Row>
         </Container>
-        {/* <Popup trigger=
-          {<button> CLICK ME FOR COOL POP UP </button>}
-          modal nested>
-          {
-            close => (
-              <div className='modal'>
-              <div className='content'>
-              BOO!!!
-              </div>
-              <div>
-              <button onClick=
-              {() => close()}>
-              close
-              </button>
-              </div>
-              </div>
-              )
-            }
-          </Popup> */}
-
-        {/* style={{ backgroundColor: '#f8f9fa' }} */}
-          
         <Container fluid >
-          {/* <Router > */}
               <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between shadow-sm navbar-full-width">
                 <Dropdown >
                   <Dropdown.Toggle variant="light" id="dropdown-basic" className="ms-4">
@@ -409,50 +387,10 @@ function App() {
                     )}
                   </div>
                 </div>
-                {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                  <Nav className="mr-auto">
-                    <Nav.Link as={Link} to="/">Home</Nav.Link>
-                    <Nav.Link as={Link} to="/restaurant-form">Recommend A Restaurant</Nav.Link>
-                    <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                    <Nav.Link as={Link} to="/not-found">About</Nav.Link>
-                  </Nav>
-                </Navbar.Collapse> */}
               </Navbar>
-            {/* <nav class="text-center" style={{ margin: 10 }}>
-              <Link to="/" style={{ padding: 5 }}>
-                Home
-              </Link>
-              <Link to="/restaurant-form" style={{ padding: 5 }}>
-                Recommend A Restaurant
-              </Link>
-              <Link to="/profile" style={{ padding: 5 }}>
-                Profile
-              </Link>
-              <Link to="/not-found" style={{ padding: 5 }}>
-                About
-              </Link>
-            </nav> */}
             <Routes />
-          {/* </Router> */}
         </Container>
       </Router>
-      {/* <h1>Restaurant Recommendation >: D</h1>
-
-      <h1>Restaurant Recommendation >: D</h1>
-      <button onClick={createUser}>Create User</button>
-      <button onClick={getUserData}>Get User</button>
-      <button onClick={getRestaurant}>Get Restaurant</button>
-      <button onClick={addNewRestaurant}>Add New Restaurant</button> */}
-      {/* <UserForm createUser={createUser} users={users} />
-      <FindFriendForm updateUserAdd={updateUserAdd} /> */}
-      {/* <button onClick={updateUserAdd}>Follow</button>
-      <button onClick={updateUserAdd}>Add Rec</button> */}
-      {/* <button onClick={updateUserAdd}>Save Rec</button> */}
-      {/* <button onClick={updateUserDelete}>Unfollow</button>
-      <button onClick={updateUserDelete}>Remove Rec</button>
-      <button onClick={updateUserDelete}>Remove Saved Rec</button> */}
-      {/* <RestaurantForm addNewRestaurant={addNewRestaurant} /> */}
     </div >
   );
 };
