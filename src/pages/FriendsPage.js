@@ -1,5 +1,6 @@
 import FindFriendForm from "../components/FindFriendForm";
 import FriendData from "../components/FriendData";
+import './FriendsPage.css';
 
 const FriendsPage = ({ updateUserDelete, setUpdated, currentUser, users, updateUserAdd, currentFriends }) => {
 
@@ -16,9 +17,9 @@ const FriendsPage = ({ updateUserDelete, setUpdated, currentUser, users, updateU
 
     return (
 			<section>
-				<div>
-				<FindFriendForm setUpdated={setUpdated} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} />
-				{allResults}
+				<div className="page-body">
+					<FindFriendForm setUpdated={setUpdated} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} />
+					{allResults}
 				</div>
 			</section>
     )
