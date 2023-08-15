@@ -28,7 +28,7 @@ function CarouselFade() {
     </Carousel.Item>
   ));
 
-  return <Carousel className="carousel">{allResults}</Carousel>;
+  return <Carousel>{allResults}</Carousel>;
 }
 
 
