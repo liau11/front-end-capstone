@@ -35,7 +35,7 @@ const FriendsPage = ({ updateUserDelete, setUpdated, currentUser, users, updateU
 				</div>
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Search for your friend</Modal.Title>
+					<Modal.Title>Add your friend</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<FindFriendForm setUpdated={setUpdated} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} />
