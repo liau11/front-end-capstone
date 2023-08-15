@@ -350,7 +350,7 @@ function App() {
           <Row className="align-items-center justify-content-between">
             <Col className="d-flex justify-content-center align-items-center">
                 <Link to="/" style={{ padding: 5, textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center' }}>
-                    <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "100px" }} />
+                    <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "180px" }} />
                     <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
                 </Link>
             </Col>
