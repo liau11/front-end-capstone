@@ -1,7 +1,7 @@
 #custom-card {
-    padding: 1.5em 0.5em 0.5em;
-    border-radius: 4em;
-    text-align: center;
+  padding: 1.5em 0.5em 0.5em;
+  border-radius: 4em;
+  text-align: center;
 }
 
 .card-overlay {
@@ -18,23 +18,23 @@
 
 @media screen and (max-height: 1200px) {
   #custom-card {
-    max-width: 90%; 
-    border-radius: 2em; 
+    max-width: 90%;
+    border-radius: 2em;
   }
 
- 
+
   .card-overlay {
-     bottom: 50rem; 
+    bottom: 50rem;
   }
 }
 
 @media screen and (max-height: 820px) {
   #custom-card {
-    max-width: 100%; 
+    max-width: 100%;
     font-size: 0.9rem;
   }
 
   .card-overlay {
-     bottom: 47rem; 
+    bottom: 44rem;
   }
 }
