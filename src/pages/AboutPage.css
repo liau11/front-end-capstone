@@ -20,21 +20,31 @@
   #custom-card {
     max-width: 90%;
     border-radius: 2em;
+    background-color: orange;
   }
 
 
   .card-overlay {
     bottom: 50rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 @media screen and (max-height: 820px) {
   #custom-card {
-    max-width: 100%;
-    font-size: 0.9rem;
+    max-width: 60%;
+    font-size: 0.85rem;
+    background-color: rgba(242, 230, 240, 0.80);
+    margin: auto;
   }
 
   .card-overlay {
     bottom: 44rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
   }
 }
