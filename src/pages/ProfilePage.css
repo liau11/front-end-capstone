@@ -1,16 +1,11 @@
 .grid-container {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr); 
-	gap: 20px; 
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 10px;
 	background-color: rgb(252, 247, 247);
-	justify-items: center;
-}
-
-@media screen and (max-width: 400px) {
-	.grid-container {
-		grid-template-columns: repeat(3, 1fr); 
-	}
-}
+	align-content: center; 
+	justify-content: flex-start;
+  }
 
 .active-tab .nav-link.active{
     background-color: rgb(252, 247, 247);
