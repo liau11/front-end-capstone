@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from "prop-types";
 import { Card, Button, Col, Row, Form } from 'react-bootstrap';
 import './CardStyle.css';
-import './CardStyle.css';
+import './GetRecommendationsForm.css';
 
 const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRestaurant, updateUserAdd }) => {
 
@@ -43,10 +43,17 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
 			handleAddToList("recommendations", {"recommendations": formData.term})
 		} else {
 			const newRestaurantId = await addNewRestaurant(formData);
-			updateUserAdd("recommendations", {"recommendations": newRestaurantId})
-		}
+            console.log("HERE", newRestaurantId)
+            
+            if (!newRestaurantId) {
+                alert("This restaurant does not exist. Try again!");
+            } else {
+                updateUserAdd("recommendations", {"recommendations": newRestaurantId});
+		    } 
+        }
 		setFormData(INITIAL_FORM_DATA);
 	}
+
 
     return (
     <form onSubmit={handleSubmit}>
@@ -79,7 +86,7 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
                         />
                     </Col>
                     <Col sm="1" className="mt-2">
-                        <Button type="submit" variant="outline-primary" size="sm" className="ms-1">
+                        <Button type="submit" id="find-restaurants-button" variant="outline-primary" size="sm" className="ms-1">
                             Submit
                         </Button>
                     </Col>
