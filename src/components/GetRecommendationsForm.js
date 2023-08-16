@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Form, Row, Col }from 'react-bootstrap';
 import './CardStyle.css';
+import './GetRecommendationsForm.css';
 
 
 const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
@@ -54,7 +55,7 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
                                     </Form.Control>
                                 </Col>
                                 <Col sm="1" className="my-1">
-                                    <Button as="input" type="submit" value="Search" variant="outline-primary" size="sm"/>
+                                    <Button as="input" type="submit" value="Search" id="find-restaurants-button" variant="outline-primary" size="sm"/>
                                 </Col>
                             </Form.Group>
                             {/* <label htmlFor="location"></label> */}

@@ -1,0 +1,13 @@
+#find-restaurants-button {
+    border-radius: 2em;
+    background-color: rgb(234, 97, 52);
+    border-color: rgb(240, 101, 54);
+    color: #ffffff;
+    padding: 0.5em 1.5em;
+}
+
+#find-restaurants-button:hover {
+    background-color: rgba(245, 128, 81, 0.72);
+    border-color: rgba(245, 128, 81, 0.72);
+    color: #ffffff;
+}
