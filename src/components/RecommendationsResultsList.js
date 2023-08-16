@@ -27,7 +27,7 @@ const RecommendationsResultsList = ({ handleAddToList, currentUser, recommendati
         <section>
             <div>
                 <div>
-                    <ol className="restaurant-list-container">
+                    <ol>
                         {allResults}
                     </ol>
                 </div>
