@@ -10,7 +10,7 @@
 	.grid-container {
 		grid-template-columns: repeat(3, 1fr); 
 	}
-  }
+}
 
 .active-tab .nav-link.active{
     background-color: rgb(252, 247, 247);
