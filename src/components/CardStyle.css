@@ -11,3 +11,7 @@
 .card-form {
   background-color: rgb(252, 247, 247);
 }
+
+.card-title {
+  height:50px;
+}

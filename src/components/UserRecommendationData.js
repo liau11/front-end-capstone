@@ -25,7 +25,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 					<Card.Img variant='top' src={imageUrl} className='centered-image' />
 				</div>
 				<Card.Body style={{ paddingBottom: "0px" }}>
-					<Card.Title>{name}</Card.Title>
+					<Card.Title className='card-title'>{name}</Card.Title>
 					<Card.Text>{address}</Card.Text>
 					<Card.Text>{price}</Card.Text>
 					<Card.Footer id="restaurant-card-footer" className='d-flex justify-content-center align-items-center'>
