@@ -333,10 +333,33 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { path: "/", element: <HomePage addNewRestaurant={addNewRestaurant} allRestaurants={allRestaurants} handleAddToList={handleAddToList} cityCenter={cityCenter} currentUser={currentUser} recommendationsData={recommendationsData} updateUserAdd={updateUserAdd} getFriendsRecommendations={getFriendsRecommendations} />},
+      { 
+        path: "/", 
+        element: <HomePage 
+                  addNewRestaurant={addNewRestaurant} 
+                  allRestaurants={allRestaurants} 
+                  handleAddToList={handleAddToList} 
+                  cityCenter={cityCenter} 
+                  currentUser={currentUser} 
+                  recommendationsData={recommendationsData} 
+                  updateUserAdd={updateUserAdd} 
+                  getFriendsRecommendations={getFriendsRecommendations}
+                  />
+      },
       { 
         path: "/profile", 
-        element: <AuthenticationGuard component={ProfilePage} activeTab={activeTab} setActiveTab={setActiveTab} updateUserDelete={updateUserDelete} savedRestaurants={savedRestaurants} userRecommendations={userRecommendations} currentUser={currentUser} users={users} updateUserAdd={updateUserAdd} currentFriends={currentFriends} handleMoveToRecommendations={handleMoveToRecommendations} />
+        element: <AuthenticationGuard 
+                  component={ProfilePage} 
+                  activeTab={activeTab} 
+                  setActiveTab={setActiveTab} 
+                  updateUserDelete={updateUserDelete} 
+                  savedRestaurants={savedRestaurants} 
+                  userRecommendations={userRecommendations} 
+                  currentUser={currentUser} users={users} 
+                  updateUserAdd={updateUserAdd} 
+                  currentFriends={currentFriends} 
+                  handleMoveToRecommendations={handleMoveToRecommendations} 
+                  />
       },
       { path: "*", element: <NotFoundPage /> }
     ]);
