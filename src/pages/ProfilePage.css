@@ -1,11 +1,13 @@
-.grid-container {
+.flex-container {
 	display: flex;
 	flex-wrap: wrap;
-	padding-left: 10px;
+	padding-left: 20px;
+	gap: calc(20% -20px);
 	background-color: rgb(252, 247, 247);
 	align-content: center; 
 	justify-content: flex-start;
-  }
+}
+
 
 .active-tab .nav-link.active{
     background-color: rgb(252, 247, 247);
