@@ -9,4 +9,10 @@ img {
   background-color: #2E4C80;
   border-color: #2E4C80;
 }
-  
+
+#card {
+  width: 18rem;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 1.5rem 1.5rem .5rem;
+}

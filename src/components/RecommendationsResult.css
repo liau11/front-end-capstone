@@ -11,6 +11,8 @@
 }
 
 #google-btn {
+  background-color: transparent;
+  border: none;
   color: blue;
   transition: color 0.3s ease, opacity 0.3s ease;
 }
@@ -39,6 +41,30 @@
   opacity: 0.5;
 }
 
+#delete-btn {
+  background-color: transparent;
+  border: none;
+  color: red;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+#delete-btn:hover {
+  color: red;
+  opacity: 0.5;
+}
+
+#move-to-recs-btn {
+  background-color: transparent;
+  border: none;
+  color: black;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+#move-to-recs-btn:hover {
+  color: black;
+  opacity: 0.5;
+}
+
 img {
   width: 200px;
   height: 300px;
@@ -48,7 +74,8 @@ img {
 #restaurant-card-footer {
   background-color: white;
   padding: 0px;
-  padding-top: 6px;
+  padding-top: 8px;
+  padding-bottom: 0px;
 }
 
 .footer-item {
@@ -61,3 +88,13 @@ img {
 .footer-item:nth-child(4) {
     text-align: right;
 }
+
+.footer-item-btn {
+  flex: 1;
+  padding: 0 10px;
+}
+
+/* .footer-item-btn:nth-child(3),
+.footer-item-btn:nth-child(4) {
+  text-align: right;
+} */
