@@ -9,7 +9,7 @@ const AboutPage = () => {
 		<section className="parent-container">
         <CarouselFade className="carousel"/>
         <div className="card-overlay">
-          <Card id="custom-card" style={{ width: '42rem', backgroundColor: '#fffaf0' }}>
+          <Card id="custom-card" style={{ width: '60rem', backgroundColor: '#fffaf0' }}>
             <Card.Body>
               <Card.Title>Crafted with Love and Driven by Indecision</Card.Title>
               <Card.Text>
