@@ -43,10 +43,17 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
 			handleAddToList("recommendations", {"recommendations": formData.term})
 		} else {
 			const newRestaurantId = await addNewRestaurant(formData);
-			updateUserAdd("recommendations", {"recommendations": newRestaurantId})
-		}
+            console.log("HERE", newRestaurantId)
+            
+            if (!newRestaurantId) {
+                alert("This restaurant does not exist. Try again!");
+            } else {
+                updateUserAdd("recommendations", {"recommendations": newRestaurantId});
+		    } 
+        }
 		setFormData(INITIAL_FORM_DATA);
 	}
+
 
     return (
     <form onSubmit={handleSubmit}>
