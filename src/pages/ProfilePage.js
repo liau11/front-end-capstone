@@ -65,12 +65,12 @@ const ProfilePage = ({
     <section>
       <Tabs activeKey={activeTab} onSelect={handleTabSelect} className='active-tab'>
 				<Tab eventKey="bookmarks" title="My Bookmarks">
-          <div className="grid-container">
+          <div className="flex-container">
 						{allSavedResults}
 					</div>
         </Tab>
         <Tab eventKey="recommendations" title="My Recommendations">
-					<div className="grid-container">
+					<div className="flex-container">
 						{allRecommendationResults}
 					</div>
         </Tab>
