@@ -61,7 +61,7 @@ const FindFriendForm = ({ currentUser, users, updateUserAdd }) => {
 						value={formData.friends}
 						onChange={handleChange}
 				/>
-				<Button variant="primary" className='btn-sm' type="submit" value="Add friend">
+				<Button variant="primary" className='btn-sm m-1' type="submit" value="Add friend">
 					<svg 
 						xmlns="http://www.w3.org/2000/svg" 
 						width="16" 
