@@ -9,8 +9,17 @@
 
 .scrollable-column {
     overflow-y: auto;
-    max-height: 100vh; /* Adjust the value based on your design */
+    max-height: 100vh; 
     outline: 1px solid darkgrey;
-    background-color: rgb(252, 247, 247);;
+    background-color: rgb(252, 247, 247);
 }
 
+#get-recs-card {
+    width: 85%;
+    margin: 10px;
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(182, 66, 66, 0.1);
+    transition: box-shadow 0.3s;
+}

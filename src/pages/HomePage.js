@@ -9,8 +9,8 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
     return (
         <section className="body">
             <br />
-            <Container className="forms-container">
-                <Card>
+            <Container className="forms-container d-flex align-items-center justify-content-center">
+                <Card id="get-recs-card">
                     <Card.Header>
                         <Tabs
                         // activeKey={activeTab} 
@@ -43,7 +43,7 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
             <Container fluid >
                 <br />
                 <Row className="justify-content-center">
-                    <Col md={8} lg={8} xl={8}>
+                    <Col md={8} lg={8} xl={8} style={{paddingRight: "30px"}}>
                         < Map 
                             cityCenter={cityCenter} 
                             recommendationsData={recommendationsData} 
