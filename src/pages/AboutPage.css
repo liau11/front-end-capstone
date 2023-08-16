@@ -6,30 +6,17 @@
 
 .card-overlay {
   position: relative;
-  bottom: 55rem;
+  bottom: 53rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
-}
-
-.centered-card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 60rem; 
-  width: 100%;
-}
-  
-.carousel {
-  padding-top: 20px;
 }
 
 .parent-container {
   max-height: 1000px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-height: 1200px) {
   #custom-card {
     max-width: 90%; 
     border-radius: 2em; 
@@ -41,7 +28,7 @@
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-height: 820px) {
   #custom-card {
     max-width: 100%; 
     font-size: 0.9rem;
