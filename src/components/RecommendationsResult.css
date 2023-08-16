@@ -94,7 +94,6 @@ img {
   padding: 0 10px;
 }
 
-/* .footer-item-btn:nth-child(3),
-.footer-item-btn:nth-child(4) {
-  text-align: right;
-} */
+.footer-item-btn-recs {
+  padding: 0 20px;
+}
