@@ -38,9 +38,9 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
     return (
         <div >
             <form onSubmit={handleSubmit}>
-                <Card>
+                <Card id="find-recs-card">
                     <Card.Body className="card-form justify-content-between">
-                        <Card.Title className="text-center"> Find Restaurants: </Card.Title>
+                        <Card.Title id="form-title" className="text-center"> Find Restaurants: </Card.Title>
                         <Card.Text className="align-items-center text-center">
                             <Form.Group as={Row} className="align-items-center justify-content-center">
                                 <Col sm={5} className="my-1">
@@ -58,15 +58,6 @@ const GetRecommendationsForm = ({ currentUser, getFriendsRecommendations }) => {
                                     <Button as="input" type="submit" value="Search" id="find-restaurants-button" variant="outline-primary" size="sm"/>
                                 </Col>
                             </Form.Group>
-                            {/* <label htmlFor="location"></label> */}
-                            {/* <input
-                                type="text"
-                                id="location"
-                                name="location"
-                                placeholder="What city?"
-                                value={formData.location}
-                                onChange={handleChange}
-                            /> */}
                         </Card.Text>
                     </Card.Body>
                 </Card>

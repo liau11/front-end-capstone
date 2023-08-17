@@ -13,7 +13,19 @@
 }
 
 .card-title {
-  height:50px;
+  height: 50px;
+}
+
+#form-title {
+  height: 30px;
+}
+
+#find-recs-card:hover {
+  box-shadow: 0 0px 0px rgba(181, 179, 179, 0.2);
+}
+
+#recommend-card:hover {
+  box-shadow: 0 0px 0px rgba(181, 179, 179, 0.2);
 }
 
 .item {

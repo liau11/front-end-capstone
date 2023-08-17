@@ -23,43 +23,43 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
 
 
 
-  const handleSubmit = async (event) => {
-		event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-		if (!Object.keys(currentUser).length) {
-			alert("Please log in first!");
-		}
+        if (!Object.keys(currentUser).length) {
+            alert("Please log in first!");
+        }
 
-		let restaurantExists = false;
+        let restaurantExists = false;
 
-		for (const restaurantObject of allRestaurants) {  
-			if (restaurantObject.name.toLowerCase() === formData.term.toLowerCase()) {
-				formData.term = restaurantObject._id
-				restaurantExists = true;
-			}
-		}
+        for (const restaurantObject of allRestaurants) {  
+            if (restaurantObject.name.toLowerCase() === formData.term.toLowerCase()) {
+                formData.term = restaurantObject._id
+                restaurantExists = true;
+            }
+        }
 
-		if (restaurantExists) {
-			handleAddToList("recommendations", {"recommendations": formData.term})
-		} else {
-			const newRestaurantId = await addNewRestaurant(formData);
-            console.log("HERE", newRestaurantId)
+        if (restaurantExists) {
+            handleAddToList("recommendations", {"recommendations": formData.term})
+        } else {
+            const newRestaurantId = await addNewRestaurant(formData);
             
             if (!newRestaurantId) {
                 alert("This restaurant does not exist. Try again!");
             } else {
                 updateUserAdd("recommendations", {"recommendations": newRestaurantId});
-		    } 
+                alert("Thanks for the recommendation! :)")
+            } 
         }
-		setFormData(INITIAL_FORM_DATA);
-	}
+        setFormData(INITIAL_FORM_DATA);
+    }
 
 
     return (
     <form onSubmit={handleSubmit}>
-        <Card >
+        <Card id="recommend-card">
             <Card.Body className="card-form justify-content-between">
-                <Card.Title className="text-center"> 
+                <Card.Title id="form-title" className="text-center"> 
                     Recommend a Restaurant:  
                 </Card.Title>
                 <Form.Group as={Row} className="align-items-center justify-content-center">
