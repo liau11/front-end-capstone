@@ -62,7 +62,7 @@ const ProfilePage = ({
 	
 
   return (
-    <section>
+    <section className='profile-header'>
       <Tabs activeKey={activeTab} onSelect={handleTabSelect} className='active-tab'>
 				<Tab eventKey="bookmarks" title="My Bookmarks">
           <div className="flex-container">

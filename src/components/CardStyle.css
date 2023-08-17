@@ -17,5 +17,6 @@
 }
 
 .item {
-  min-height: 100vh;
+  padding-top: 40px;
+  min-height: 50vh;
 }
