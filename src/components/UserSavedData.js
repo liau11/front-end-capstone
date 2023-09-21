@@ -6,6 +6,8 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import './UserSavedData.css';
 import './RecommendationsResult.css';
+import PropTypes from "prop-types";
+
 
 const UserSavedData = ({ restaurantId, name, address, updateUserDelete, url, price, imageUrl, handleMoveToRecommendations }) => {
   const openYelpInNewTab = () => {
@@ -67,6 +69,17 @@ const UserSavedData = ({ restaurantId, name, address, updateUserDelete, url, pri
       </Card>
     </div>
   );
+};
+
+UserSavedData.propTypes = {
+  restaurantId: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  updateUserDelete: PropTypes.func.isRequired,
+  handleMoveToRecommendations: PropTypes.func.isRequired,
 };
 
 

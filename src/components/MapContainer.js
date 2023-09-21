@@ -2,6 +2,8 @@ import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import PropTypes from "prop-types";
+
 
 const Map = ({ cityCenter, recommendationsData }) => {
 	const mapStyle = { width: "100%", height: "100vh" };
@@ -37,5 +39,12 @@ const Map = ({ cityCenter, recommendationsData }) => {
 		</MapContainer>
 	);
 };
+
+
+MapContainer.propTypes = {
+	cityCenter: PropTypes.array.isRequired,
+	recommendationsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 
 export default Map;

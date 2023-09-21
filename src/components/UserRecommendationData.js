@@ -5,6 +5,7 @@ import './CardStyle.css';
 import { Icon } from '@iconify/react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import PropTypes from "prop-types";
 
 
 const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address, url, price, imageUrl }) => {
@@ -66,5 +67,14 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 	);
 };
 
+UserRecommendationData.propTypes = {
+	updateUserDelete: PropTypes.func.isRequired,
+	restaurantId: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	address: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired,
+	price: PropTypes.string.isRequired,
+	imageUrl: PropTypes.string.isRequired
+};
 
 export default UserRecommendationData;

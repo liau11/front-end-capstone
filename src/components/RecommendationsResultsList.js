@@ -37,7 +37,10 @@ const RecommendationsResultsList = ({ handleAddToList, currentUser, recommendati
 };
 
 RecommendationsResultsList.propTypes = {
-	recommendationsData: PropTypes.arrayOf(PropTypes.object).isRequired
+	handleAddToList: PropTypes.func.isRequired,
+	recommendationsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+	currentUser: PropTypes.object.isRequired,
+	updateUserAdd: PropTypes.func.isRequired,
 };
 
 

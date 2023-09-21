@@ -96,7 +96,11 @@ const RestaurantForm = ({ currentUser, handleAddToList, allRestaurants, addNewRe
 
 
 RestaurantForm.propTypes = {
-	addNewRestaurant: PropTypes.func
+	addNewRestaurant: PropTypes.func.isRequired,
+	currentUser: PropTypes.object.isRequired,
+	handleAddToList: PropTypes.func.isRequired,
+	allRestaurants: PropTypes.arrayOf(PropTypes.object).isRequired,
+	updateUserAdd: PropTypes.func.isRequired
 };
 
 export default RestaurantForm;

@@ -4,6 +4,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Input from "@mui/material/Input";
+import PropTypes from "prop-types";
+
 
 const UserForm = ({ createUser, users }) => {
 	const INITIAL_FORM_DATA = {
@@ -97,5 +99,10 @@ const UserForm = ({ createUser, users }) => {
 	);
 }
 
+
+UserForm.propTypes = {
+	createUser: PropTypes.func.isRequired,
+	users: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default UserForm;

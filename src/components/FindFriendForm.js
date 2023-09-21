@@ -80,7 +80,9 @@ const FindFriendForm = ({ currentUser, users, updateUserAdd }) => {
 };
 
 FindFriendForm.propTypes = {
-	getFriendsRecommendations: PropTypes.func
+	currentUser: PropTypes.object.isRequired,
+	users: PropTypes.arrayOf(PropTypes.object).isRequired,
+	updateUserAdd: PropTypes.func.isRequired,
 };
 
 export default FindFriendForm;
