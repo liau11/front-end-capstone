@@ -1,8 +1,8 @@
 .navbar-full-width {
   padding-left: 0;
   padding-right: 0;
-  margin-left: -15px; /* Adjust this value as needed */
-  margin-right: -15px; /* Adjust this value as needed */
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .App {
@@ -39,6 +39,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

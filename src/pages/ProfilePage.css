@@ -5,9 +5,7 @@
 	background-color: rgb(252, 247, 247);
 	align-content: center;
 	justify-content: flex-start;
-	/* min-height: 70vh; */
 }
-
 
 @media screen and (max-height: 820px) {
 	.flex-container {

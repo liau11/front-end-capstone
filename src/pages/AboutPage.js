@@ -4,7 +4,6 @@ import './AboutPage.css';
 import CarouselFade from '../components/CarouselFade';
 
 const AboutPage = () => {
-
 	return (
 		<section className="parent-container">
 			<CarouselFade className="carousel" />

@@ -13,26 +13,24 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
                 <Card id="get-recs-card">
                     <Card.Header>
                         <Tabs
-                        // activeKey={activeTab} 
-                        // onSelect={handleTabSelect}
-                        defaultActiveKey="find"
-                        id="justify-tab"
-                        className="home-tabs mb-3"
-                        justify
+                            defaultActiveKey="find"
+                            id="justify-tab"
+                            className="home-tabs mb-3"
+                            justify
                         >
                             <Tab eventKey="find" title="Find Restaurants">
-                                <GetRecommendationsForm 
-                                currentUser={currentUser} 
-                                getFriendsRecommendations={getFriendsRecommendations}
+                                <GetRecommendationsForm
+                                    currentUser={currentUser}
+                                    getFriendsRecommendations={getFriendsRecommendations}
                                 />
                             </Tab>
                             <Tab eventKey="recommend" title="Recommend a Restaurant">
                                 <RestaurantForm
-                                currentUser={currentUser}
-                                handleAddToList={handleAddToList} 
-                                allRestaurants={allRestaurants} 
-                                addNewRestaurant={addNewRestaurant} 
-                                updateUserAdd={updateUserAdd}
+                                    currentUser={currentUser}
+                                    handleAddToList={handleAddToList}
+                                    allRestaurants={allRestaurants}
+                                    addNewRestaurant={addNewRestaurant}
+                                    updateUserAdd={updateUserAdd}
                                 />
                             </Tab>
                         </Tabs>
@@ -43,26 +41,25 @@ const HomePage = ({ handleAddToList, currentUser, recommendationsData, updateUse
             <Container fluid >
                 <br />
                 <Row className="justify-content-center">
-                    <Col md={8} lg={8} xl={8} style={{paddingRight: "30px"}}>
-                        < Map 
-                            cityCenter={cityCenter} 
-                            recommendationsData={recommendationsData} 
+                    <Col md={8} lg={8} xl={8} style={{ paddingRight: "30px" }}>
+                        < Map
+                            cityCenter={cityCenter}
+                            recommendationsData={recommendationsData}
                         />
                     </Col>
-                    {recommendationsData.length && Object.keys(currentUser).length ? 
-                    <Col md={3} lg={3} xl={3} className="scrollable-column">
-                        <RecommendationsResultsList 
-                            handleAddToList={handleAddToList} 
-                            currentUser={currentUser} 
-                            recommendationsData={recommendationsData} 
-                            updateUserAdd={updateUserAdd} 
-                        />
-                    </Col> : <></>}
+                    {recommendationsData.length && Object.keys(currentUser).length ?
+                        <Col md={3} lg={3} xl={3} className="scrollable-column">
+                            <RecommendationsResultsList
+                                handleAddToList={handleAddToList}
+                                currentUser={currentUser}
+                                recommendationsData={recommendationsData}
+                                updateUserAdd={updateUserAdd}
+                            />
+                        </Col> : <></>}
                 </Row>
             </Container>
         </section>
     );
-
 };
 
 export default HomePage;
