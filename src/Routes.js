@@ -1,13 +1,10 @@
 import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
-// import RecommendationsResultsList from './components/RecommendationsResultsList';
 
-// const slug = "something";
 
 function Testing() {
-    // console.log("I AM IN TESTING COMPONENT")
-    // const { slug } = useParams();
+
     return (
         <h2>I AM TESTING</h2>
     );
