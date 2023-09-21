@@ -22,15 +22,18 @@ function CarouselFade() {
       <img
         className="d-block w-100"
         src={image}
-        alt={`Image ${index + 1}`}
-        style={{ width: '100%', height: '100vh', objectFit: 'cover', opacity: 0.6 }}
+        alt={`Food #${index + 1}`}
+        style={{
+          width: '100%',
+          height: '100vh',
+          objectFit: 'cover',
+          opacity: 0.6
+        }}
       />
     </Carousel.Item>
   ));
 
   return <Carousel>{allResults}</Carousel>;
 }
-
-
 
 export default CarouselFade;

@@ -1,13 +1,13 @@
 #yelp-btn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: color 0.3s ease, opacity 0.3s ease;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 #yelp-btn:hover {
-    color: rgba(255, 0, 0, 0.5);
-    opacity: 0.5;
+  color: rgba(255, 0, 0, 0.5);
+  opacity: 0.5;
 }
 
 #google-btn {
@@ -18,7 +18,7 @@
 }
 
 #google-btn:hover {
-  color: blue; 
+  color: blue;
   opacity: 0.5;
 }
 
@@ -28,7 +28,7 @@
 }
 
 #save-btn:hover {
-  color: rgb(249, 119, 141); 
+  color: rgb(249, 119, 141);
   opacity: 0.5;
 }
 
@@ -37,7 +37,7 @@
 }
 
 #recommend-btn:hover {
-  color: rgb(255, 217, 0); 
+  color: rgb(255, 217, 0);
   opacity: 0.5;
 }
 
@@ -79,14 +79,14 @@ img {
 }
 
 .footer-item {
-  margin: 0 10px; 
+  margin: 0 10px;
   flex: 1;
-  text-align: left; 
+  text-align: left;
 }
 
 .footer-item:nth-child(3),
 .footer-item:nth-child(4) {
-    text-align: right;
+  text-align: right;
 }
 
 .footer-item-btn {

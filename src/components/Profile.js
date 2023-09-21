@@ -11,6 +11,7 @@ const Profile = ({ createAndFindUserIfNeeded }) => {
           name: user.given_name ? user.given_name : user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1),
           username: user.email,
         };
+
         createAndFindUserIfNeeded(formData);
       }
     };
@@ -24,16 +25,14 @@ const Profile = ({ createAndFindUserIfNeeded }) => {
   }
 
 
-
   return (
     isAuthenticated && (
-      <div style={{color: "gray"}}>
-          Welcome, {user.given_name ? user.given_name : user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1)}!
+      <div style={{ color: "gray" }}>
+        Welcome, {user.given_name ? user.given_name : user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1)}!
       </div>
     )
   );
 };
-
 
 
 export default Profile;

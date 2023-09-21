@@ -1,31 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios, { all } from 'axios';
-import Map from "./components/MapContainer";
-import RestaurantForm from "./components/RestaurantForm";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 import { BrowserRouter as Router, useRoutes, Link } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
-import FriendsPage from "./pages/FriendsPage";
 import NotFoundPage from "./pages/AboutPage";
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
 import Profile from './components/Profile';
 import ProfilePage from "./pages/ProfilePage";
-import { Container, Row, Col, Navbar, Nav, Dropdown, Button } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Dropdown, Button } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import AuthenticationGuard from "./components/AuthenticationGuard";
 import "./App.css";
 
 
+const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record";
 
-const API_URL = "https://restaurant-rec-api-back-end.onrender.com/record"
 
 function App() {
 
   const [users, setUsers] = useState([])
   const [allRestaurants, setAllRestaurants] = useState([])
-  // store all the recommendations that your friends recommended
   const [recommendationsData, setRecommendationsData] = useState([])
   const [savedRestaurants, setSavedRestaurants] = useState([])
   const [currentUser, setCurrentUser] = useState([])
@@ -60,8 +52,7 @@ function App() {
         setUsers(allUserData);
       })
       .catch((error) => {
-        console.log(error.response.status);
-        console.log(error.response.data);
+        console.log(error.message);
       });
   };
 
@@ -153,18 +144,18 @@ function App() {
   // Creates a new user if needed and set current user
   const createAndFindUserIfNeeded = (formData) => {
     const newUser = validateUser(formData);
-    
-    if (newUser) { 
+
+    if (newUser) {
       const newUserData = {
         name: formData.name,
         username: formData.username
       };
       createUser(newUserData);
     }
-  
+
     findCurrentUserData(formData.username);
   };
-  
+
 
   //  Retrieves detailed user data based on a given user ID
   const getUserData = async (userId) => {
@@ -333,33 +324,33 @@ function App() {
 
   function Routes() {
     const element = useRoutes([
-      { 
-        path: "/", 
-        element: <HomePage 
-                  addNewRestaurant={addNewRestaurant} 
-                  allRestaurants={allRestaurants} 
-                  handleAddToList={handleAddToList} 
-                  cityCenter={cityCenter} 
-                  currentUser={currentUser} 
-                  recommendationsData={recommendationsData} 
-                  updateUserAdd={updateUserAdd} 
-                  getFriendsRecommendations={getFriendsRecommendations}
-                  />
+      {
+        path: "/",
+        element: <HomePage
+          addNewRestaurant={addNewRestaurant}
+          allRestaurants={allRestaurants}
+          handleAddToList={handleAddToList}
+          cityCenter={cityCenter}
+          currentUser={currentUser}
+          recommendationsData={recommendationsData}
+          updateUserAdd={updateUserAdd}
+          getFriendsRecommendations={getFriendsRecommendations}
+        />
       },
-      { 
-        path: "/profile", 
-        element: <AuthenticationGuard 
-                  component={ProfilePage} 
-                  activeTab={activeTab} 
-                  setActiveTab={setActiveTab} 
-                  updateUserDelete={updateUserDelete} 
-                  savedRestaurants={savedRestaurants} 
-                  userRecommendations={userRecommendations} 
-                  currentUser={currentUser} users={users} 
-                  updateUserAdd={updateUserAdd} 
-                  currentFriends={currentFriends} 
-                  handleMoveToRecommendations={handleMoveToRecommendations} 
-                  />
+      {
+        path: "/profile",
+        element: <AuthenticationGuard
+          component={ProfilePage}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          updateUserDelete={updateUserDelete}
+          savedRestaurants={savedRestaurants}
+          userRecommendations={userRecommendations}
+          currentUser={currentUser} users={users}
+          updateUserAdd={updateUserAdd}
+          currentFriends={currentFriends}
+          handleMoveToRecommendations={handleMoveToRecommendations}
+        />
       },
       { path: "*", element: <NotFoundPage /> }
     ]);
@@ -372,46 +363,46 @@ function App() {
         <Container fluid style={{ backgroundColor: '#f8f9fa' }}>
           <Row className="align-items-center justify-content-between">
             <Col className="d-flex justify-content-center align-items-center">
-                <Link to="/" style={{ padding: 5, textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center' }}>
-                    <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "180px" }} />
-                    <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
-                </Link>
+              <Link to="/" style={{ padding: 5, textDecoration: 'none', color: 'black', display: 'flex', alignItems: 'center' }}>
+                <img className="logo smaller-image" src="https://i.imgur.com/005YOB7.png" alt="logo" style={{ height: "180px" }} />
+                <h1 className="text-center mt-4 mb-2 pt-2 pb-1"> Foodsteps </h1>
+              </Link>
             </Col>
           </Row>
         </Container>
         <Container fluid >
-              <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between shadow-sm navbar-full-width">
-                <Dropdown >
-                  <Dropdown.Toggle variant="light" id="dropdown-basic" className="ms-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
-                      <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu >
-                    <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-                <div className="d-flex align-items-center">
-                  <div className="mr-auto"></div>
-                  <Navbar.Brand>
-                    <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
-                  </Navbar.Brand>
-                  <div className="d-flex justify-content-end">
-                    {isAuthenticated ? (
-                      <>
-                        <Button variant="outline-secondary" className="me-4" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button variant="outline-secondary" className="me-4" onClick={loginWithRedirect}>Log In / Sign up</Button>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </Navbar>
-            <Routes />
+          <Navbar sticky="top" bg="light" variant="light" expand="lg" className="d-flex justify-content-between shadow-sm navbar-full-width">
+            <Dropdown >
+              <Dropdown.Toggle variant="light" id="dropdown-basic" className="ms-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="dark gray" className="bi bi-list" viewBox="0 0 16 16">
+                  <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                </svg>
+              </Dropdown.Toggle>
+              <Dropdown.Menu >
+                <Dropdown.Item as={Link} to="/">Home</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/about">About</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <div className="d-flex align-items-center">
+              <div className="mr-auto"></div>
+              <Navbar.Brand>
+                <Profile createAndFindUserIfNeeded={createAndFindUserIfNeeded} />
+              </Navbar.Brand>
+              <div className="d-flex justify-content-end">
+                {isAuthenticated ? (
+                  <>
+                    <Button variant="outline-secondary" className="me-4" onClick={() => logout({ returnTo: window.location.origin })}>Log Out </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="outline-secondary" className="me-4" onClick={loginWithRedirect}>Log In / Sign up</Button>
+                  </>
+                )}
+              </div>
+            </div>
+          </Navbar>
+          <Routes />
         </Container>
       </Router>
     </div >

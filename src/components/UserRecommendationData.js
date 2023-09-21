@@ -5,7 +5,6 @@ import './CardStyle.css';
 import { Icon } from '@iconify/react';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-// import '../pages/ProfilePage.css'; 
 
 
 const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address, url, price, imageUrl }) => {
@@ -18,9 +17,10 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 		window.open(googleMapsUrl, '_blank');
 	};
 
+
 	return (
 		<div className='item'>
-			<Card style={{ width: '18rem', marginTop: '20px' , marginBottom: '5px', padding: "1.5rem 1.5rem .5rem" }}  id='card'>
+			<Card style={{ width: '18rem', marginTop: '20px', marginBottom: '5px', padding: "1.5rem 1.5rem .5rem" }} id='card'>
 				<div className='card-image-container'>
 					<Card.Img variant='top' src={imageUrl} className='centered-image' />
 				</div>
@@ -32,7 +32,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 						<div class="footer-item-btn-recs">
 							<OverlayTrigger
 								placement='top'
-								overlay={<Tooltip id={'yelp-msg'} style={{position:"fixed"}}>Open Yelp</Tooltip>}
+								overlay={<Tooltip id={'yelp-msg'} style={{ position: "fixed" }}>Open Yelp</Tooltip>}
 							>
 								<Button id="yelp-btn" className="btn-sm" variant="outline-danger" onClick={openYelpInNewTab}>
 									<Icon icon="bi:yelp" color="red" width="22" height="22" />
@@ -42,8 +42,8 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 						<div class="footer-item-btn-recs">
 							<OverlayTrigger
 								placement='top'
-								overlay={<Tooltip id={'google-maps-msg'} style={{position:"fixed"}}>Open Google Maps</Tooltip>}
-								>
+								overlay={<Tooltip id={'google-maps-msg'} style={{ position: "fixed" }}>Open Google Maps</Tooltip>}
+							>
 								<Button id="google-btn" className="btn-sm" onClick={openGoogleMaps}>
 									<Icon icon="bi:map" width="20" height="20" />
 								</Button>
@@ -52,9 +52,9 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 						<div class="footer-item-btn-recs">
 							<OverlayTrigger
 								placement='top'
-								overlay={<Tooltip id={'delete-msg'} style={{position:"fixed"}}>Delete Recommendation</Tooltip>}
-								>
-								<Button id="delete-btn" className='btn-sm' variant='danger' onClick={() => updateUserDelete('recommendations', {'recommendations': restaurantId })}>
+								overlay={<Tooltip id={'delete-msg'} style={{ position: "fixed" }}>Delete Recommendation</Tooltip>}
+							>
+								<Button id="delete-btn" className='btn-sm' variant='danger' onClick={() => updateUserDelete('recommendations', { 'recommendations': restaurantId })}>
 									<Icon icon="bi:trash" width="24" height="24" />
 								</Button>
 							</OverlayTrigger>
@@ -62,7 +62,7 @@ const UserRecommendationData = ({ updateUserDelete, restaurantId, name, address,
 					</Card.Footer>
 				</Card.Body>
 			</Card>
-	 </div>
+		</div>
 	);
 };
 
