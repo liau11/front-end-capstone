@@ -1,6 +1,7 @@
 
 # Table of Contents:
  - [Introduction](#intro)
+ - [Backend Repository](#backend-repo)
  - [Live Website](#website)
  - [Tech Stack](#tech-stack)
  - [Features](#features)
@@ -12,6 +13,10 @@
  <a id="intro"></a>
  ### Introduction
 Sophia and Lily love to eat. But, they sometimes end up in a bit of a dilemma when it comes to picking where to eat. Although Yelp and Google offer a useful starting point, relying solely on the opinions of strangers doesn't always make it easier. Sophia and Lily believe that the best recommendations come from friends, not total strangers. That's why they built this site.
+
+ <a id="backend-repo"></a>
+ ### Backend Repository
+Check out our backend repository [HERE](https://github.com/sophiat8832/capstone-back-end)
 
  <a id="website"></a>
  ### Live Website
